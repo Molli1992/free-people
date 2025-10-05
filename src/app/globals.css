@@ -7,12 +7,15 @@
 */
 :root {
   --white: #ffffff;
+  --secondary-white: #f5f7fc;
   --black: #000000;
   --darkBlue: #172a48;
   --secondary-darkBlue: #263957;
   --blue: #0693e3;
   --lightBlue: #6ec1e4;
   --orange: #fd4a36;
+  --midnightBlue: #172b56;
+  --darkGray: #494949;
 }
 
 /*
@@ -22,22 +25,28 @@
 */
 html.dark {
   --white: #ffffff;
+  --secondary-white: #f5f7fc;
   --black: #000000;
   --darkBlue: #172a48;
   --secondary-darkBlue: #263957;
   --blue: #0693e3;
   --lightBlue: #6ec1e4;
   --orange: #fd4a36;
+  --midnightBlue: #172b56;
+  --darkGray: #494949;
 }
 
 @theme inline {
   --color-white: var(--white);
+  --color-secondary-white: var(--secondary-white);
   --color-black: var(--black);
   --color-darkBlue: var(--darkBlue);
   --color-secondary-darkBlue: var(--secondary-darkBlue);
   --color-blue: var(--blue);
   --color-lightBlue: var(--lightBlue);
   --color-orange: var(--orange);
+  --color-midnightBlue: var(--midnightBlue);
+  --color-darkGray: var(--darkGray);
 }
 
 body {
