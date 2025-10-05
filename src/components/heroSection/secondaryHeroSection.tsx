@@ -14,7 +14,7 @@ export default function SecondaryHeroSection({
 
       <div className="flex gap-2 items-center">
         <Link href="/" className="hover:text-secondary-darkBlue">
-          Home
+          Inicio
         </Link>
         <p>/</p>
         <p>{route}</p>
