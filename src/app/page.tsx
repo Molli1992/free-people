@@ -1,9 +1,9 @@
-import Home from '@/components/home/home';
+import PrimaryHeroSection from '@/components/heroSection/primaryHeroSection';
 
 export default function HomePage() {
   return (
-    <div className="w-full h-screen">
-      <Home />
-    </div>
+    <main className="w-full h-screen">
+      <PrimaryHeroSection />
+    </main>
   );
 }

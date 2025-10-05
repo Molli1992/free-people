@@ -1,1 +1,3 @@
-//Types file
+export type SecondaryHeroSectionProps = {
+  route: string;
+};
