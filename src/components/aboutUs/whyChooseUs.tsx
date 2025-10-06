@@ -6,7 +6,9 @@ import { LuCircleCheckBig } from 'react-icons/lu';
 export default function WhyChooseUs() {
   const FeatureItem = ({ text }: { text: string }) => (
     <div className="flex items-center gap-3">
-      <LuCircleCheckBig className="w-6 h-6 text-beige" />
+      <div>
+        <LuCircleCheckBig className="w-6 h-6 text-beige" />
+      </div>
       <span className="font-semibold text-black">{text}</span>
     </div>
   );
