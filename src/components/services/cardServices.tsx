@@ -13,7 +13,7 @@ export default function CardServices({ icon, name, img }: CardServicesProps) {
 
       <div className="p-4 w-full h-56">
         <img
-          src={img.src}
+          src={img}
           alt={`Imagen del servicio ${name}`}
           className="w-full h-full object-cover"
         />

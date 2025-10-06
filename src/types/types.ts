@@ -23,11 +23,11 @@ export type Service = {
   id: string;
   icon: ReactElement;
   name: string;
-  img: any;
+  img: string;
 };
 
 export type CardServicesProps = {
   icon: React.ReactElement;
   name: string;
-  img: any;
+  img: string;
 };
