@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
   );
 
   return (
-    <section className="flex items-center justify-center py-16 px-4 bg-secondary-white">
+    <section className="flex items-center justify-center py-16 px-4 bg-skyBlue">
       <div className="flex flex-col lg:flex-row gap-12 w-full max-w-2xl lg:max-w-7xl">
         <div className="flex flex-col gap-6 w-full lg:w-[50%]">
           <Separator value="Nuestros Puntos Claves" />
