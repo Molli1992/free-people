@@ -48,8 +48,8 @@ export const teamData: Team[] = [
   {
     id: 'team-5',
     image: TeamImage5.src,
-    name: 'ENGINEER',
-    profession: 'Charles Joe',
+    name: 'Charles Joe',
+    profession: 'ENGINEER',
     linkedin: 'https://www.linkedin.com/',
     instagram: 'https://www.instagram.com/',
     facebook: 'https://www.facebook.com/',
