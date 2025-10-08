@@ -1,9 +1,11 @@
 import SecondaryHeroSection from '@/components/heroSection/secondaryHeroSection';
+import Team from '@/components/team/team';
 
 export default function TeamPage() {
   return (
-    <main className="w-full h-screen">
+    <main>
       <SecondaryHeroSection route="Equipo" />
+      <Team />
     </main>
   );
 }

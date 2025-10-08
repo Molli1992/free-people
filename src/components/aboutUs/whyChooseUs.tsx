@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
 
         <div className="flex items-center justify-center w-full lg:w-[50%]">
           <img
-            src="/about-us-img-2.jpg"
+            src="/aboutUs/about-us-img-2.jpg"
             alt="Trabajadores"
             className="w-full sm:w-[500px] h-auto max-h-[650px] lg:w-full lg:h-full"
           />

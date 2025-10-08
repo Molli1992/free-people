@@ -31,3 +31,22 @@ export type CardServicesProps = {
   name: string;
   img: string;
 };
+
+export type Team = {
+  id: string;
+  image: string;
+  name: string;
+  profession: string;
+  linkedin: string;
+  instagram: string;
+  facebook: string;
+};
+
+export type TeamCardProps = {
+  image: string;
+  name: string;
+  profession: string;
+  linkedin: string;
+  instagram: string;
+  facebook: string;
+};

@@ -13,8 +13,9 @@ export default function Services() {
         <Title value="Los Servicios Que Brindamos" color="secondary" />
 
         <Text
-          value="Si necesita reparar o reemplazar su sistema de plomería, llame hoy mismo y hable con uno de nuestros especialistas. 
-          Responderán a todas sus preguntas y programarán una cita cuando le sea conveniente."
+          value="Transformamos sus ideas y sueños en realidad. Ya sea que busque construir desde cero, renovar un espacio existente o 
+          necesite asesoramiento experto, estamos aquí para guiarlo en cada paso del camino. Explore nuestros servicios y contáctenos para 
+          comenzar a construir su próximo gran proyecto."
           color="secondary"
         />
 

@@ -3,7 +3,7 @@ export default function PrimaryHeroSection() {
     <section
       className="relative flex items-center justify-center w-full h-[75vh] sm:h-[95vh] 
                  bg-cover bg-center 
-                 bg-[url('/primary-hero-section-bg-img.jpg')]"
+                 bg-[url('/heroSection/primary-hero-section-bg-img.jpg')]"
     >
       <div className="text-white text-left z-100 w-full max-w-2xl px-4">
         <p className="text-base sm:text-lg font-medium tracking-widest uppercase">
@@ -22,14 +22,14 @@ export default function PrimaryHeroSection() {
 
       <div className="hidden lg:flex absolute bottom-0 left-[50%] h-[90%] z-50">
         <img
-          src="/primary-hero-section-bg-img-2.png"
+          src="/heroSection/primary-hero-section-bg-img-2.png"
           alt="Trabajador"
           className="h-full"
         />
       </div>
 
       <div className="hidden lg:flex absolute bottom-0 right-0">
-        <img src="/primary-hero-section-bg-img-3.png" alt="Casa" />
+        <img src="/heroSection/primary-hero-section-bg-img-3.png" alt="Casa" />
       </div>
     </section>
   );

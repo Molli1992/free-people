@@ -8,7 +8,7 @@ export default function AboutCompany() {
       <div className="flex flex-col-reverse lg:flex-row gap-12 w-full max-w-2xl lg:max-w-7xl">
         <div className="flex items-center justify-center w-full lg:w-[50%]">
           <img
-            src="/about-us-img-1.png"
+            src="/aboutUs/about-us-img-1.png"
             alt="Camion"
             className="w-full sm:w-[500px] h-auto lg:w-full lg:h-full"
           />
