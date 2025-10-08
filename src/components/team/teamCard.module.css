@@ -41,6 +41,7 @@
 }
 
 .socialLink {
+  cursor: pointer;
   color: var(--darkBlue);
   background-color: var(--white);
   padding: 1rem;
@@ -48,11 +49,6 @@
   transition:
     background-color 300ms ease-in-out,
     color 300ms ease-in-out;
-}
-
-.socialLink:hover {
-  background-color: var(--orange);
-  color: var(--white);
 }
 
 .socialLink svg {
@@ -83,4 +79,11 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+@media (hover: hover) {
+  .socialLink:hover {
+    background-color: var(--orange);
+    color: var(--white);
+  }
 }

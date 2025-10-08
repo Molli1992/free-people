@@ -1,3 +1,6 @@
+'use client';
+
+import { useRef } from 'react';
 import { FaLinkedinIn, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { TeamCardProps } from '@/types/types';
 import styles from './teamCard.module.css';
@@ -10,6 +13,18 @@ export default function TeamCard({
   instagram,
   facebook,
 }: TeamCardProps) {
+  const overlayRef = useRef<HTMLDivElement>(null);
+
+  const handleSocialClick = (url: string) => {
+    if (overlayRef.current) {
+      const overlayStyles = window.getComputedStyle(overlayRef.current);
+
+      if (overlayStyles.opacity === '1') {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+    }
+  };
+
   return (
     <div className={styles.card}>
       <div
@@ -17,33 +32,27 @@ export default function TeamCard({
         style={{ backgroundImage: `url(${image})` }}
       ></div>
 
-      <div className={styles.overlay}>
-        <a
-          href={linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className={styles.overlay} ref={overlayRef}>
+        <button
+          onClick={() => handleSocialClick(linkedin)}
           className={styles.socialLink}
         >
           <FaLinkedinIn />
-        </a>
+        </button>
 
-        <a
-          href={instagram}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={() => handleSocialClick(instagram)}
           className={styles.socialLink}
         >
           <FaInstagram />
-        </a>
+        </button>
 
-        <a
-          href={facebook}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={() => handleSocialClick(facebook)}
           className={styles.socialLink}
         >
           <FaFacebook />
-        </a>
+        </button>
       </div>
 
       <div className={styles.infoBox}>
