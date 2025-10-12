@@ -6,11 +6,12 @@ export default function SecondaryHeroSection({
 }: SecondaryHeroSectionProps) {
   return (
     <section
-      className="relative flex flex-col text-white gap-4 items-center justify-center w-full h-[65vh] 
+      className="relative flex flex-col text-white text-center gap-4 
+                 items-center justify-center w-full h-[65vh] p-4
                  bg-cover bg-center 
                  bg-[url('/heroSection/primary-hero-section-bg-img.jpg')]"
     >
-      <h1 className="text-6xl font-bold">{route}</h1>
+      <h1 className="text-5xl sm:text-6xl font-bold">{route}</h1>
 
       <div className="flex gap-2 items-center">
         <Link href="/" className="hover:text-secondary-darkBlue">

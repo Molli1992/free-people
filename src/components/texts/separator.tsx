@@ -7,7 +7,7 @@ export default function Separator({ value }: SeparatorProps) {
       <div>
         <TfiLayoutLineSolid className="w-8 h-8" />
       </div>
-      <p className="text-lg">{value}</p>
+      <p className="text-base sm:text-lg">{value}</p>
     </div>
   );
 }
