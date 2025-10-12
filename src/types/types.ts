@@ -66,5 +66,5 @@ export type ImageLightboxProps = {
 };
 
 export type ProjectPageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
