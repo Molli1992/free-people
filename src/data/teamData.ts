@@ -6,12 +6,12 @@ import TeamImage5 from '../../public/team/team-5.jpg';
 import TeamImage6 from '../../public/team/team-6.jpg';
 import TeamImage7 from '../../public/team/team-7.jpg';
 import TeamImage8 from '../../public/team/team-8.jpg';
-import { Team } from '@/types/types';
+import { TeamProps } from '@/types/types';
 
-export const teamData: Team[] = [
+export const teamData: TeamProps[] = [
   {
     id: 'team-1',
-    image: TeamImage1.src,
+    image: TeamImage1,
     name: 'Robert Joe',
     profession: 'ENGINEER',
     linkedin: 'https://www.linkedin.com/',
@@ -20,7 +20,7 @@ export const teamData: Team[] = [
   },
   {
     id: 'team-2',
-    image: TeamImage2.src,
+    image: TeamImage2,
     name: 'Michael King',
     profession: 'CIVIL ENGINEER',
     linkedin: 'https://www.linkedin.com/',
@@ -29,7 +29,7 @@ export const teamData: Team[] = [
   },
   {
     id: 'team-3',
-    image: TeamImage3.src,
+    image: TeamImage3,
     name: 'Daniel Joe',
     profession: 'ASSISTANCE',
     linkedin: 'https://www.linkedin.com/',
@@ -38,7 +38,7 @@ export const teamData: Team[] = [
   },
   {
     id: 'team-4',
-    image: TeamImage4.src,
+    image: TeamImage4,
     name: 'Albert Flores',
     profession: 'JUNIOR ENGINEER',
     linkedin: 'https://www.linkedin.com/',
@@ -47,7 +47,7 @@ export const teamData: Team[] = [
   },
   {
     id: 'team-5',
-    image: TeamImage5.src,
+    image: TeamImage5,
     name: 'Charles Joe',
     profession: 'ENGINEER',
     linkedin: 'https://www.linkedin.com/',
@@ -56,7 +56,7 @@ export const teamData: Team[] = [
   },
   {
     id: 'team-6',
-    image: TeamImage6.src,
+    image: TeamImage6,
     name: 'Marry Flores',
     profession: 'ENGINEER',
     linkedin: 'https://www.linkedin.com/',
@@ -65,7 +65,7 @@ export const teamData: Team[] = [
   },
   {
     id: 'team-7',
-    image: TeamImage7.src,
+    image: TeamImage7,
     name: 'Johnson FLores',
     profession: 'ASSISTANCE',
     linkedin: 'https://www.linkedin.com/',
@@ -74,7 +74,7 @@ export const teamData: Team[] = [
   },
   {
     id: 'team-8',
-    image: TeamImage8.src,
+    image: TeamImage8,
     name: 'Adwards King',
     profession: 'ASSISTANCE',
     linkedin: 'https://www.linkedin.com/',

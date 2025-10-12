@@ -16,3 +16,13 @@ export const contactInfo = {
   facebook: 'https://www.facebook.com/felipeblaksley/',
   linkedin: 'https://www.linkedin.com/in/felipe-blaksley-iraola-141b32236/',
 };
+
+export const projectTypes = [
+  'Lorence Project',
+  '3D Modeling',
+  'Houses',
+  'Architecture',
+  'Interior Design',
+  'Apartments',
+  'Project',
+] as const;

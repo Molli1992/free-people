@@ -1,4 +1,6 @@
 import { MouseEventHandler, ReactElement } from 'react';
+import { StaticImageData } from 'next/image';
+import { projectTypes } from './constants';
 
 export type SecondaryHeroSectionProps = {
   route: string;
@@ -19,34 +21,50 @@ export type ButtonsProps = {
   loading: boolean;
 };
 
-export type Service = {
-  id: string;
+export type ServiceProps = {
+  id?: string;
   icon: ReactElement;
   name: string;
-  img: string;
+  image: StaticImageData;
 };
 
-export type CardServicesProps = {
-  icon: React.ReactElement;
+export type TeamProps = {
+  id?: string;
+  image: StaticImageData;
   name: string;
-  img: string;
+  profession: string;
+  linkedin: string;
+  instagram: string;
+  facebook: string;
 };
 
-export type Team = {
+export type ProjectType = (typeof projectTypes)[number];
+
+export type ProjectsProps = {
   id: string;
-  image: string;
-  name: string;
-  profession: string;
-  linkedin: string;
-  instagram: string;
-  facebook: string;
+  images: StaticImageData[];
+  title: string;
+  type: ProjectType[];
+  description: string[];
 };
 
-export type TeamCardProps = {
-  image: string;
-  name: string;
-  profession: string;
-  linkedin: string;
-  instagram: string;
-  facebook: string;
+export type ProjectCardProps = {
+  id: string;
+  images: StaticImageData[];
+  title: string;
+  type: ProjectType[];
+};
+
+export type ProjectDescriptionProps = {
+  images: StaticImageData[];
+  description: string[];
+};
+
+export type ImageLightboxProps = {
+  images: StaticImageData[];
+  onClose: () => void;
+};
+
+export type ProjectPageProps = {
+  params: { id: string };
 };

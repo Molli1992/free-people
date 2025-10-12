@@ -1,8 +1,8 @@
-import { CardServicesProps } from '@/types/types';
+import { ServiceProps } from '@/types/types';
 
-export default function CardServices({ icon, name, img }: CardServicesProps) {
+export default function ServiceCard({ icon, name, image }: ServiceProps) {
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-xl shadow-md transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+    <div className="w-full max-w-md bg-white border border-gray-200 rounded-xl shadow-md transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
       <div className="p-8 flex flex-col gap-4">
         <div className="text-orange text-6xl">{icon}</div>
 
@@ -13,7 +13,7 @@ export default function CardServices({ icon, name, img }: CardServicesProps) {
 
       <div className="p-4 w-full h-56">
         <img
-          src={img}
+          src={image.src}
           alt={`Imagen del servicio ${name}`}
           className="w-full h-full object-cover"
         />

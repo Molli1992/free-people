@@ -2,7 +2,7 @@ import Separator from '@/components/texts/separator';
 import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
 import { servicesData } from '@/data/servicesData';
-import CardServices from '@/components/services/cardServices';
+import CardServices from '@/components/services/serviceCard';
 
 export default function Services() {
   return (
@@ -10,7 +10,7 @@ export default function Services() {
       <div className="flex flex-col gap-6 w-full lg:max-w-7xl">
         <Separator value="¿Que Hacemos?" />
 
-        <Title value="Los Servicios Que Brindamos" color="secondary" />
+        <Title value="Los servicios que brindamos" color="secondary" />
 
         <Text
           value="Transformamos sus ideas y sueños en realidad. Ya sea que busque construir desde cero, renovar un espacio existente o 
@@ -27,7 +27,7 @@ export default function Services() {
                   key={service.id}
                   icon={service.icon}
                   name={service.name}
-                  img={service.img}
+                  image={service.image}
                 />
               );
             })}

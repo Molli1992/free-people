@@ -8,9 +8,9 @@ export default function Team() {
   return (
     <section className="flex items-center justify-center py-16 px-4 bg-secondary-white">
       <div className="flex flex-col gap-6 w-full lg:max-w-7xl">
-        <Separator value="Nuestros profesionales" />
+        <Separator value="Nuestros Profesionales" />
 
-        <Title value="El Equipo que Materializa tus Ideas" color="secondary" />
+        <Title value="El equipo que materializa tus ideas" color="secondary" />
 
         <Text
           value="Ofrecemos soluciones integrales para cada etapa de su proyecto de construcción. Desde el diseño arquitectónico hasta los acabados finales y
