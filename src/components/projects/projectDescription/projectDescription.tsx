@@ -1,6 +1,7 @@
 import { ProjectDescriptionProps } from '@/types/types';
 import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function ProjectDescription({
   images,
@@ -14,7 +15,7 @@ export default function ProjectDescription({
             <Title value="Project description" color="secondary" />
             {description &&
               description.map((text) => {
-                return <Text value={text} color="secondary" />;
+                return <Text key={uuidv4()} value={text} color="secondary" />;
               })}
           </div>
 
