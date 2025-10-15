@@ -9,7 +9,7 @@ export default function ProjectDescription({
 }: ProjectDescriptionProps) {
   return (
     <section className="flex items-center justify-center py-16 px-4 bg-secondary-white">
-      <div className="flex flex-col lg:flex-row gap-6 w-full sm:max-w-2xl lg:max-w-7xl">
+      <div className="flex flex-col lg:flex-row gap-6 w-full max-w-2xl lg:max-w-7xl">
         <div className="flex flex-col gap-8 w-full lg:w-1/2">
           <div className="flex flex-col gap-4">
             <Title value="Project description" color="secondary" />

@@ -7,7 +7,7 @@ import CardServices from '@/components/services/serviceCard';
 export default function Services() {
   return (
     <section className="flex items-center justify-center py-16 px-4 bg-secondary-white">
-      <div className="flex flex-col gap-6 w-full lg:max-w-7xl">
+      <div className="flex flex-col gap-6 w-full max-w-7xl">
         <Separator value="¿Que Hacemos?" />
 
         <Title value="Los servicios que brindamos" color="secondary" />

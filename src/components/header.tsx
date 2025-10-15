@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoClose } from 'react-icons/io5';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { links } from '@/types/constants';
 import SocialNetworks from '@/components/socialNetworks';
 
 export default function Header() {
+  const router = useRouter();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -86,7 +87,12 @@ export default function Header() {
     >
       <div className="flex items-center justify-between p-4 h-24">
         <div className="h-full">
-          <img src="/logo.png" alt="Logo" className="h-full" />
+          <img
+            src="/logo.png"
+            alt="Logo"
+            className="h-full cursor-pointer"
+            onClick={() => router.push('/')}
+          />
         </div>
 
         <div className="hidden md:flex gap-4 h-full items-center">

@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import dynamic from 'next/dynamic';
 import { ClipLoader } from 'react-spinners';
+import './slider.css';
 
 function SwiperBase({ props, children }: SliderProps) {
   return (

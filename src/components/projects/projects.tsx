@@ -7,7 +7,7 @@ import ProjectCard from '@/components/projects/projectCard';
 export default function Projects() {
   return (
     <section className="flex items-center justify-center py-16 px-4 bg-secondary-white">
-      <div className="flex flex-col gap-6 w-full lg:max-w-7xl">
+      <div className="flex flex-col gap-6 w-full max-w-7xl">
         <Separator value="Nuestro Trabajo" />
 
         <Title value="Explorar proyectos recientes" color="secondary" />

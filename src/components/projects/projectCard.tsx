@@ -36,15 +36,19 @@ export default function ProjectCard({
           className={styles.container}
           style={{ alignItems: 'end', gap: '10px' }}
         >
-          <FaExternalLinkAlt
-            className={styles.icon}
-            onClick={handleRouteClick}
-          />
+          <div>
+            <FaExternalLinkAlt
+              className={styles.icon}
+              onClick={handleRouteClick}
+            />
+          </div>
 
-          <FaExpandArrowsAlt
-            className={styles.icon}
-            onClick={handleExpandClick}
-          />
+          <div>
+            <FaExpandArrowsAlt
+              className={styles.icon}
+              onClick={handleExpandClick}
+            />
+          </div>
         </div>
 
         <div

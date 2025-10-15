@@ -3,6 +3,8 @@ import HomeAboutUs from '@/components/home/homeAboutUs';
 import HomeServices from '@/components/home/homeServices';
 import HomeProjects from '@/components/home/homeProjects';
 import Reviews from '@/components/reviews/reviews';
+import CompaniesLogos from '@/components/home/companiesLogos/companiesLogos';
+import ContactForm from '@/components/contact/contactForm';
 
 export default function HomePage() {
   return (
@@ -12,6 +14,8 @@ export default function HomePage() {
       <HomeServices />
       <HomeProjects />
       <Reviews />
+      <CompaniesLogos />
+      <ContactForm />
     </main>
   );
 }

@@ -5,7 +5,7 @@ import Separator from '@/components/texts/separator';
 import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
 import { reviewsData } from '@/data/reviewsData';
-import Slider from '@/components/slider';
+import Slider from '@/components/slider/slider';
 import { SwiperSlide } from 'swiper/react';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
 

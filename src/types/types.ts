@@ -82,3 +82,9 @@ export type ReviewsProps = {
   occupation: string;
   description: string;
 };
+
+export type CompaniesDataProps = {
+  id?: string;
+  image: StaticImageData;
+  name: string;
+};

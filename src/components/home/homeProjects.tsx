@@ -5,7 +5,7 @@ import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
 import { projectsData } from '@/data/projectsData';
 import ProjectCard from '@/components/projects/projectCard';
-import Slider from '@/components/slider';
+import Slider from '@/components/slider/slider';
 import { SwiperSlide } from 'swiper/react';
 import RedButton from '@/components/buttons/redButton';
 import { useRouter } from 'next/navigation';
@@ -46,7 +46,7 @@ export default function HomeProjects() {
 
   return (
     <section className="flex items-center justify-center py-16 px-4 bg-darkBlue">
-      <div className="flex flex-col gap-6 w-full lg:max-w-7xl">
+      <div className="flex flex-col gap-6 w-full max-w-7xl">
         <Separator value="Nuestro Trabajo" />
 
         <Title value="Explorar proyectos recientes" color="primary" />
