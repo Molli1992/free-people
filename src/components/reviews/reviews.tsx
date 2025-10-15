@@ -7,9 +7,10 @@ import Text from '@/components/texts/text';
 import { reviewsData } from '@/data/reviewsData';
 import Slider from '@/components/slider';
 import { SwiperSlide } from 'swiper/react';
+import { SwiperProps as SwiperPropsType } from 'swiper/react';
 
 export default function Reviews() {
-  const sliderProps: any = {
+  const sliderProps: SwiperPropsType = {
     pagination: {
       clickable: true,
     },
@@ -24,11 +25,11 @@ export default function Reviews() {
       },
       1024: {
         slidesPerView: 3,
-        slidesGroup: 3,
+        slidesPerGroup: 3,
       },
       1280: {
         slidesPerView: 2,
-        slidesGroup: 2,
+        slidesPerGroup: 2,
       },
     },
   };

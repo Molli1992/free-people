@@ -35,7 +35,7 @@ export default function ImageLightbox() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
+  }, []);
 
   if (!isOpen || images.length === 0) {
     return null;

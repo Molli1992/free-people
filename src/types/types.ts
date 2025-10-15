@@ -1,6 +1,7 @@
 import { MouseEventHandler, ReactElement, ReactNode } from 'react';
 import { StaticImageData } from 'next/image';
 import { projectTypes } from './constants';
+import { SwiperProps as SwiperPropsType } from 'swiper/react';
 
 export type SecondaryHeroSectionProps = {
   route: string;
@@ -64,7 +65,7 @@ export type ProjectPageProps = {
   params: Promise<{ id: string }>;
 };
 export interface SliderProps {
-  props: any;
+  props: SwiperPropsType;
   children: ReactNode;
 }
 

@@ -10,11 +10,12 @@ import { SwiperSlide } from 'swiper/react';
 import RedButton from '@/components/buttons/redButton';
 import { useRouter } from 'next/navigation';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
+import { SwiperProps as SwiperPropsType } from 'swiper/react';
 
 export default function HomeProjects() {
   const router = useRouter();
 
-  const sliderProps: any = {
+  const sliderProps: SwiperPropsType = {
     pagination: {
       clickable: true,
     },
@@ -34,11 +35,11 @@ export default function HomeProjects() {
       },
       1024: {
         slidesPerView: 3,
-        slidesGroup: 3,
+        slidesPerGroup: 3,
       },
       1280: {
         slidesPerView: 4,
-        slidesGroup: 4,
+        slidesPerGroup: 4,
       },
     },
   };
