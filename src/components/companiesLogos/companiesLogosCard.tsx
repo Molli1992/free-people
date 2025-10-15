@@ -5,7 +5,7 @@ export default function CompaniesLogosCard({
   name,
 }: CompaniesDataProps) {
   return (
-    <div className="w-[300px] h-[150px] bg-white p-4">
+    <div className="w-full max-w-sm h-[150px] bg-white p-4">
       <img src={image.src} alt={name} className="w-full h-full" />
     </div>
   );

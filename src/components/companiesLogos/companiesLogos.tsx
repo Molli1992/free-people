@@ -3,7 +3,7 @@
 import { companiesData } from '@/data/companiesLogoData';
 import Slider from '@/components/slider/slider';
 import { SwiperSlide } from 'swiper/react';
-import CompaniesLogosCard from '@/components/home/companiesLogos/companiesLogosCard';
+import CompaniesLogosCard from '@/components/companiesLogos/companiesLogosCard';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
 
 export default function CompaniesLogos() {
@@ -21,7 +21,7 @@ export default function CompaniesLogos() {
     slidesPerView: 1,
     slidesPerGroup: 1,
     breakpoints: {
-      640: {
+      768: {
         slidesPerView: 2,
         slidesPerGroup: 2,
       },
