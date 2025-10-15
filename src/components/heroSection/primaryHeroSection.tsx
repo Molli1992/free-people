@@ -1,3 +1,5 @@
+import SocialNetworks from '@/components/socialNetworks';
+
 export default function PrimaryHeroSection() {
   return (
     <section
@@ -5,19 +7,21 @@ export default function PrimaryHeroSection() {
                  bg-cover bg-center 
                  bg-[url('/heroSection/primary-hero-section-bg-img.jpg')]"
     >
-      <div className="text-white text-left z-100 w-full max-w-2xl px-4">
+      <div className="flex flex-col gap-6 text-white text-left z-100 w-full max-w-2xl px-4">
         <p className="text-base sm:text-lg font-medium tracking-widest uppercase">
           Visión en
         </p>
 
-        <h1 className="text-4xl sm:text-7xl font-bold uppercase mt-4">
+        <h1 className="text-4xl sm:text-7xl font-bold uppercase">
           Construcción
         </h1>
 
-        <p className="text-base sm:text-lg max-w-md mt-4">
+        <p className="text-base sm:text-lg max-w-md">
           Nos enfocamos en la calidad y la innovación para construir proyectos
           que perduran, garantizando siempre la excelencia en cada detalle.
         </p>
+
+        <SocialNetworks />
       </div>
 
       <div className="hidden lg:flex absolute bottom-0 left-[50%] h-[90%] z-50">

@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactElement } from 'react';
+import { MouseEventHandler, ReactElement, ReactNode } from 'react';
 import { StaticImageData } from 'next/image';
 import { projectTypes } from './constants';
 
@@ -16,7 +16,7 @@ export type TextsProps = {
 };
 
 export type ButtonsProps = {
-  value: string;
+  value: string | ReactNode;
   onClick: MouseEventHandler<HTMLButtonElement>;
   loading: boolean;
 };
@@ -60,11 +60,24 @@ export type ProjectDescriptionProps = {
   description: string[];
 };
 
-export type ImageLightboxProps = {
-  images: StaticImageData[];
-  onClose: () => void;
-};
-
 export type ProjectPageProps = {
   params: Promise<{ id: string }>;
+};
+export interface SliderProps {
+  props: any;
+  children: ReactNode;
+}
+
+export interface StoreImageLightboxProps {
+  isOpen: boolean;
+  images: StaticImageData[];
+  setIsOpen: (boolean: boolean) => void;
+  setimages: (images: StaticImageData[]) => void;
+}
+
+export type ReviewsProps = {
+  id?: string;
+  name: string;
+  occupation: string;
+  description: string;
 };

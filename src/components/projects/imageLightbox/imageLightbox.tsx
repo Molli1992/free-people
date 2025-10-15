@@ -3,10 +3,15 @@
 import { useState, useEffect } from 'react';
 import styles from './imageLightbox.module.css';
 import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { ImageLightboxProps } from '@/types/types';
+import { useImageLightboxStore } from '@/zustand/imageLightboxStore';
 
-export default function ImageLightbox({ images, onClose }: ImageLightboxProps) {
+export default function ImageLightbox() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { isOpen, images, setIsOpen } = useImageLightboxStore();
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -32,50 +37,26 @@ export default function ImageLightbox({ images, onClose }: ImageLightboxProps) {
     };
   }, [onClose]);
 
-  return (
-    <div className={styles.backdrop}>
-      <div className={styles.container}>
-        <div className={styles.textContainer}>
-          <p>{currentIndex + 1}</p>
-          <p>/</p>
-          <p>{images.length}</p>
+  if (!isOpen || images.length === 0) {
+    return null;
+  } else if (isOpen && images.length !== 0) {
+    return (
+      <div className={styles.backdrop}>
+        <div className={styles.container}>
+          <div className={styles.textContainer}>
+            <p>{currentIndex + 1}</p>
+            <p>/</p>
+            <p>{images.length}</p>
+          </div>
+
+          <button className={styles.closeButton} onClick={onClose}>
+            <FaTimes />
+          </button>
         </div>
 
-        <button className={styles.closeButton} onClick={onClose}>
-          <FaTimes />
-        </button>
-      </div>
-
-      <div className={styles.content}>
-        <button
-          className={`${styles.button} ${styles.desktop}`}
-          onClick={(e) => {
-            e.stopPropagation();
-            goToPrevious();
-          }}
-        >
-          <FaChevronLeft />
-        </button>
-
-        <img
-          src={images[currentIndex].src}
-          alt={`Project image ${currentIndex + 1}`}
-          className={styles.img}
-        />
-
-        <button
-          className={`${styles.button} ${styles.desktop}`}
-          onClick={(e) => {
-            e.stopPropagation();
-            goToNext();
-          }}
-        >
-          <FaChevronRight />
-        </button>
-
-        <div className={styles.movile}>
+        <div className={styles.content}>
           <button
-            className={styles.button}
+            className={`${styles.button} ${styles.desktop}`}
             onClick={(e) => {
               e.stopPropagation();
               goToPrevious();
@@ -84,8 +65,14 @@ export default function ImageLightbox({ images, onClose }: ImageLightboxProps) {
             <FaChevronLeft />
           </button>
 
+          <img
+            src={images[currentIndex].src}
+            alt={`Project image ${currentIndex + 1}`}
+            className={styles.img}
+          />
+
           <button
-            className={styles.button}
+            className={`${styles.button} ${styles.desktop}`}
             onClick={(e) => {
               e.stopPropagation();
               goToNext();
@@ -93,8 +80,30 @@ export default function ImageLightbox({ images, onClose }: ImageLightboxProps) {
           >
             <FaChevronRight />
           </button>
+
+          <div className={styles.movile}>
+            <button
+              className={styles.button}
+              onClick={(e) => {
+                e.stopPropagation();
+                goToPrevious();
+              }}
+            >
+              <FaChevronLeft />
+            </button>
+
+            <button
+              className={styles.button}
+              onClick={(e) => {
+                e.stopPropagation();
+                goToNext();
+              }}
+            >
+              <FaChevronRight />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }

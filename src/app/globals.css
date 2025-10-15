@@ -9,8 +9,9 @@
   --white: #ffffff;
   --secondary-white: #f5f7fc;
   --black: #000000;
-  --darkBlue: #172a48;
+  --darkBlue: #0b1930;
   --secondary-darkBlue: #263957;
+  --third-darkBlue: #111720;
   --blue: #0693e3;
   --lightBlue: #6ec1e4;
   --skyBlue: #f1f4fb;
@@ -31,6 +32,7 @@ html.dark {
   --black: #000000;
   --darkBlue: #172a48;
   --secondary-darkBlue: #263957;
+  --third-darkBlue: #111720;
   --blue: #0693e3;
   --lightBlue: #6ec1e4;
   --skyBlue: #f1f4fb;
@@ -46,6 +48,7 @@ html.dark {
   --color-black: var(--black);
   --color-darkBlue: var(--darkBlue);
   --color-secondary-darkBlue: var(--secondary-darkBlue);
+  --color-third-darkBlue: var(--third-darkBlue);
   --color-blue: var(--blue);
   --color-lightBlue: var(--lightBlue);
   --color-skyBlue: var(--skyBlue);

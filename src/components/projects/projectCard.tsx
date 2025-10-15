@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ProjectCardProps } from '@/types/types';
 import styles from './projectCard.module.css';
 import { FaExternalLinkAlt, FaExpandArrowsAlt } from 'react-icons/fa';
-import ImageLightbox from '@/components/projects/imageLightbox/imageLightbox';
+import { useImageLightboxStore } from '@/zustand/imageLightboxStore';
 
 export default function ProjectCard({
   id,
@@ -14,7 +13,7 @@ export default function ProjectCard({
   type,
 }: ProjectCardProps) {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
+  const { setIsOpen, setimages } = useImageLightboxStore();
 
   const handleRouteClick = () => {
     router.push(`/project/${id}`);
@@ -22,10 +21,7 @@ export default function ProjectCard({
 
   const handleExpandClick = () => {
     setIsOpen(true);
-  };
-
-  const onClose = () => {
-    setIsOpen(false);
+    setimages(images);
   };
 
   return (
@@ -59,8 +55,6 @@ export default function ProjectCard({
           <p className={styles.title}>{title}</p>
         </div>
       </div>
-
-      {isOpen ? <ImageLightbox images={images} onClose={onClose} /> : null}
     </div>
   );
 }
