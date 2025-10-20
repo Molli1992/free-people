@@ -4,25 +4,30 @@ import { useState, useEffect } from 'react';
 import styles from './imageLightbox.module.css';
 import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useImageLightboxStore } from '@/zustand/imageLightboxStore';
+import Slider from '@/components/slider/slider';
+import { SwiperSlide } from 'swiper/react';
+import { SwiperProps as SwiperPropsType } from 'swiper/react';
 
 export default function ImageLightbox() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const { isOpen, images, setIsOpen } = useImageLightboxStore();
+
+  const sliderProps: SwiperPropsType = {
+    pagination: {
+      clickable: true,
+    },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: false,
+    },
+    loop: false,
+    speed: 500,
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+  };
 
   const onClose = () => {
     setIsOpen(false);
-  };
-
-  const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const goToNext = () => {
-    const isLastSlide = currentIndex === images.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
   };
 
   useEffect(() => {
@@ -43,64 +48,28 @@ export default function ImageLightbox() {
     return (
       <div className={styles.backdrop}>
         <div className={styles.container}>
-          <div className={styles.textContainer}>
-            <p>{currentIndex + 1}</p>
-            <p>/</p>
-            <p>{images.length}</p>
-          </div>
-
           <button className={styles.closeButton} onClick={onClose}>
             <FaTimes />
           </button>
         </div>
 
         <div className={styles.content}>
-          <button
-            className={`${styles.button} ${styles.desktop}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              goToPrevious();
-            }}
-          >
-            <FaChevronLeft />
-          </button>
-
-          <img
-            src={images[currentIndex].src}
-            alt={`Project image ${currentIndex + 1}`}
-            className={styles.img}
-          />
-
-          <button
-            className={`${styles.button} ${styles.desktop}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              goToNext();
-            }}
-          >
-            <FaChevronRight />
-          </button>
-
-          <div className={styles.movile}>
-            <button
-              className={styles.button}
-              onClick={(e) => {
-                e.stopPropagation();
-                goToPrevious();
-              }}
-            >
-              <FaChevronLeft />
-            </button>
-
-            <button
-              className={styles.button}
-              onClick={(e) => {
-                e.stopPropagation();
-                goToNext();
-              }}
-            >
-              <FaChevronRight />
-            </button>
+          <div className="w-full">
+            {images && images.length > 0 && (
+              <Slider props={sliderProps}>
+                {images.map((image) => (
+                  <SwiperSlide key={image.src}>
+                    <div className={styles.imgContainer}>
+                      <img
+                        src={image.src}
+                        alt={`Project image`}
+                        className={styles.img}
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Slider>
+            )}
           </div>
         </div>
       </div>

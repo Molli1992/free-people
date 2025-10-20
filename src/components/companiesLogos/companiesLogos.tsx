@@ -14,7 +14,7 @@ export default function CompaniesLogos() {
     autoplay: {
       delay: 3000,
       disableOnInteraction: false,
-      pauseOnMouseEnter: true,
+      pauseOnMouseEnter: false,
     },
     loop: false,
     speed: 500,

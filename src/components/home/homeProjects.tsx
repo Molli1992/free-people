@@ -21,7 +21,7 @@ export default function HomeProjects() {
     },
     autoplay: {
       delay: 3000,
-      disableOnInteraction: false,
+      disableOnInteraction: true,
       pauseOnMouseEnter: true,
     },
     loop: false,

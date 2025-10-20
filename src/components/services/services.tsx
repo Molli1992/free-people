@@ -28,6 +28,7 @@ export default function Services() {
                   icon={service.icon}
                   name={service.name}
                   image={service.image}
+                  description={service.description}
                 />
               );
             })}

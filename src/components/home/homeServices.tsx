@@ -21,7 +21,7 @@ export default function HomeServices() {
     },
     autoplay: {
       delay: 3000,
-      disableOnInteraction: false,
+      disableOnInteraction: true,
       pauseOnMouseEnter: true,
     },
     loop: false,
@@ -68,6 +68,7 @@ export default function HomeServices() {
                       icon={service.icon}
                       name={service.name}
                       image={service.image}
+                      description={service.description}
                     />
                   </div>
                 </SwiperSlide>

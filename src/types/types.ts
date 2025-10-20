@@ -27,6 +27,7 @@ export type ServiceProps = {
   icon: ReactElement;
   name: string;
   image: StaticImageData;
+  description: string;
 };
 
 export type TeamProps = {
