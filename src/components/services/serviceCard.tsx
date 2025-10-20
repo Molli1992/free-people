@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import { ServiceProps } from '@/types/types';
 import styles from './servicesCard.module.css';
 
@@ -10,19 +7,8 @@ export default function ServiceCard({
   image,
   description,
 }: ServiceProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  console.log(description);
-
-  const handleClick = () => {
-    setIsFlipped(!isFlipped);
-  };
-
   return (
-    <div
-      className={`${styles.card} ${isFlipped ? styles.isFlipped : ''}`}
-      onClick={handleClick}
-    >
+    <div className={styles.card}>
       <div className={styles.cardSideFront}>
         <div className={styles.content}>
           <div className={styles.icon}>{icon}</div>
