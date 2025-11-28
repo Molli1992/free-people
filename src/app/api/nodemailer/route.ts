@@ -51,10 +51,10 @@ export async function POST(req: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error('Error al enviar el email:', error);
-    return NextResponse.json(
-      { message: 'Error al enviar el email' },
-      { status: 500 }
-    );
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : 'Error al enviar el email de contacto';
+    return NextResponse.json({ message: errorMessage }, { status: 500 });
   }
 }

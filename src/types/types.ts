@@ -89,3 +89,23 @@ export type CompaniesDataProps = {
   image: StaticImageData;
   name: string;
 };
+
+export interface User {
+  id: number;
+  name: string;
+  lastName: string;
+  email: string;
+  password?: string;
+  created_at: Date;
+  isEmailConfirmed: boolean;
+  verificationToken?: string | null;
+}
+
+export interface UserPayload {
+  name?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  isEmailConfirmed?: boolean;
+  verificationToken?: string | null;
+}
