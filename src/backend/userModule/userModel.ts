@@ -7,6 +7,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     created_at DATE NOT NULL,
     isEmailConfirmed BOOLEAN NOT NULL,
-    verificationToken VARCHAR(255)
+    verificationToken TEXT,
+    resetPasswordToken TEXT
 );
 */

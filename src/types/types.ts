@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactElement, ReactNode } from 'react';
+import { MouseEventHandler, ReactElement, ReactNode, ChangeEvent } from 'react';
 import { StaticImageData } from 'next/image';
 import { projectTypes } from './constants';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
@@ -16,10 +16,22 @@ export type TextsProps = {
   color: 'primary' | 'secondary';
 };
 
+export type InputsProps = {
+  type: string;
+  id: string;
+  name: string;
+  placeholder: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  label: string;
+};
+
 export type ButtonsProps = {
   value: string | ReactNode;
-  onClick: MouseEventHandler<HTMLButtonElement>;
-  loading: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  loading?: boolean;
+  disabled?: boolean;
+  type?: 'submit' | 'reset' | 'button';
 };
 
 export type ServiceProps = {
@@ -99,6 +111,7 @@ export interface User {
   created_at: Date;
   isEmailConfirmed: boolean;
   verificationToken?: string | null;
+  resetPasswordToken?: string | null;
 }
 
 export interface UserPayload {
@@ -108,4 +121,15 @@ export interface UserPayload {
   password?: string;
   isEmailConfirmed?: boolean;
   verificationToken?: string | null;
+  resetPasswordToken?: string | null;
+}
+
+export interface ModalTypes {
+  showModal: boolean;
+  setShowModal: (boolean: boolean) => void;
+}
+
+export interface TokenPayload {
+  email: string;
+  type: 'verification' | 'reset';
 }

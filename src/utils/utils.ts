@@ -11,3 +11,21 @@ export const validEmail = (email: string) => {
 
   return true;
 };
+
+export const validPassword = (password: string) => {
+  const capitalLetter = /[A-Z]/.test(password);
+  const hasMinuscule = /[a-z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const validLength = password.length >= 8;
+
+  if (!capitalLetter || !hasMinuscule || !hasNumber || !validLength) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+export const getSession = () => {
+  const isLogin = sessionStorage.getItem('isLogin');
+  return isLogin;
+};

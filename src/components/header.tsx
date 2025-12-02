@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoClose } from 'react-icons/io5';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { links } from '@/types/constants';
+import { links, authRoutes } from '@/types/constants';
 import SocialNetworks from '@/components/socialNetworks';
 
 export default function Header() {
@@ -78,6 +78,8 @@ export default function Header() {
       )}
     </>
   );
+
+  if (authRoutes.includes(pathname)) return null;
 
   return (
     <header

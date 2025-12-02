@@ -1,6 +1,6 @@
 'use client';
 
-import { links, contactInfo } from '@/types/constants';
+import { links, contactInfo, authRoutes } from '@/types/constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaPhoneAlt } from 'react-icons/fa';
@@ -10,6 +10,8 @@ import SocialNetworks from '@/components/socialNetworks';
 
 export default function Footer() {
   const pathname = usePathname();
+
+  if (authRoutes.includes(pathname)) return null;
 
   return (
     <footer className="flex items-center justify-center w-full bg-darkBlue py-8 px-4">

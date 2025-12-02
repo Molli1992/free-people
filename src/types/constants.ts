@@ -26,3 +26,10 @@ export const projectTypes = [
   'Apartments',
   'Project',
 ] as const;
+
+export const authRoutes = [
+  '/auth/login',
+  '/auth/register',
+  '/auth/verify',
+  '/auth/resetPassword',
+];
