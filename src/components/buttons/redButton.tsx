@@ -1,5 +1,5 @@
 import { ClipLoader } from 'react-spinners';
-import { ButtonsProps } from '@/types/types';
+import { ButtonsProps } from '@/types/ui';
 
 export default function RedButton({
   value,
@@ -13,7 +13,11 @@ export default function RedButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="flex items-center justify-center font-semibold bg-orange text-lg text-white px-4 py-2 rounded-md hover:bg-secondary-darkBlue w-fit cursor-pointer"
+      className={`flex items-center justify-center font-semibold bg-orange text-lg text-white px-4 py-2 rounded-md w-fit ${
+        disabled
+          ? 'opacity-70 cursor-not-allowed'
+          : 'hover:bg-secondary-darkBlue cursor-pointer'
+      }`}
     >
       {loading ? <ClipLoader color="#ffffff" size={25} /> : value}
     </button>

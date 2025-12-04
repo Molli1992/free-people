@@ -1,5 +1,4 @@
-import { ClipLoader } from 'react-spinners';
-import { InputsProps } from '@/types/types';
+import { InputsProps } from '@/types/ui';
 
 export default function PrimaryInput({
   type,

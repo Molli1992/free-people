@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SecondaryHeroSectionProps } from '@/types/types';
+import { SecondaryHeroSectionProps } from '@/types/ui';
 
 export default function SecondaryHeroSection({
   route,

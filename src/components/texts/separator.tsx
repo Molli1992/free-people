@@ -1,4 +1,4 @@
-import { SeparatorProps } from '@/types/types';
+import { SeparatorProps } from '@/types/ui';
 import { TfiLayoutLineSolid } from 'react-icons/tfi';
 
 export default function Separator({ value }: SeparatorProps) {

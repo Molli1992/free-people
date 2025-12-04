@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, MouseEvent } from 'react';
-import axios, { AxiosError } from 'axios';
+import { useAuth } from '@/lib/hooks/authHook';
 import Swal from 'sweetalert2';
-import { ModalTypes } from '@/types/types';
+import { ModalTypes } from '@/types/ui';
 import BlackButton from '@/components/buttons/blackButton';
 import GrayButton from '@/components/buttons/grayButton';
 import PrimaryInput from '@/components/inputs/primaryInput';
@@ -13,7 +13,7 @@ export default function RequestResetPasswordModal({
   showModal,
   setShowModal,
 }: ModalTypes) {
-  const [isResetLoading, setIsResetLoading] = useState(false);
+  const { requestResetPassword, loading } = useAuth();
   const [resetEmail, setResetEmail] = useState('');
 
   const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -44,34 +44,10 @@ export default function RequestResetPasswordModal({
       return;
     }
 
-    try {
-      setIsResetLoading(true);
-      await axios.post('/api/auth/forgot-password', { email: resetEmail });
-
+    await requestResetPassword({ email: resetEmail }, () => {
       setShowModal(false);
       setResetEmail('');
-
-      Swal.fire({
-        title: '¡Éxito!',
-        text: 'Revisa tu correo para restablecer la contraseña',
-        icon: 'success',
-        confirmButtonText: 'Ok',
-      });
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error
-          : 'Error al enviar solicitud';
-
-      Swal.fire({
-        title: 'Info!',
-        text: errorMessage,
-        icon: 'info',
-        confirmButtonText: 'Ok',
-      });
-    } finally {
-      setIsResetLoading(false);
-    }
+    });
   };
 
   if (!showModal) return null;
@@ -105,7 +81,7 @@ export default function RequestResetPasswordModal({
         <div className="flex justify-end gap-2">
           <GrayButton
             value="Cancelar"
-            disabled={isResetLoading}
+            disabled={loading}
             onClick={() => {
               setShowModal(false);
               setResetEmail('');
@@ -114,7 +90,8 @@ export default function RequestResetPasswordModal({
 
           <BlackButton
             value="Enviar enlace"
-            loading={isResetLoading}
+            disabled={loading}
+            loading={loading}
             onClick={handleForgotPassword}
           />
         </div>

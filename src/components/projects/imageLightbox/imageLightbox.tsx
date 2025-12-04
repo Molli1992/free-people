@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import styles from './imageLightbox.module.css';
-import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import { useImageLightboxStore } from '@/zustand/imageLightboxStore';
 import Slider from '@/components/slider/slider';
 import { SwiperSlide } from 'swiper/react';

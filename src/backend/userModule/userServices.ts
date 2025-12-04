@@ -1,6 +1,6 @@
 import pool from '../config/db';
 import { RowDataPacket, ResultSetHeader } from 'mysql2';
-import { User, UserPayload } from '@/types/types';
+import { User, UserPayload } from '@/types/users';
 
 export const getAllUsers = async () => {
   const [rows] = await pool.query<RowDataPacket[]>(

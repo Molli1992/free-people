@@ -2,8 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import axios, { AxiosError } from 'axios';
-import Swal from 'sweetalert2';
+import { useAuth } from '@/lib/hooks/authHook';
 import { ClipLoader } from 'react-spinners';
 import BlackButton from '@/components/buttons/blackButton';
 import GrayButton from '@/components/buttons/grayButton';
@@ -14,55 +13,32 @@ function VerifyContent() {
   const token = searchParams.get('token');
   const router = useRouter();
 
-  const [loading, setLoading] = useState(true);
+  const { verifyAccount, loading } = useAuth();
   const [message, setMessage] = useState('Verificando tu cuenta...');
 
   const [showModal, setShowModal] = useState(false);
+  const [hasVerified, setHasVerified] = useState(false);
 
   useEffect(() => {
     if (!token) {
-      setLoading(false);
       setMessage('Token no válido o no encontrado.');
       return;
     }
 
-    const verifyAccount = async () => {
-      try {
-        const response = await axios.post('/api/auth/verify', { token });
+    if (hasVerified) return;
 
-        const message = response?.data?.message
-          ? response.data.message
-          : 'Tu cuenta ha sido activada correctamente.';
-        setMessage(message);
+    const runVerification = async () => {
+      setHasVerified(true);
+      const resultMsg = await verifyAccount(token);
 
-        Swal.fire({
-          title: '¡Verificado!',
-          text: message,
-          icon: 'success',
-          confirmButtonText: 'Ir al Login',
-        }).then(() => {
-          router.push('/auth/login');
-        });
-      } catch (error) {
-        const errorMessage =
-          error instanceof AxiosError
-            ? error.response?.data?.error
-            : 'Error desconocido';
-
-        setMessage(errorMessage);
-
-        Swal.fire({
-          title: 'Error',
-          text: errorMessage,
-          icon: 'error',
-          confirmButtonText: 'Ok',
-        });
-      } finally {
-        setLoading(false);
+      if (resultMsg) {
+        setMessage(resultMsg);
+      } else {
+        setMessage('Error al verificar la cuenta.');
       }
     };
 
-    verifyAccount();
+    runVerification();
   }, []);
 
   return (
@@ -91,11 +67,13 @@ function VerifyContent() {
         <div className="flex flex-col gap-2">
           <BlackButton
             value="Solicitar otro enlace"
+            disabled={loading}
             onClick={() => setShowModal(true)}
           />
 
           <GrayButton
             value="Ir al login"
+            disabled={loading}
             onClick={() => router.push('/auth/login')}
           />
         </div>

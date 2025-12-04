@@ -1,38 +1,6 @@
-import { MouseEventHandler, ReactElement, ReactNode, ChangeEvent } from 'react';
+import { ReactElement } from 'react';
 import { StaticImageData } from 'next/image';
 import { projectTypes } from './constants';
-import { SwiperProps as SwiperPropsType } from 'swiper/react';
-
-export type SecondaryHeroSectionProps = {
-  route: string;
-};
-
-export type SeparatorProps = {
-  value: string;
-};
-
-export type TextsProps = {
-  value: string;
-  color: 'primary' | 'secondary';
-};
-
-export type InputsProps = {
-  type: string;
-  id: string;
-  name: string;
-  placeholder: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  value: string;
-  label: string;
-};
-
-export type ButtonsProps = {
-  value: string | ReactNode;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  loading?: boolean;
-  disabled?: boolean;
-  type?: 'submit' | 'reset' | 'button';
-};
 
 export type ServiceProps = {
   id?: string;
@@ -77,17 +45,6 @@ export type ProjectDescriptionProps = {
 export type ProjectPageProps = {
   params: Promise<{ id: string }>;
 };
-export interface SliderProps {
-  props: SwiperPropsType;
-  children: ReactNode;
-}
-
-export interface StoreImageLightboxProps {
-  isOpen: boolean;
-  images: StaticImageData[];
-  setIsOpen: (boolean: boolean) => void;
-  setimages: (images: StaticImageData[]) => void;
-}
 
 export type ReviewsProps = {
   id?: string;
@@ -101,35 +58,3 @@ export type CompaniesDataProps = {
   image: StaticImageData;
   name: string;
 };
-
-export interface User {
-  id: number;
-  name: string;
-  lastName: string;
-  email: string;
-  password?: string;
-  created_at: Date;
-  isEmailConfirmed: boolean;
-  verificationToken?: string | null;
-  resetPasswordToken?: string | null;
-}
-
-export interface UserPayload {
-  name?: string;
-  lastName?: string;
-  email?: string;
-  password?: string;
-  isEmailConfirmed?: boolean;
-  verificationToken?: string | null;
-  resetPasswordToken?: string | null;
-}
-
-export interface ModalTypes {
-  showModal: boolean;
-  setShowModal: (boolean: boolean) => void;
-}
-
-export interface TokenPayload {
-  email: string;
-  type: 'verification' | 'reset';
-}

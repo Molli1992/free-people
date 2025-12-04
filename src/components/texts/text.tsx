@@ -1,4 +1,4 @@
-import { TextsProps } from '@/types/types';
+import { TextsProps } from '@/types/ui';
 
 export default function Text({ value, color }: TextsProps) {
   return (

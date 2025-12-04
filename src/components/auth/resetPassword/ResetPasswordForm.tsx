@@ -3,7 +3,7 @@
 import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Swal from 'sweetalert2';
-import axios, { AxiosError } from 'axios';
+import { useAuth } from '@/lib/hooks/authHook';
 import RequestResetPasswordModal from '@/components/auth/modals/requestResetPasswordModal';
 import { validPassword } from '@/utils/utils';
 import BlackButton from '@/components/buttons/blackButton';
@@ -16,8 +16,8 @@ function ResetPasswordContent() {
   const token = searchParams.get('token');
   const email = searchParams.get('email');
 
+  const { resetPassword, loading } = useAuth();
   const [showModal, setShowModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [passwords, setPasswords] = useState({
     password: '',
     confirmPassword: '',
@@ -65,37 +65,11 @@ function ResetPasswordContent() {
       return;
     }
 
-    try {
-      setIsLoading(true);
-      await axios.post('/api/auth/reset-password', {
-        token,
-        email,
-        password: passwords.password,
-      });
-
-      Swal.fire({
-        title: '¡Éxito!',
-        text: 'Tu contraseña ha sido restablecida. Ahora puedes iniciar sesión.',
-        icon: 'success',
-        confirmButtonText: 'Ir al Login',
-      }).then(() => {
-        router.push('/auth/login');
-      });
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error?.response?.data?.error
-          : 'Error al restablecer contraseña';
-
-      Swal.fire({
-        title: 'Error',
-        text: errorMessage,
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    await resetPassword({
+      token,
+      email,
+      password: passwords.password,
+    });
   };
 
   return (
@@ -144,8 +118,8 @@ function ResetPasswordContent() {
           <div className="flex flex-col gap-2">
             <BlackButton
               type="submit"
-              disabled={isLoading}
-              loading={isLoading}
+              disabled={loading}
+              loading={loading}
               value="Cambiar Contraseña"
             />
 
@@ -153,12 +127,14 @@ function ResetPasswordContent() {
               <GrayButton
                 value="Solicitar otro enlace"
                 type="button"
+                disabled={loading}
                 onClick={() => setShowModal(true)}
               />
 
               <GrayButton
                 value="Ir al login"
                 type="button"
+                disabled={loading}
                 onClick={() => router.push('/auth/login')}
               />
             </div>

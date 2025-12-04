@@ -1,4 +1,4 @@
-import { User } from '@/types/types';
+import { User } from '@/types/users';
 
 export const sanitizeUser = (user: User) => {
   const { password, verificationToken, ...userWithoutSensitiveData } = user;

@@ -4,14 +4,14 @@ import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
-import axios, { AxiosError } from 'axios';
+import { useAuth } from '@/lib/hooks/authHook';
 import { validEmail, getSession, validPassword } from '@/utils/utils';
 import BlackButton from '@/components/buttons/blackButton';
 import PrimaryInput from '@/components/inputs/primaryInput';
 
 function RegisterForm() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const { register, loading } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
@@ -86,40 +86,13 @@ function RegisterForm() {
       return;
     }
 
-    try {
-      setIsLoading(true);
-      const userPayload = {
-        name,
-        lastName,
-        email,
-        password,
-      };
-
-      await axios.post('/api/users', userPayload);
-
-      Swal.fire({
-        title: 'Success!',
-        text: 'Te has registrado correctamente!',
-        icon: 'success',
-        confirmButtonText: 'Ok',
-      }).then(() => {
-        router.push('/auth/login');
-      });
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error?.response?.data?.error
-          : 'Error al registrarse';
-
-      Swal.fire({
-        title: 'Info!',
-        text: errorMessage,
-        icon: 'info',
-        confirmButtonText: 'Ok',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    await register({
+      name,
+      lastName,
+      email,
+      password,
+      repeatPassword,
+    });
   };
 
   return (
@@ -194,7 +167,8 @@ function RegisterForm() {
               <div className="flex flex-col gap-4 mt-2">
                 <BlackButton
                   value="Register"
-                  loading={isLoading}
+                  disabled={loading}
+                  loading={loading}
                   type="submit"
                 />
 

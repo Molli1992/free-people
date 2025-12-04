@@ -1,4 +1,4 @@
-import { TextsProps } from '@/types/types';
+import { TextsProps } from '@/types/ui';
 
 export default function SubTitle({ value, color }: TextsProps) {
   return (

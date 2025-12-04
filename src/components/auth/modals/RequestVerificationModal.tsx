@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, MouseEvent } from 'react';
-import axios, { AxiosError } from 'axios';
+import { useAuth } from '@/lib/hooks/authHook';
 import Swal from 'sweetalert2';
-import { ModalTypes } from '@/types/types';
+import { ModalTypes } from '@/types/ui';
 import BlackButton from '@/components/buttons/blackButton';
 import GrayButton from '@/components/buttons/grayButton';
 import PrimaryInput from '@/components/inputs/primaryInput';
@@ -13,7 +13,7 @@ export default function RequestVerificationModal({
   showModal,
   setShowModal,
 }: ModalTypes) {
-  const [isLoading, setIsLoading] = useState(false);
+  const { resendVerification, loading } = useAuth();
   const [email, setEmail] = useState('');
 
   const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -44,34 +44,10 @@ export default function RequestVerificationModal({
       return;
     }
 
-    try {
-      setIsLoading(true);
-      await axios.post('/api/auth/resend-verification', { email: email });
-
+    await resendVerification({ email: email }, () => {
       setShowModal(false);
       setEmail('');
-
-      Swal.fire({
-        title: '¡Éxito!',
-        text: 'Revisa tu correo para activar tu cuenta',
-        icon: 'success',
-        confirmButtonText: 'Ok',
-      });
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error
-          : 'Error al enviar solicitud';
-
-      Swal.fire({
-        title: 'Error',
-        text: errorMessage,
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    });
   };
 
   if (!showModal) return null;
@@ -105,7 +81,7 @@ export default function RequestVerificationModal({
         <div className="flex justify-end gap-2">
           <GrayButton
             value="Cancelar"
-            disabled={isLoading}
+            disabled={loading}
             onClick={() => {
               setShowModal(false);
               setEmail('');
@@ -114,7 +90,8 @@ export default function RequestVerificationModal({
 
           <BlackButton
             value="Enviar enlace"
-            loading={isLoading}
+            disabled={loading}
+            loading={loading}
             onClick={handleResendLink}
           />
         </div>

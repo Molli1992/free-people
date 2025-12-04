@@ -4,16 +4,16 @@ import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
-import axios, { AxiosError } from 'axios';
 import { getSession } from '@/utils/utils';
 import RequestResetPasswordModal from '@/components/auth/modals/requestResetPasswordModal';
 import BlackButton from '@/components/buttons/blackButton';
 import PrimaryInput from '@/components/inputs/primaryInput';
+import { useAuth } from '@/lib/hooks/authHook';
 
 function LoginForm() {
   const router = useRouter();
+  const { login, loading } = useAuth();
 
-  const [isLoading, setIsLoading] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -41,6 +41,7 @@ function LoginForm() {
 
     if (loginData.email.length === 0 || loginData.password.length === 0) {
       Swal.fire({
+        title: 'Info!',
         text: 'Completa todos los campos para ingresar',
         icon: 'info',
         confirmButtonText: 'Ok',
@@ -48,42 +49,10 @@ function LoginForm() {
       return;
     }
 
-    try {
-      setIsLoading(true);
-      const res = await axios.post('/api/auth/login', {
-        email: loginData.email,
-        password: loginData.password,
-      });
-
-      const userData = res.data;
-      sessionStorage.setItem('isLogin', 'true');
-      sessionStorage.setItem('name', userData.name);
-      sessionStorage.setItem('lastName', userData.lastName);
-      sessionStorage.setItem('email', userData.email);
-
-      Swal.fire({
-        title: '¡Éxito!',
-        text: 'Te has logueado correctamente',
-        icon: 'success',
-        confirmButtonText: 'Ok',
-      }).then(() => {
-        router.push('/dashboard');
-      });
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error?.response?.data?.error
-          : 'Error al logearse';
-
-      Swal.fire({
-        title: 'Info!',
-        text: errorMessage,
-        icon: 'info',
-        confirmButtonText: 'Ok',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    await login({
+      email: loginData.email,
+      password: loginData.password,
+    });
   };
 
   return (
@@ -149,7 +118,12 @@ function LoginForm() {
               />
 
               <div className="flex flex-col gap-2">
-                <BlackButton value="Login" loading={isLoading} type="submit" />
+                <BlackButton
+                  value="Login"
+                  disabled={loading}
+                  loading={loading}
+                  type="submit"
+                />
 
                 <div className="flex flex-col text-sm">
                   <button

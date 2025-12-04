@@ -1,3 +1,6 @@
+import { AxiosError } from 'axios';
+import Swal from 'sweetalert2';
+
 export const handleOpenLink = (url: string) => {
   window.open(url, '_blank');
 };
@@ -28,4 +31,19 @@ export const validPassword = (password: string) => {
 export const getSession = () => {
   const isLogin = sessionStorage.getItem('isLogin');
   return isLogin;
+};
+
+export const handleError = (err: unknown, defaultMsg: string) => {
+  const errorMessage =
+    err instanceof AxiosError
+      ? err?.response?.data?.error || err.message
+      : defaultMsg;
+
+  Swal.fire({
+    title: 'Info!',
+    text: errorMessage,
+    icon: 'info',
+    confirmButtonText: 'Ok',
+  });
+  return errorMessage;
 };

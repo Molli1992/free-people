@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { StoreImageLightboxProps } from '@/types/types';
+import { StoreImageLightboxProps } from '@/types/ui';
 
 export const useImageLightboxStore = create<StoreImageLightboxProps>((set) => ({
   isOpen: false,

@@ -1,5 +1,5 @@
 import { ClipLoader } from 'react-spinners';
-import { ButtonsProps } from '@/types/types';
+import { ButtonsProps } from '@/types/ui';
 
 export default function BlackButton({
   value,
@@ -13,7 +13,11 @@ export default function BlackButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="w-full flex items-center justify-center bg-gray-900 hover:bg-black text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform active:scale-95 cursor-pointer"
+      className={`w-full flex items-center justify-center bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 ${
+        disabled
+          ? 'opacity-70 cursor-not-allowed'
+          : 'hover:bg-black transform active:scale-95 cursor-pointer'
+      }`}
     >
       {loading ? <ClipLoader color="#ffffff" size={20} /> : value}
     </button>

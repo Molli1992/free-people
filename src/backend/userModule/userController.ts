@@ -1,10 +1,9 @@
 import * as userUtils from './userServices';
-import { UserPayload } from '@/types/types';
+import { UserPayload } from '@/types/users';
 import {
   sendVerificationEmail,
   sendPasswordResetEmail,
 } from '@/backend/emailModule/emailUtils';
-import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
 import { sanitizeUser } from './userUtils';
 import { generateToken, verifyTokenJWT } from '../utils/jwtUtils';
