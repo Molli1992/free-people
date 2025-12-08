@@ -4,7 +4,7 @@ import { User, UserPayload } from '@/types/users';
 
 export const getAllUsers = async () => {
   const [rows] = await pool.query<RowDataPacket[]>(
-    'SELECT id, name, lastName, email, created_at, isEmailConfirmed FROM users'
+    'SELECT id, name, lastName, email, isActive FROM users'
   );
   return rows as User[];
 };
@@ -37,10 +37,20 @@ export const createUser = async (userData: UserPayload, token: string) => {
   const { name, lastName, email, password } = userData;
   const createdAt = new Date();
   const isEmailConfirmed = false;
+  const isActive = false;
 
   const [result] = await pool.query<ResultSetHeader>(
-    'INSERT INTO users (name, lastName, email, password, created_at, isEmailConfirmed, verificationToken) VALUES (?, ?, ?, ?, ?, ?, ?)',
-    [name, lastName, email, password, createdAt, isEmailConfirmed, token]
+    'INSERT INTO users (name, lastName, email, password, created_at, isEmailConfirmed, isActive, verificationToken) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [
+      name,
+      lastName,
+      email,
+      password,
+      createdAt,
+      isEmailConfirmed,
+      isActive,
+      token,
+    ]
   );
   return result;
 };
@@ -76,6 +86,10 @@ export const updateUser = async (id: string, userData: UserPayload) => {
   if (userData.resetPasswordToken !== undefined) {
     fields.push('resetPasswordToken = ?');
     values.push(userData.resetPasswordToken);
+  }
+  if (userData.isActive !== undefined) {
+    fields.push('isActive = ?');
+    values.push(userData.isActive);
   }
 
   if (fields.length === 0) return null;

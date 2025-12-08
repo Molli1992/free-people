@@ -1,5 +1,7 @@
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export const handleOpenLink = (url: string) => {
   window.open(url, '_blank');
@@ -29,8 +31,23 @@ export const validPassword = (password: string) => {
 };
 
 export const getSession = () => {
-  const isLogin = sessionStorage.getItem('isLogin');
-  return isLogin;
+  const id = sessionStorage.getItem('id');
+  const name = sessionStorage.getItem('name');
+  const lastName = sessionStorage.getItem('lastName');
+  const email = sessionStorage.getItem('email');
+  const isActive = sessionStorage.getItem('isActive');
+
+  if (!id || !name || !lastName || !email || !isActive) return null;
+
+  const user = {
+    id: id,
+    name: name,
+    lastName: lastName,
+    email: email,
+    isActive: isActive,
+  };
+
+  return user;
 };
 
 export const handleError = (err: unknown, defaultMsg: string) => {
@@ -47,3 +64,7 @@ export const handleError = (err: unknown, defaultMsg: string) => {
   });
   return errorMessage;
 };
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}

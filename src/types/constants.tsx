@@ -1,3 +1,10 @@
+import { FaUserShield } from 'react-icons/fa';
+import { FaUsers } from 'react-icons/fa';
+import { FaHammer } from 'react-icons/fa';
+import { FaTools } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
+import { FaBuilding } from 'react-icons/fa';
+
 export const links = [
   { href: '/', label: 'Inicio' },
   { href: '/about-us', label: 'Nosotros' },
@@ -5,6 +12,15 @@ export const links = [
   { href: '/projects', label: 'Proyectos' },
   { href: '/team', label: 'Equipo' },
   { href: '/contact', label: 'Contacto' },
+];
+
+export const dashboardLinks = [
+  { href: '/dashboard', label: 'Usuarios', icon: <FaUserShield /> },
+  { href: '/dashboard/team', label: 'Equipo', icon: <FaUsers /> },
+  { href: '/dashboard/projects', label: 'Proyectos', icon: <FaHammer /> },
+  { href: '/dashboard/services', label: 'Servicios', icon: <FaTools /> },
+  { href: '/dashboard/reviews', label: 'Reviews', icon: <FaStar /> },
+  { href: '/dashboard/companies', label: 'Compañías', icon: <FaBuilding /> },
 ];
 
 export const contactInfo = {

@@ -6,6 +6,7 @@ export interface User {
   password?: string;
   created_at: Date;
   isEmailConfirmed: boolean;
+  isActive: boolean;
   verificationToken?: string | null;
   resetPasswordToken?: string | null;
 }
@@ -18,6 +19,7 @@ export interface UserPayload {
   isEmailConfirmed?: boolean;
   verificationToken?: string | null;
   resetPasswordToken?: string | null;
+  isActive?: boolean;
 }
 
 export interface TokenPayload {
@@ -63,4 +65,16 @@ export interface UseAuthReturn {
     onSuccess: () => void
   ) => Promise<void>;
   verifyAccount: (token: string) => Promise<string | null>;
+  isLogin: () => Promise<true | null>;
+  logOut: () => void;
+}
+
+export interface UseUsersReturn {
+  loading: boolean;
+  error: string | null;
+  getUsersList: () => Promise<User[]>;
+  toggleUserActive: (
+    userId: string,
+    isActive: boolean
+  ) => Promise<User | undefined>;
 }

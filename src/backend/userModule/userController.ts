@@ -1,4 +1,4 @@
-import * as userUtils from './userServices';
+import * as userServices from './userServices';
 import { UserPayload } from '@/types/users';
 import {
   sendVerificationEmail,
@@ -9,12 +9,12 @@ import { sanitizeUser } from './userUtils';
 import { generateToken, verifyTokenJWT } from '../utils/jwtUtils';
 
 export const getUsers = async () => {
-  const users = await userUtils.getAllUsers();
+  const users = await userServices.getAllUsers();
   return users.map((user) => sanitizeUser(user));
 };
 
 export const loginUser = async (email: string, passwordPlain: string) => {
-  const user = await userUtils.getUserByEmail(email);
+  const user = await userServices.getUserByEmail(email);
 
   if (!user || !user.password)
     throw new Error(`El usuario con el email: ${email} no existe`);
@@ -29,6 +29,10 @@ export const loginUser = async (email: string, passwordPlain: string) => {
     throw new Error('Debes validar tu email antes de ingresar.');
   }
 
+  if (!user.isActive) {
+    throw new Error('El administrador debe acentar tu cuenta.');
+  }
+
   return {
     message: 'Te has logeado exitosamente.',
     data: sanitizeUser(user),
@@ -40,7 +44,7 @@ export const registerUser = async (data: UserPayload) => {
     throw new Error('Faltan datos obligatorios');
   }
 
-  const existingUser = await userUtils.getUserByEmail(data.email);
+  const existingUser = await userServices.getUserByEmail(data.email);
   if (existingUser) throw new Error('El email ya está registrado');
 
   const saltRounds = 10;
@@ -51,7 +55,7 @@ export const registerUser = async (data: UserPayload) => {
   );
   const newUserPayload = { ...data, password: hashedPassword };
 
-  await userUtils.createUser(newUserPayload, token);
+  await userServices.createUser(newUserPayload, token);
 
   try {
     await sendVerificationEmail(data.email, data.name, token);
@@ -71,13 +75,13 @@ export const modifyUser = async (id: string, data: UserPayload) => {
     data.password = await bcrypt.hash(data.password, saltRounds);
   }
 
-  const result = await userUtils.updateUser(id, data);
+  const result = await userServices.updateUser(id, data);
 
   if (result && result.affectedRows === 0) {
     throw new Error('Usuario no encontrado o no hubo cambios');
   }
 
-  const updatedUser = await userUtils.getUserById(id);
+  const updatedUser = await userServices.getUserById(id);
 
   if (!updatedUser) {
     throw new Error('Error recuperando el usuario actualizado');
@@ -90,7 +94,7 @@ export const modifyUser = async (id: string, data: UserPayload) => {
 };
 
 export const removeUser = async (id: string) => {
-  const result = await userUtils.deleteUser(id);
+  const result = await userServices.deleteUser(id);
   if (result.affectedRows === 0) throw new Error('Usuario no encontrado');
   return { message: 'Usuario eliminado correctamente' };
 };
@@ -98,7 +102,7 @@ export const removeUser = async (id: string) => {
 export const verifyUserToken = async (token: string) => {
   verifyTokenJWT(token);
 
-  const user = await userUtils.getUserByToken(token);
+  const user = await userServices.getUserByToken(token);
 
   if (!user) {
     throw new Error('Token inválido o ya utilizado.');
@@ -110,7 +114,7 @@ export const verifyUserToken = async (token: string) => {
 
   const userId = user.id.toString();
 
-  await userUtils.updateUser(userId, {
+  await userServices.updateUser(userId, {
     isEmailConfirmed: true,
     verificationToken: null,
   });
@@ -119,7 +123,7 @@ export const verifyUserToken = async (token: string) => {
 };
 
 export const requestPasswordReset = async (email: string) => {
-  const user = await userUtils.getUserByEmail(email);
+  const user = await userServices.getUserByEmail(email);
 
   if (!user) {
     throw new Error('El usuario no existe.');
@@ -128,7 +132,7 @@ export const requestPasswordReset = async (email: string) => {
   const token = generateToken({ email: user.email, type: 'reset' }, '1h');
   const userId = user.id.toString();
 
-  await userUtils.updateUser(userId, {
+  await userServices.updateUser(userId, {
     resetPasswordToken: token,
   });
 
@@ -149,7 +153,7 @@ export const resetPassword = async (
 ) => {
   verifyTokenJWT(token);
 
-  const user = await userUtils.getUserByEmail(email);
+  const user = await userServices.getUserByEmail(email);
 
   if (!user) {
     throw new Error('Usuario no válido.');
@@ -163,7 +167,7 @@ export const resetPassword = async (
   const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
   const userId = user.id.toString();
 
-  await userUtils.updateUser(userId, {
+  await userServices.updateUser(userId, {
     password: hashedPassword,
     resetPasswordToken: null,
   });
@@ -172,7 +176,7 @@ export const resetPassword = async (
 };
 
 export const resendVerificationToken = async (email: string) => {
-  const user = await userUtils.getUserByEmail(email);
+  const user = await userServices.getUserByEmail(email);
 
   if (!user) {
     throw new Error('El usuario no existe.');
@@ -188,7 +192,7 @@ export const resendVerificationToken = async (email: string) => {
   );
   const userId = user.id.toString();
 
-  await userUtils.updateUser(userId, {
+  await userServices.updateUser(userId, {
     verificationToken: token,
   });
 

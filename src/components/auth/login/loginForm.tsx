@@ -4,7 +4,6 @@ import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
-import { getSession } from '@/utils/utils';
 import RequestResetPasswordModal from '@/components/auth/modals/requestResetPasswordModal';
 import BlackButton from '@/components/buttons/blackButton';
 import PrimaryInput from '@/components/inputs/primaryInput';
@@ -12,7 +11,7 @@ import { useAuth } from '@/lib/hooks/authHook';
 
 function LoginForm() {
   const router = useRouter();
-  const { login, loading } = useAuth();
+  const { login, loading, isLogin } = useAuth();
 
   const [loginData, setLoginData] = useState({
     email: '',
@@ -22,11 +21,15 @@ function LoginForm() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const isLogin = getSession();
+    const hasSesion = async () => {
+      const sesion = await isLogin();
 
-    if (isLogin) {
-      router.push('/dashboard');
-    }
+      if (sesion) {
+        router.push('/dashboard');
+      }
+    };
+
+    hasSesion();
   }, []);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

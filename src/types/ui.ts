@@ -1,6 +1,27 @@
 import { MouseEventHandler, ReactNode, ChangeEvent } from 'react';
 import { StaticImageData } from 'next/image';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
+import {
+  ColumnDef,
+  PaginationState,
+  Row,
+  RowSelectionState,
+} from '@tanstack/react-table';
+
+export interface DataTableProps<TData extends { id: string | number }> {
+  columns: ColumnDef<TData>[];
+  data: TData[];
+  rowSelection?: RowSelectionState;
+  onRowSelectionChange?: (
+    updater: RowSelectionState | ((old: RowSelectionState) => RowSelectionState)
+  ) => void;
+  isLoading?: boolean;
+  renderSubComponent?: (props: { row: Row<TData> }) => React.ReactElement;
+  pageCount?: number;
+  pagination?: PaginationState;
+  onPaginationChange?: React.Dispatch<React.SetStateAction<PaginationState>>;
+  maxItemsPerPage?: boolean;
+}
 
 export type SecondaryHeroSectionProps = {
   route: string;
@@ -45,7 +66,17 @@ export interface StoreImageLightboxProps {
   setimages: (images: StaticImageData[]) => void;
 }
 
+export interface StoreSidebarStoreProps {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (boolean: boolean) => void;
+}
+
 export interface ModalTypes {
   showModal: boolean;
   setShowModal: (boolean: boolean) => void;
+}
+
+export interface SwitchProps {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
 }

@@ -8,6 +8,7 @@ CREATE TABLE users (
     created_at DATE NOT NULL,
     isEmailConfirmed BOOLEAN NOT NULL,
     verificationToken TEXT,
-    resetPasswordToken TEXT
+    resetPasswordToken TEXT,
+    isActive BOOLEAN NOT NULL,
 );
 */

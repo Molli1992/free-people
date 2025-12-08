@@ -19,6 +19,7 @@
   --beige: #bc9669;
   --midnightBlue: #172b56;
   --darkGray: #494949;
+  --borderColor: #94a3b8;
 }
 
 /*
@@ -40,6 +41,7 @@ html.dark {
   --beige: #bc9669;
   --midnightBlue: #172b56;
   --darkGray: #494949;
+  --borderColor: #94a3b8;
 }
 
 @theme inline {
@@ -56,6 +58,7 @@ html.dark {
   --color-beige: var(--beige);
   --color-midnightBlue: var(--midnightBlue);
   --color-darkGray: var(--darkGray);
+  --color-borderColor: var(--borderColor);
 }
 
 body {

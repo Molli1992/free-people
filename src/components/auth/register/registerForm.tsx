@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 import { useAuth } from '@/lib/hooks/authHook';
-import { validEmail, getSession, validPassword } from '@/utils/utils';
+import { validEmail, validPassword } from '@/utils/utils';
 import BlackButton from '@/components/buttons/blackButton';
 import PrimaryInput from '@/components/inputs/primaryInput';
 
 function RegisterForm() {
   const router = useRouter();
-  const { register, loading } = useAuth();
+  const { register, loading, isLogin } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
@@ -21,11 +21,15 @@ function RegisterForm() {
   });
 
   useEffect(() => {
-    const isLogin = getSession();
+    const hasSesion = async () => {
+      const sesion = await isLogin();
 
-    if (isLogin) {
-      router.push('/dashboard');
-    }
+      if (sesion) {
+        router.push('/dashboard');
+      }
+    };
+
+    hasSesion();
   }, []);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

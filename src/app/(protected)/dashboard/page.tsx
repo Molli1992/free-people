@@ -1,7 +1,9 @@
-export default function HomePage() {
+import UsersTable from '@/components/dashboard/users/usersTable';
+
+export default function DashboardHomePage() {
   return (
     <main>
-      <h1>Protected Routes</h1>
+      <UsersTable />
     </main>
   );
 }
