@@ -7,6 +7,8 @@ import {
   Row,
   RowSelectionState,
 } from '@tanstack/react-table';
+import { Team } from '@/types/team';
+import { User } from '@/types/users';
 
 export interface DataTableProps<TData extends { id: string | number }> {
   columns: ColumnDef<TData>[];
@@ -52,6 +54,7 @@ export type ButtonsProps = {
   loading?: boolean;
   disabled?: boolean;
   type?: 'submit' | 'reset' | 'button';
+  className?: string;
 };
 
 export interface SliderProps {
@@ -66,9 +69,25 @@ export interface StoreImageLightboxProps {
   setimages: (images: StaticImageData[]) => void;
 }
 
-export interface StoreSidebarStoreProps {
+export interface SidebarStoreProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: (boolean: boolean) => void;
+}
+
+export interface TeamStoreProps {
+  team: Team[];
+  isDataLoad: boolean;
+  setTeam: (data: Team[]) => void;
+  addTeamMemberToStore: (teamMember: Team) => void;
+  updateTeamMemberInStore: (teamMember: Team) => void;
+  removeTeamMemberFromStore: (id: number) => void;
+}
+
+export interface UsersStoreProps {
+  users: User[];
+  isDataLoad: boolean;
+  setUsers: (data: User[]) => void;
+  updateUserInStore: (teamMember: User) => void;
 }
 
 export interface ModalTypes {
@@ -79,4 +98,19 @@ export interface ModalTypes {
 export interface SwitchProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
+}
+
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  description?: string;
+  children: ReactNode;
+}
+
+export interface TeamFormProps {
+  isOpen: boolean;
+  onClose: () => void;
+  isEditMode: boolean;
+  teamMember?: Team;
 }

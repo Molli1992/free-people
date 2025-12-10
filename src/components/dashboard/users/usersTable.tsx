@@ -1,23 +1,21 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import DataTable from '@/components/table/dataTable';
 import { useUsers } from '@/lib/hooks/usersHooks';
-import { User } from '@/types/users';
 import { usersColumns } from '@/components/table/columns/userColumns';
+import { useUsersStore } from '@/zustand/usersStore';
 
 export default function UsersTable() {
   const { getUsersList, loading, toggleUserActive } = useUsers();
-  const [users, setUsers] = useState<User[]>([]);
-
-  const columns = useMemo(
-    () => usersColumns(toggleUserActive, users, setUsers),
-    [toggleUserActive, users, setUsers]
-  );
+  const { users, setUsers, isDataLoad, updateUserInStore } = useUsersStore();
+  const columns = usersColumns(toggleUserActive, updateUserInStore);
 
   useEffect(() => {
     const fetchUsers = async () => {
+      if (isDataLoad) return;
       const usersList = await getUsersList();
+      console.log('1');
 
       if (usersList) {
         setUsers(usersList);

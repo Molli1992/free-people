@@ -49,3 +49,9 @@ export const authRoutes = [
   '/auth/verify',
   '/auth/resetPassword',
 ];
+
+export const urlRegex = {
+  linkedin: /^https:\/\/(www\.)?linkedin\.com\/.*$/i,
+  instagram: /^https:\/\/(www\.)?instagram\.com\/.*$/i,
+  facebook: /^https:\/\/(www\.)?facebook\.com\/.*$/i,
+};

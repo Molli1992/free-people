@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const userService = {
   /**
-   * Obtiene la lista de usuarios.
+   * Gets the list of users.
    * @returns Promise<User[]>
    */
   getUsers: async (): Promise<User[]> => {
@@ -12,9 +12,9 @@ export const userService = {
   },
 
   /**
-   * Actualiza un usuario (usado para el toggle de isActive).
-   * @param id ID del usuario
-   * @param data Datos a actualizar (ej: { isActive: boolean })
+   * Update a user (used for the isActive toggle).
+   * @param id User ID
+   * @param data Data to update (ex: { isActive: boolean })
    * @returns Promise<User>
    */
   updateUser: async (id: string, data: UserPayload): Promise<User> => {

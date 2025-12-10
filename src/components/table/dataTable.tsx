@@ -129,7 +129,7 @@ export default function DataTable<TData extends { id: string | number }>({
     <div>
       <div className="rounded-md border border-borderColor">
         <Table>
-          <TableHeader className="bg-table-header">
+          <TableHeader className="bg-violet-100">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -186,7 +186,7 @@ export default function DataTable<TData extends { id: string | number }>({
         <button
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
-          className="flex items-center cursor-pointer gap-1 text-slate-950 font-semibold disabled:opacity-50 disabled:cursor-default"
+          className="flex items-center cursor-pointer gap-1 text-black font-semibold disabled:opacity-50 disabled:cursor-default"
           type="button"
         >
           <MdChevronLeft className="w-5 h-5" /> <span>Previous</span>
@@ -198,7 +198,7 @@ export default function DataTable<TData extends { id: string | number }>({
               <button
                 key={index}
                 onClick={() => table.setPageIndex(page)}
-                className={`flex items-center justify-center text-slate-950 ${
+                className={`flex items-center justify-center text-black ${
                   table.getState().pagination.pageIndex === page
                     ? 'border border-slate-500 rounded-lg font-semibold px-3 py-1'
                     : 'cursor-pointer'
@@ -221,7 +221,7 @@ export default function DataTable<TData extends { id: string | number }>({
         <button
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
-          className="flex items-center cursor-pointer gap-1 text-slate-950 font-semibold disabled:text-slate-500 disabled:cursor-default"
+          className="flex items-center cursor-pointer gap-1 text-black font-semibold disabled:text-slate-500 disabled:cursor-default"
           type="button"
         >
           <span>Next</span> <MdChevronRight className="w-5 h-5" />

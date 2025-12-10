@@ -2,6 +2,8 @@ import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { urlRegex } from '@/types/constants';
+import { TeamPayload } from '@/types/team';
 
 export const handleOpenLink = (url: string) => {
   window.open(url, '_blank');
@@ -68,3 +70,24 @@ export const handleError = (err: unknown, defaultMsg: string) => {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export const validateUrls = (data: TeamPayload) => {
+  const newErrors: Partial<TeamPayload> = {};
+
+  if (data.linkedin && !urlRegex.linkedin.test(data.linkedin)) {
+    newErrors.linkedin =
+      'Formato de URL de LinkedIn inválido. Debe comenzar con https://www.linkedin.com/...';
+  }
+
+  if (data.instagram && !urlRegex.instagram.test(data.instagram)) {
+    newErrors.instagram =
+      'Formato de URL de Instagram inválido. Debe comenzar con https://www.instagram.com/...';
+  }
+
+  if (data.facebook && !urlRegex.facebook.test(data.facebook)) {
+    newErrors.facebook =
+      'Formato de URL de Facebook inválido. Debe comenzar con https://www.facebook.com/...';
+  }
+
+  return newErrors;
+};
