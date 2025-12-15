@@ -58,10 +58,10 @@ export default function ImageLightbox() {
             {images && images.length > 0 && (
               <Slider props={sliderProps}>
                 {images.map((image) => (
-                  <SwiperSlide key={image.src}>
+                  <SwiperSlide key={image}>
                     <div className={styles.imgContainer}>
                       <img
-                        src={image.src}
+                        src={image}
                         alt={`Project image`}
                         className={styles.img}
                       />

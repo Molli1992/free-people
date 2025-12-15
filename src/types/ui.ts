@@ -1,5 +1,4 @@
 import { MouseEventHandler, ReactNode, ChangeEvent } from 'react';
-import { StaticImageData } from 'next/image';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
 import {
   ColumnDef,
@@ -7,8 +6,6 @@ import {
   Row,
   RowSelectionState,
 } from '@tanstack/react-table';
-import { Team } from '@/types/team';
-import { User } from '@/types/users';
 
 export interface DataTableProps<TData extends { id: string | number }> {
   columns: ColumnDef<TData>[];
@@ -61,43 +58,14 @@ export interface SliderProps {
   props: SwiperPropsType;
   children: ReactNode;
 }
-
-export interface StoreImageLightboxProps {
-  isOpen: boolean;
-  images: StaticImageData[];
-  setIsOpen: (boolean: boolean) => void;
-  setimages: (images: StaticImageData[]) => void;
-}
-
-export interface SidebarStoreProps {
-  isSidebarOpen: boolean;
-  setIsSidebarOpen: (boolean: boolean) => void;
-}
-
-export interface TeamStoreProps {
-  team: Team[];
-  isDataLoad: boolean;
-  setTeam: (data: Team[]) => void;
-  addTeamMemberToStore: (teamMember: Team) => void;
-  updateTeamMemberInStore: (teamMember: Team) => void;
-  removeTeamMemberFromStore: (id: number) => void;
-}
-
-export interface UsersStoreProps {
-  users: User[];
-  isDataLoad: boolean;
-  setUsers: (data: User[]) => void;
-  updateUserInStore: (teamMember: User) => void;
+export interface SwitchProps {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
 }
 
 export interface ModalTypes {
   showModal: boolean;
   setShowModal: (boolean: boolean) => void;
-}
-
-export interface SwitchProps {
-  checked: boolean;
-  onChange: (checked: boolean) => void;
 }
 
 export interface ModalProps {
@@ -106,11 +74,4 @@ export interface ModalProps {
   title: string;
   description?: string;
   children: ReactNode;
-}
-
-export interface TeamFormProps {
-  isOpen: boolean;
-  onClose: () => void;
-  isEditMode: boolean;
-  teamMember?: Team;
 }

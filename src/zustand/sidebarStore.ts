@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { SidebarStoreProps } from '@/types/ui';
+import { SidebarStoreProps } from '@/types/stores';
 
 export const useSidebarStore = create<SidebarStoreProps>((set) => ({
   isSidebarOpen: false,

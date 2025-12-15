@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { FaLinkedinIn, FaInstagram, FaFacebook } from 'react-icons/fa';
-import { TeamProps } from '@/types/types';
+import { TeamCardProps } from '@/types/team';
 import styles from './teamCard.module.css';
 
 export default function TeamCard({
@@ -12,7 +12,7 @@ export default function TeamCard({
   linkedin,
   instagram,
   facebook,
-}: TeamProps) {
+}: TeamCardProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const handleSocialClick = (url: string) => {
@@ -29,7 +29,7 @@ export default function TeamCard({
     <div className={styles.card}>
       <div
         className={styles.image}
-        style={{ backgroundImage: `url(${image.src})` }}
+        style={{ backgroundImage: `url(${image})` }}
       ></div>
 
       <div className={styles.overlay} ref={overlayRef}>

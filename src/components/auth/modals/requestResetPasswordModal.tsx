@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, MouseEvent } from 'react';
+import { useState } from 'react';
 import { useAuth } from '@/lib/hooks/authHook';
 import Swal from 'sweetalert2';
 import { ModalTypes } from '@/types/ui';
@@ -8,6 +8,7 @@ import BlackButton from '@/components/buttons/blackButton';
 import GrayButton from '@/components/buttons/grayButton';
 import PrimaryInput from '@/components/inputs/primaryInput';
 import { validEmail } from '@/utils/utils';
+import Modal from '@/components/modal/modal';
 
 export default function RequestResetPasswordModal({
   showModal,
@@ -16,12 +17,9 @@ export default function RequestResetPasswordModal({
   const { requestResetPassword, loading } = useAuth();
   const [resetEmail, setResetEmail] = useState('');
 
-  const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      setShowModal(false);
-      setResetEmail('');
-    }
-  };
+  const modalTitle = 'Recuperar Contraseña';
+  const modalDescription =
+    'Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.';
 
   const handleForgotPassword = async () => {
     if (!resetEmail) {
@@ -53,20 +51,14 @@ export default function RequestResetPasswordModal({
   if (!showModal) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
-      onClick={handleBackdropClick}
+    <Modal
+      isOpen={showModal}
+      onClose={() => setShowModal(false)}
+      title={modalTitle}
+      description={modalDescription}
     >
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 animate-fade-in-down">
-        <h3 className="text-xl font-bold text-gray-800 mb-2">
-          Recuperar Contraseña
-        </h3>
-        <p className="text-gray-600 mb-4 text-sm">
-          Ingresa tu correo electrónico y te enviaremos un enlace para
-          restablecer tu contraseña.
-        </p>
-
-        <div className="mb-4">
+      <div className="flex flex-col gap-4">
+        <div>
           <PrimaryInput
             label="Email"
             type="email"
@@ -96,6 +88,6 @@ export default function RequestResetPasswordModal({
           />
         </div>
       </div>
-    </div>
+    </Modal>
   );
 }

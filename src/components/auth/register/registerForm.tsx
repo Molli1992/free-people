@@ -177,14 +177,12 @@ function RegisterForm() {
                 />
 
                 <div className="flex items-center justify-center gap-1 text-sm">
-                  <span className="text-gray-600">
-                    Already have an account?
-                  </span>
+                  <span className="text-gray-600">Ya tienes una cuenta?</span>
                   <Link
                     href="/auth/login"
                     className="text-blue-600 hover:text-blue-800 font-medium hover:underline"
                   >
-                    Login here
+                    Inicia sesión
                   </Link>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import Modal from '@/components/modal/modal';
-import { TeamFormProps } from '@/types/ui';
+import { TeamFormProps } from '@/types/team';
 import { useTeam } from '@/lib/hooks/teamHook';
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import PrimaryInput from '@/components/inputs/primaryInput';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ProjectCardProps } from '@/types/types';
+import { ProjectCardProps } from '@/types/projects';
 import styles from './projectCard.module.css';
 import { FaExternalLinkAlt, FaExpandArrowsAlt } from 'react-icons/fa';
 import { useImageLightboxStore } from '@/zustand/imageLightboxStore';
@@ -28,7 +28,7 @@ export default function ProjectCard({
     <div className={styles.card}>
       <div
         className={styles.image}
-        style={{ backgroundImage: `url(${images[0].src})` }}
+        style={{ backgroundImage: `url(${images[0]})` }}
       ></div>
 
       <div className={styles.overlay}>

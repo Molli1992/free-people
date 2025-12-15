@@ -28,3 +28,19 @@ export interface UseTeamReturn {
   ) => Promise<Team | undefined>;
   deleteTeamMember: (id: number) => Promise<Team | undefined>;
 }
+
+export type TeamCardProps = {
+  name: string;
+  profession: string;
+  image: string;
+  linkedin: string;
+  instagram: string;
+  facebook: string;
+};
+
+export interface TeamFormProps {
+  isOpen: boolean;
+  onClose: () => void;
+  isEditMode: boolean;
+  teamMember?: Team;
+}

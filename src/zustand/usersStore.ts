@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { UsersStoreProps } from '@/types/ui';
+import { UsersStoreProps } from '@/types/stores';
 
 export const useUsersStore = create<UsersStoreProps>((set, get) => ({
   users: [],

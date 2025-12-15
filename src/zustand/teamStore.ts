@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { TeamStoreProps } from '@/types/ui';
+import { TeamStoreProps } from '@/types/stores';
 
 export const useTeamStore = create<TeamStoreProps>((set, get) => ({
   team: [],

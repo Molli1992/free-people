@@ -2,11 +2,11 @@ import SecondaryHeroSection from '@/components/heroSection/secondaryHeroSection'
 import { projectsData } from '@/data/projectsData';
 import { notFound } from 'next/navigation';
 import ProjectDescription from '@/components/projects/projectDescription/projectDescription';
-import { ProjectPageProps } from '@/types/types';
+import { ProjectPageProps } from '@/types/projects';
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { id } = await params;
-  const project = projectsData.find((p) => p.id === id);
+  const project = projectsData.find((p) => String(p.id) === id);
 
   if (!project) {
     notFound();

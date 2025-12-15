@@ -1,23 +1,14 @@
-import ProjectsImage1 from '../../public/projects/projects-1.jpg';
-import ProjectsImage2 from '../../public/projects/projects-2.jpg';
-import ProjectsImage3 from '../../public/projects/projects-3.jpg';
-import ProjectsImage4 from '../../public/projects/projects-4.jpg';
-import ProjectsImage5 from '../../public/projects/projects-5.jpg';
-import ProjectsImage6 from '../../public/projects/projects-6.jpg';
-import ProjectsImage7 from '../../public/projects/projects-7.jpg';
-import ProjectsImage8 from '../../public/projects/projects-8.jpg';
-import ProjectsImage9 from '../../public/projects/projects-9.jpg';
-import { ProjectsProps } from '@/types/types';
+import { Projects } from '@/types/projects';
 
-export const projectsData: ProjectsProps[] = [
+export const projectsData: Projects[] = [
   {
-    id: 'project-1',
+    id: 1,
     images: [
-      ProjectsImage1,
-      ProjectsImage2,
-      ProjectsImage3,
-      ProjectsImage4,
-      ProjectsImage5,
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Building Construction',
     type: ['Lorence Project'],
@@ -30,13 +21,13 @@ export const projectsData: ProjectsProps[] = [
     ],
   },
   {
-    id: 'project-2',
+    id: 2,
     images: [
-      ProjectsImage2,
-      ProjectsImage1,
-      ProjectsImage3,
-      ProjectsImage4,
-      ProjectsImage5,
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Renovation Of Roofs',
     type: ['Lorence Project'],
@@ -49,13 +40,13 @@ export const projectsData: ProjectsProps[] = [
     ],
   },
   {
-    id: 'project-3',
+    id: 3,
     images: [
-      ProjectsImage3,
-      ProjectsImage1,
-      ProjectsImage2,
-      ProjectsImage4,
-      ProjectsImage5,
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'General Constructions',
     type: ['Lorence Project'],
@@ -68,13 +59,13 @@ export const projectsData: ProjectsProps[] = [
     ],
   },
   {
-    id: 'project-4',
+    id: 4,
     images: [
-      ProjectsImage4,
-      ProjectsImage1,
-      ProjectsImage2,
-      ProjectsImage3,
-      ProjectsImage5,
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Construction Project',
     type: ['Lorence Project'],
@@ -87,13 +78,13 @@ export const projectsData: ProjectsProps[] = [
     ],
   },
   {
-    id: 'project-5',
+    id: 5,
     images: [
-      ProjectsImage5,
-      ProjectsImage1,
-      ProjectsImage2,
-      ProjectsImage3,
-      ProjectsImage4,
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'House Construction',
     type: ['3D Modeling', 'Houses'],
@@ -106,13 +97,13 @@ export const projectsData: ProjectsProps[] = [
     ],
   },
   {
-    id: 'project-6',
+    id: 6,
     images: [
-      ProjectsImage6,
-      ProjectsImage1,
-      ProjectsImage2,
-      ProjectsImage3,
-      ProjectsImage4,
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Towers Construction',
     type: ['Architecture', 'Interior Design'],
@@ -125,13 +116,13 @@ export const projectsData: ProjectsProps[] = [
     ],
   },
   {
-    id: 'project-7',
+    id: 7,
     images: [
-      ProjectsImage7,
-      ProjectsImage1,
-      ProjectsImage2,
-      ProjectsImage3,
-      ProjectsImage4,
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Interiors Construction',
     type: ['Apartments', 'Interior Design', 'Lorence Project'],
@@ -144,13 +135,13 @@ export const projectsData: ProjectsProps[] = [
     ],
   },
   {
-    id: 'project-8',
+    id: 8,
     images: [
-      ProjectsImage8,
-      ProjectsImage1,
-      ProjectsImage2,
-      ProjectsImage3,
-      ProjectsImage4,
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Buildnings Construction',
     type: ['3D Modeling', 'Project'],
@@ -163,13 +154,13 @@ export const projectsData: ProjectsProps[] = [
     ],
   },
   {
-    id: 'project-9',
+    id: 9,
     images: [
-      ProjectsImage9,
-      ProjectsImage1,
-      ProjectsImage2,
-      ProjectsImage3,
-      ProjectsImage4,
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
+      'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'New Desgins',
     type: ['Apartments', 'Architecture', 'Lorence Project'],

@@ -1,17 +1,10 @@
-import TeamImage1 from '../../public/team/team-1.jpg';
-import TeamImage2 from '../../public/team/team-2.jpg';
-import TeamImage3 from '../../public/team/team-3.jpg';
-import TeamImage4 from '../../public/team/team-4.jpg';
-import TeamImage5 from '../../public/team/team-5.jpg';
-import TeamImage6 from '../../public/team/team-6.jpg';
-import TeamImage7 from '../../public/team/team-7.jpg';
-import TeamImage8 from '../../public/team/team-8.jpg';
-import { TeamProps } from '@/types/types';
+import { Team } from '@/types/team';
 
-export const teamData: TeamProps[] = [
+export const teamData: Team[] = [
   {
-    id: 'team-1',
-    image: TeamImage1,
+    id: 1,
+    image:
+      'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
     name: 'Robert Joe',
     profession: 'ENGINEER',
     linkedin: 'https://www.linkedin.com/',
@@ -19,8 +12,9 @@ export const teamData: TeamProps[] = [
     facebook: 'https://www.facebook.com/',
   },
   {
-    id: 'team-2',
-    image: TeamImage2,
+    id: 2,
+    image:
+      'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
     name: 'Michael King',
     profession: 'CIVIL ENGINEER',
     linkedin: 'https://www.linkedin.com/',
@@ -28,8 +22,9 @@ export const teamData: TeamProps[] = [
     facebook: 'https://www.facebook.com/',
   },
   {
-    id: 'team-3',
-    image: TeamImage3,
+    id: 3,
+    image:
+      'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
     name: 'Daniel Joe',
     profession: 'ASSISTANCE',
     linkedin: 'https://www.linkedin.com/',
@@ -37,8 +32,9 @@ export const teamData: TeamProps[] = [
     facebook: 'https://www.facebook.com/',
   },
   {
-    id: 'team-4',
-    image: TeamImage4,
+    id: 4,
+    image:
+      'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
     name: 'Albert Flores',
     profession: 'JUNIOR ENGINEER',
     linkedin: 'https://www.linkedin.com/',
@@ -46,8 +42,9 @@ export const teamData: TeamProps[] = [
     facebook: 'https://www.facebook.com/',
   },
   {
-    id: 'team-5',
-    image: TeamImage5,
+    id: 5,
+    image:
+      'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
     name: 'Charles Joe',
     profession: 'ENGINEER',
     linkedin: 'https://www.linkedin.com/',
@@ -55,8 +52,9 @@ export const teamData: TeamProps[] = [
     facebook: 'https://www.facebook.com/',
   },
   {
-    id: 'team-6',
-    image: TeamImage6,
+    id: 6,
+    image:
+      'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
     name: 'Marry Flores',
     profession: 'ENGINEER',
     linkedin: 'https://www.linkedin.com/',
@@ -64,8 +62,9 @@ export const teamData: TeamProps[] = [
     facebook: 'https://www.facebook.com/',
   },
   {
-    id: 'team-7',
-    image: TeamImage7,
+    id: 7,
+    image:
+      'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
     name: 'Johnson FLores',
     profession: 'ASSISTANCE',
     linkedin: 'https://www.linkedin.com/',
@@ -73,8 +72,9 @@ export const teamData: TeamProps[] = [
     facebook: 'https://www.facebook.com/',
   },
   {
-    id: 'team-8',
-    image: TeamImage8,
+    id: 8,
+    image:
+      'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
     name: 'Adwards King',
     profession: 'ASSISTANCE',
     linkedin: 'https://www.linkedin.com/',
