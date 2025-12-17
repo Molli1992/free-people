@@ -18,6 +18,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <ProjectDescription
         images={project.images}
         description={project.description}
+        challenge={project.challenge}
+        finalView={project.finalView}
       />
     </main>
   );

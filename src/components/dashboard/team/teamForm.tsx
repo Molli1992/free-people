@@ -18,7 +18,7 @@ export default function TeamForm({
 }: TeamFormProps) {
   const { addTeamMemberToStore, updateTeamMemberInStore } = useTeamStore();
   const { loading, createTeamMember, updateTeamMember } = useTeam();
-  const [formData, setFormData] = useState<TeamPayload>({
+  const formDataInitialValue = {
     name: '',
     profession: '',
     linkedin: '',
@@ -26,13 +26,14 @@ export default function TeamForm({
     facebook: '',
     image:
       'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
-  });
+  };
+  const [formData, setFormData] = useState<TeamPayload>(formDataInitialValue);
 
   const modalTitle = 'Crear integrante';
   const modalDescription =
     'Completa todos los campos para agregar un nuevo integrante al equipo.';
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -84,6 +85,7 @@ export default function TeamForm({
       }
     }
 
+    setFormData(formDataInitialValue);
     onClose();
   };
 

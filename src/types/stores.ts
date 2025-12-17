@@ -1,5 +1,6 @@
 import { Team } from '@/types/team';
 import { User } from '@/types/users';
+import { Project } from '@/types/projects';
 
 export interface StoreImageLightboxProps {
   isOpen: boolean;
@@ -27,4 +28,13 @@ export interface UsersStoreProps {
   isDataLoad: boolean;
   setUsers: (data: User[]) => void;
   updateUserInStore: (teamMember: User) => void;
+}
+
+export interface ProjectsStoreProps {
+  projects: Project[];
+  isDataLoad: boolean;
+  setProjects: (data: Project[]) => void;
+  addProjectsToStore: (project: Project) => void;
+  updateProjectsInStore: (updatedProject: Project) => void;
+  removeProjectsFromStore: (id: number) => void;
 }

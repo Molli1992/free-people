@@ -1,7 +1,6 @@
 import { InputsProps } from '@/types/ui';
 
-export default function PrimaryInput({
-  type,
+export default function PrimaryTextArea({
   id,
   name,
   placeholder,
@@ -18,15 +17,14 @@ export default function PrimaryInput({
       >
         {label}
       </label>
-      <input
-        type={type}
+      <textarea
         id={id}
         name={name}
         placeholder={placeholder}
         onChange={onChange}
         value={value}
         maxLength={maxLength}
-        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-gray-900 focus:ring-2 focus:ring-gray-200 outline-none transition duration-200"
+        className="w-full h-[120px] px-4 py-3 rounded-lg border border-gray-300 focus:border-gray-900 focus:ring-2 focus:ring-gray-200 outline-none transition duration-200"
       />
       {maxLength && (
         <p className="text-xs text-gray-400">

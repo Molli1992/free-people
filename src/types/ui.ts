@@ -36,13 +36,14 @@ export type TextsProps = {
 };
 
 export type InputsProps = {
-  type: string;
+  type?: string;
   id: string;
   name: string;
   placeholder: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   value: string;
   label: string;
+  maxLength?: number;
 };
 
 export type ButtonsProps = {

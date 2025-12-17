@@ -32,7 +32,7 @@ function RegisterForm() {
     hasSesion();
   }, []);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,

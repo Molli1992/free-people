@@ -7,16 +7,19 @@ import { useSidebarStore } from '@/zustand/sidebarStore';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import BlackButton from '@/components/buttons/blackButton';
 import TeamForm from '@/components/dashboard/team/teamForm';
+import ProjectsForm from '@/components/dashboard/projects/projectsForm';
 
 export default function DashboardHeader() {
   const pathname = usePathname();
   const { isSidebarOpen, setIsSidebarOpen } = useSidebarStore();
+
   const [buttonValue, setButtonValue] = useState('');
   const [buttonOnClick, setButtonOnClick] = useState<
     MouseEventHandler<HTMLButtonElement> | undefined
   >(undefined);
 
   const [isOpenTeamForm, setIsOpenTeamForm] = useState(false);
+  const [isOpenProjectsForm, setIsOpenProjectsForm] = useState(false);
 
   const openCloseSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -55,6 +58,13 @@ export default function DashboardHeader() {
       };
     }
 
+    if (pathname === '/dashboard/projects') {
+      value = 'Crear proyecto';
+      onClick = () => {
+        setIsOpenProjectsForm(true);
+      };
+    }
+
     setButtonValue(value);
     setButtonOnClick(() => onClick);
   }, [pathname]);
@@ -72,6 +82,12 @@ export default function DashboardHeader() {
       <TeamForm
         isOpen={isOpenTeamForm}
         onClose={() => setIsOpenTeamForm(false)}
+        isEditMode={false}
+      />
+
+      <ProjectsForm
+        isOpen={isOpenProjectsForm}
+        onClose={() => setIsOpenProjectsForm(false)}
         isEditMode={false}
       />
     </div>

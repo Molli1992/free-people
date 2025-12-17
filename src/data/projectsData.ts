@@ -1,6 +1,6 @@
-import { Projects } from '@/types/projects';
+import { Project } from '@/types/projects';
 
-export const projectsData: Projects[] = [
+export const projectsData: Project[] = [
   {
     id: 1,
     images: [
@@ -11,14 +11,10 @@ export const projectsData: Projects[] = [
       'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Building Construction',
-    type: ['Lorence Project'],
-    description: [
-      `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, 
-    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo 
-    inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi`,
-    ],
+    type: 'Lorence Project',
+    description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    challenge: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    finalView: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
   },
   {
     id: 2,
@@ -30,14 +26,10 @@ export const projectsData: Projects[] = [
       'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Renovation Of Roofs',
-    type: ['Lorence Project'],
-    description: [
-      `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, 
-    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo 
-    inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi`,
-    ],
+    type: 'Lorence Project',
+    description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    challenge: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    finalView: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
   },
   {
     id: 3,
@@ -49,14 +41,10 @@ export const projectsData: Projects[] = [
       'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'General Constructions',
-    type: ['Lorence Project'],
-    description: [
-      `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, 
-    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo 
-    inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi`,
-    ],
+    type: 'Lorence Project',
+    description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    challenge: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    finalView: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
   },
   {
     id: 4,
@@ -68,14 +56,10 @@ export const projectsData: Projects[] = [
       'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Construction Project',
-    type: ['Lorence Project'],
-    description: [
-      `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, 
-    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo 
-    inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi`,
-    ],
+    type: 'Lorence Project',
+    description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    challenge: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    finalView: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
   },
   {
     id: 5,
@@ -87,14 +71,10 @@ export const projectsData: Projects[] = [
       'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'House Construction',
-    type: ['3D Modeling', 'Houses'],
-    description: [
-      `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, 
-    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo 
-    inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi`,
-    ],
+    type: '3D Modeling',
+    description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    challenge: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    finalView: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
   },
   {
     id: 6,
@@ -106,14 +86,10 @@ export const projectsData: Projects[] = [
       'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Towers Construction',
-    type: ['Architecture', 'Interior Design'],
-    description: [
-      `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, 
-    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo 
-    inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi`,
-    ],
+    type: 'Architecture',
+    description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    challenge: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    finalView: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
   },
   {
     id: 7,
@@ -125,14 +101,10 @@ export const projectsData: Projects[] = [
       'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Interiors Construction',
-    type: ['Apartments', 'Interior Design', 'Lorence Project'],
-    description: [
-      `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, 
-    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo 
-    inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi`,
-    ],
+    type: 'Apartments',
+    description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    challenge: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    finalView: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
   },
   {
     id: 8,
@@ -144,14 +116,10 @@ export const projectsData: Projects[] = [
       'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'Buildnings Construction',
-    type: ['3D Modeling', 'Project'],
-    description: [
-      `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, 
-    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo 
-    inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi`,
-    ],
+    type: '3D Modeling',
+    description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    challenge: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    finalView: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
   },
   {
     id: 9,
@@ -163,13 +131,9 @@ export const projectsData: Projects[] = [
       'https://assets.isu.pub/document-structure/250206133603-4db397a45eff0cbd54cd043411416b08/v1/cfd05141377ff5907faf70d2bd2248ee.jpeg',
     ],
     title: 'New Desgins',
-    type: ['Apartments', 'Architecture', 'Lorence Project'],
-    description: [
-      `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, 
-    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo 
-    inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi`,
-    ],
+    type: 'Apartments',
+    description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantitum dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore veritatis et quasi architecto. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    challenge: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit  in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation`,
+    finalView: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
   },
 ];

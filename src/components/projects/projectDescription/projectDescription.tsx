@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 export default function ProjectDescription({
   images,
   description,
+  challenge,
+  finalView,
 }: ProjectDescriptionProps) {
   return (
     <section className="flex items-center justify-center py-16 px-4 bg-secondary-white">
@@ -13,35 +15,17 @@ export default function ProjectDescription({
         <div className="flex flex-col gap-8 w-full lg:w-1/2">
           <div className="flex flex-col gap-4">
             <Title value="Project description" color="secondary" />
-            {description &&
-              description.map((text) => {
-                return <Text key={uuidv4()} value={text} color="secondary" />;
-              })}
+            <Text key={uuidv4()} value={description} color="secondary" />
           </div>
 
           <div className="flex flex-col gap-4">
             <Title value="The challenge in installation" color="secondary" />
-            <Text
-              value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-              color="secondary"
-            />
-            <Text
-              value="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-            Excepteur sint occaecat cupidatat non dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, 
-            sunt in culpa qui officia deserunt mollit anim id est laborum. aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
-              color="secondary"
-            />
+            <Text value={challenge} color="secondary" />
           </div>
 
           <div className="flex flex-col gap-4">
             <Title value="The final view of project" color="secondary" />
-            <Text
-              value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-              color="secondary"
-            />
+            <Text value={finalView} color="secondary" />
           </div>
         </div>
 

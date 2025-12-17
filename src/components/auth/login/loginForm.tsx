@@ -32,7 +32,7 @@ function LoginForm() {
     hasSesion();
   }, []);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setLoginData({
       ...loginData,
       [e.target.name]: e.target.value,
