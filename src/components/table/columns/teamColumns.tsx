@@ -19,7 +19,9 @@ export const teamColumns = (
     {
       header: 'Num',
       cell: ({ row }) => (
-        <div className="font-medium text-center">{row.index + 1}</div>
+        <div className="flex justify-start font-medium text-center">
+          {row.index + 1}
+        </div>
       ),
       enableSorting: false,
     },
@@ -29,11 +31,11 @@ export const teamColumns = (
     },
     {
       accessorKey: 'profession',
-      header: ({ column }) => createSortableHeader(column, 'Profesión '),
+      header: ({ column }) => createSortableHeader(column, 'Profesión'),
     },
     {
       id: 'edit-action',
-      header: 'Edit',
+      header: 'Editar',
       cell: ({ row }) => {
         const teamMemberId = Number(row.original.id);
 
@@ -52,7 +54,7 @@ export const teamColumns = (
     },
     {
       id: 'delete-action',
-      header: 'Delete',
+      header: 'Eliminar',
       cell: ({ row }) => {
         const teamMemberId = Number(row.original.id);
 

@@ -1,12 +1,12 @@
-import { ServiceProps } from '@/types/types';
+import { ServiceCardProps } from '@/types/services';
 import styles from './servicesCard.module.css';
 
 export default function ServiceCard({
-  icon,
   name,
   image,
   description,
-}: ServiceProps) {
+  icon,
+}: ServiceCardProps) {
   return (
     <div className={styles.card}>
       <div className={styles.cardSideFront}>
@@ -16,7 +16,7 @@ export default function ServiceCard({
         </div>
         <div className={styles.imageWrapper}>
           <img
-            src={image.src}
+            src={image}
             alt={`Imagen del servicio ${name}`}
             className={styles.image}
           />

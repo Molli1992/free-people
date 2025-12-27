@@ -11,6 +11,7 @@ import RedButton from '@/components/buttons/redButton';
 import { useRouter } from 'next/navigation';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
+import { architectureIcons } from '@/types/constants';
 
 export default function HomeServices() {
   const router = useRouter();
@@ -61,18 +62,22 @@ export default function HomeServices() {
         <div className="w-full">
           {servicesData && servicesData.length > 0 && (
             <Slider props={sliderProps}>
-              {servicesData.map((service) => (
-                <SwiperSlide key={service.id}>
-                  <div className="w-full flex items-center justify-center pb-12 px-2">
-                    <CardServices
-                      icon={service.icon}
-                      name={service.name}
-                      image={service.image}
-                      description={service.description}
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
+              {servicesData.map((service, index) => {
+                const randomIcon = architectureIcons[index];
+
+                return (
+                  <SwiperSlide key={service.id}>
+                    <div className="w-full flex items-center justify-center pb-12 px-2">
+                      <CardServices
+                        icon={randomIcon ? randomIcon : architectureIcons[0]}
+                        name={service.name}
+                        image={service.image}
+                        description={service.description}
+                      />
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
             </Slider>
           )}
         </div>

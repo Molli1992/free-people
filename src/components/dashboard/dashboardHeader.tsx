@@ -8,6 +8,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import BlackButton from '@/components/buttons/blackButton';
 import TeamForm from '@/components/dashboard/team/teamForm';
 import ProjectsForm from '@/components/dashboard/projects/projectsForm';
+import ServicesForm from '@/components/dashboard/services/servicesForm';
 
 export default function DashboardHeader() {
   const pathname = usePathname();
@@ -20,6 +21,7 @@ export default function DashboardHeader() {
 
   const [isOpenTeamForm, setIsOpenTeamForm] = useState(false);
   const [isOpenProjectsForm, setIsOpenProjectsForm] = useState(false);
+  const [isOpenServiceForm, setIsOpenServiceForm] = useState(false);
 
   const openCloseSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -65,6 +67,13 @@ export default function DashboardHeader() {
       };
     }
 
+    if (pathname === '/dashboard/services') {
+      value = 'Crear servicio';
+      onClick = () => {
+        setIsOpenServiceForm(true);
+      };
+    }
+
     setButtonValue(value);
     setButtonOnClick(() => onClick);
   }, [pathname]);
@@ -88,6 +97,12 @@ export default function DashboardHeader() {
       <ProjectsForm
         isOpen={isOpenProjectsForm}
         onClose={() => setIsOpenProjectsForm(false)}
+        isEditMode={false}
+      />
+
+      <ServicesForm
+        isOpen={isOpenServiceForm}
+        onClose={() => setIsOpenServiceForm(false)}
         isEditMode={false}
       />
     </div>

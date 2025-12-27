@@ -3,6 +3,7 @@ import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
 import { servicesData } from '@/data/servicesData';
 import CardServices from '@/components/services/serviceCard';
+import { architectureIcons } from '@/types/constants';
 
 export default function Services() {
   return (
@@ -21,11 +22,13 @@ export default function Services() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center gap-8">
           {servicesData &&
-            servicesData.map((service) => {
+            servicesData.map((service, index) => {
+              const randomIcon = architectureIcons[index];
+
               return (
                 <CardServices
                   key={service.id}
-                  icon={service.icon}
+                  icon={randomIcon ? randomIcon : architectureIcons[0]}
                   name={service.name}
                   image={service.image}
                   description={service.description}

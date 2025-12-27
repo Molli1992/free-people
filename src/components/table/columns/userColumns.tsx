@@ -31,7 +31,9 @@ export const usersColumns = (
     {
       header: 'Num',
       cell: ({ row }) => (
-        <div className="font-medium text-center">{row.index + 1}</div>
+        <div className="flex justify-start font-medium text-center">
+          {row.index + 1}
+        </div>
       ),
       enableSorting: false,
     },

@@ -4,6 +4,44 @@ import { FaHammer } from 'react-icons/fa';
 import { FaTools } from 'react-icons/fa';
 import { FaStar } from 'react-icons/fa';
 import { FaBuilding } from 'react-icons/fa';
+import { BsBuildingsFill, BsFillLayersFill, BsVectorPen } from 'react-icons/bs';
+import { TfiWrite, TfiRulerPencil } from 'react-icons/tfi';
+import {
+  MdHomeRepairService,
+  MdRoofing,
+  MdOutlineArchitecture,
+  MdConstruction,
+} from 'react-icons/md';
+import {
+  TbSofa,
+  TbHomePlus,
+  TbBuildingCog,
+  TbMapSearch,
+  TbCrane,
+  TbWall,
+} from 'react-icons/tb';
+import { LuHardHat } from 'react-icons/lu';
+import { FaDraftingCompass } from 'react-icons/fa';
+
+export const architectureIcons = [
+  <BsBuildingsFill key="1" />,
+  <TfiWrite key="2" />,
+  <MdHomeRepairService key="3" />,
+  <TbSofa key="4" />,
+  <TbHomePlus key="5" />,
+  <TbBuildingCog key="6" />,
+  <TbMapSearch key="7" />,
+  <MdRoofing key="8" />,
+  <MdOutlineArchitecture key="9" />,
+  <TfiRulerPencil key="10" />,
+  <TbCrane key="11" />,
+  <LuHardHat key="12" />,
+  <FaDraftingCompass key="13" />,
+  <BsFillLayersFill key="14" />,
+  <MdConstruction key="15" />,
+  <TbWall key="16" />,
+  <BsVectorPen key="17" />,
+];
 
 export const links = [
   { href: '/', label: 'Inicio' },
