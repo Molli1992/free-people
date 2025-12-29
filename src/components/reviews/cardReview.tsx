@@ -1,11 +1,11 @@
-import { ReviewsProps } from '@/types/types';
+import { CardReviewProps } from '@/types/reviews';
 import { BiSolidQuoteAltLeft } from 'react-icons/bi';
 
 export default function CardReview({
   name,
   occupation,
   description,
-}: ReviewsProps) {
+}: CardReviewProps) {
   return (
     <div className="flex flex-col gap-4 h-[500px] w-full max-w-xs">
       <div className="h-full flex flex-col gap-2 p-8 rounded-xl bg-secondary-darkBlue justify-between">

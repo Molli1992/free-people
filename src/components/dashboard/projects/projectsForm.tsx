@@ -34,9 +34,8 @@ export default function ProjectsForm({
   const [formData, setFormData] =
     useState<ProjectPayload>(formDataInitialValue);
 
-  const modalTitle = 'Crear proyecto';
-  const modalDescription =
-    'Completa todos los campos para crear un nuevo proyecto.';
+  const modalTitle = isEditMode ? 'Editar proyecto' : 'Crear proyecto';
+  const modalDescription = `Completa todos los campos para ${isEditMode ? 'editar el proyecto' : 'crear un nuevo proyecto'}.`;
 
   const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({

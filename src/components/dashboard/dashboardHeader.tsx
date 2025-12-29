@@ -9,6 +9,7 @@ import BlackButton from '@/components/buttons/blackButton';
 import TeamForm from '@/components/dashboard/team/teamForm';
 import ProjectsForm from '@/components/dashboard/projects/projectsForm';
 import ServicesForm from '@/components/dashboard/services/servicesForm';
+import ReviewsForm from '@/components/dashboard/reviews/reviewsForm';
 
 export default function DashboardHeader() {
   const pathname = usePathname();
@@ -22,6 +23,7 @@ export default function DashboardHeader() {
   const [isOpenTeamForm, setIsOpenTeamForm] = useState(false);
   const [isOpenProjectsForm, setIsOpenProjectsForm] = useState(false);
   const [isOpenServiceForm, setIsOpenServiceForm] = useState(false);
+  const [isOpenReviewsForm, setIsOpenReviewsForm] = useState(false);
 
   const openCloseSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -74,6 +76,13 @@ export default function DashboardHeader() {
       };
     }
 
+    if (pathname === '/dashboard/reviews') {
+      value = 'Crear review';
+      onClick = () => {
+        setIsOpenReviewsForm(true);
+      };
+    }
+
     setButtonValue(value);
     setButtonOnClick(() => onClick);
   }, [pathname]);
@@ -103,6 +112,12 @@ export default function DashboardHeader() {
       <ServicesForm
         isOpen={isOpenServiceForm}
         onClose={() => setIsOpenServiceForm(false)}
+        isEditMode={false}
+      />
+
+      <ReviewsForm
+        isOpen={isOpenReviewsForm}
+        onClose={() => setIsOpenReviewsForm(false)}
         isEditMode={false}
       />
     </div>

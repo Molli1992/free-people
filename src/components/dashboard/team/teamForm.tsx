@@ -29,9 +29,8 @@ export default function TeamForm({
   };
   const [formData, setFormData] = useState<TeamPayload>(formDataInitialValue);
 
-  const modalTitle = 'Crear integrante';
-  const modalDescription =
-    'Completa todos los campos para agregar un nuevo integrante al equipo.';
+  const modalTitle = isEditMode ? 'Editar integrante' : 'Crear integrante';
+  const modalDescription = `Completa todos los campos para ${isEditMode ? 'editar el integrante' : 'crear un nuevo integrante'}.`;
 
   const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({

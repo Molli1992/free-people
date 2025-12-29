@@ -2,6 +2,7 @@ import { Team } from '@/types/team';
 import { User } from '@/types/users';
 import { Project } from '@/types/projects';
 import { Service } from '@/types/services';
+import { Review } from './reviews';
 
 export interface StoreImageLightboxProps {
   isOpen: boolean;
@@ -47,4 +48,13 @@ export interface ServicesStoreProps {
   addServiceToStore: (service: Service) => void;
   updateServiceInStore: (updatedService: Service) => void;
   removeServiceFromStore: (id: number) => void;
+}
+
+export interface ReviewStoreProps {
+  reviews: Review[];
+  isDataLoad: boolean;
+  setReviews: (data: Review[]) => void;
+  addReviewToStore: (review: Review) => void;
+  updateReviewInStore: (review: Review) => void;
+  removeReviewFromStore: (id: number) => void;
 }

@@ -1,32 +1,30 @@
 import Modal from '@/components/modal/modal';
-import { ServicesFormProps, ServicePayload } from '@/types/services';
-import { useServices } from '@/lib/hooks/servicesHook';
+import { ReviewsFormProps, ReviewPayload } from '@/types/reviews';
+import { useReviews } from '@/lib/hooks/reviewsHook';
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import PrimaryInput from '@/components/inputs/primaryInput';
 import BlackButton from '@/components/buttons/blackButton';
 import GrayButton from '@/components/buttons/grayButton';
 import Swal from 'sweetalert2';
-import { useServicesStore } from '@/zustand/serviceStore';
+import { useReviewsStore } from '@/zustand/reviewsStore';
 
-export default function ServicesForm({
+export default function ReviewsForm({
   isOpen,
   onClose,
   isEditMode,
-  service,
-}: ServicesFormProps) {
-  const { addServiceToStore, updateServiceInStore } = useServicesStore();
-  const { loading, createService, updateService } = useServices();
+  review,
+}: ReviewsFormProps) {
+  const { addReviewToStore, updateReviewInStore } = useReviewsStore();
+  const { loading, createReview, updateReview } = useReviews();
   const formDataInitialValue = {
     name: '',
-    image:
-      'https://grekoplaces.com/wp-content/uploads/2021/01/Greko_Servicio_arquitectura-contruccion2.jpg',
+    occupation: '',
     description: '',
   };
-  const [formData, setFormData] =
-    useState<ServicePayload>(formDataInitialValue);
+  const [formData, setFormData] = useState<ReviewPayload>(formDataInitialValue);
 
-  const modalTitle = isEditMode ? 'Editar servicio' : 'Crear servicio';
-  const modalDescription = `Completa todos los campos para ${isEditMode ? 'editar el servicio' : 'crear un nuevo servicio'}.`;
+  const modalTitle = isEditMode ? 'Editar review' : 'Crear review';
+  const modalDescription = `Completa todos los campos para ${isEditMode ? 'editar la review' : 'agregar una nueva review'}.`;
 
   const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -38,7 +36,7 @@ export default function ServicesForm({
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.image || !formData.description) {
+    if (!formData.name || !formData.occupation || !formData.description) {
       await Swal.fire({
         title: 'Info!',
         text: 'Completar todos los campos',
@@ -49,15 +47,15 @@ export default function ServicesForm({
       return;
     }
 
-    if (isEditMode && service?.id) {
-      const updatedService = await updateService(service.id, formData);
-      if (updatedService) {
-        updateServiceInStore(updatedService);
+    if (isEditMode && review?.id) {
+      const updatedReview = await updateReview(review.id, formData);
+      if (updatedReview) {
+        updateReviewInStore(updatedReview);
       }
     } else {
-      const newService = await createService(formData);
-      if (newService) {
-        addServiceToStore(newService);
+      const newReview = await createReview(formData);
+      if (newReview) {
+        addReviewToStore(newReview);
       }
     }
 
@@ -66,26 +64,38 @@ export default function ServicesForm({
   };
 
   useEffect(() => {
-    if (isEditMode && service) {
+    if (isEditMode && review) {
       setFormData({
-        name: service.name,
-        image: service.image,
-        description: service.description,
+        name: review.name,
+        occupation: review.occupation,
+        description: review.description,
       });
     }
-  }, [isEditMode, service]);
+  }, [isEditMode, review]);
 
   const form = (
     <form className="flex flex-col gap-4" onSubmit={onSubmit}>
       <div>
         <PrimaryInput
-          label="Nombre del servicio"
+          label="Nombre completo"
           type="text"
           id="name"
           name="name"
           value={formData.name}
           onChange={onChange}
-          placeholder="Construccion"
+          placeholder="John Dalton"
+        />
+      </div>
+
+      <div>
+        <PrimaryInput
+          label="Ocupacion"
+          type="text"
+          id="occupation"
+          name="occupation"
+          value={formData.occupation}
+          onChange={onChange}
+          placeholder="Escribe la ocupacion"
         />
       </div>
 
