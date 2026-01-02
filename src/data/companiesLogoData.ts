@@ -1,88 +1,40 @@
-import BACIUDAD from '../../public/companiesLogos/BA-ciudad.png';
-import COMCOM from '../../public/companiesLogos/Com-Com-helados.svg';
-import BECOOL from '../../public/companiesLogos/Becool-estética.png';
-import DECOWALL from '../../public/companiesLogos/Decowall.webp';
-import PARANASEGUROS from '../../public/companiesLogos/parana-seguros.webp';
-import DITOYS from '../../public/companiesLogos/Ditoys.png';
-import ENJOYPUNTADELESTE from '../../public/companiesLogos/Enjoy-Punta-del-Este.jpg';
-import LAFABRICA from '../../public/companiesLogos/la-fabrica.jpg';
-import DIBRA from '../../public/companiesLogos/Dibra.png';
-import FELFORT from '../../public/companiesLogos/Felfort.svg';
-import MONOBINGO from '../../public/companiesLogos/mono-bingo.png';
-import CEMEDYT from '../../public/companiesLogos/Cemedyt.jpeg';
-import LADORITA from '../../public/companiesLogos/La Dorita.png';
-import SAPHIRUS from '../../public/companiesLogos/Saphirus.webp';
-import { CompaniesDataProps } from '@/types/types';
+import { Company } from '@/types/companies';
 
-export const companiesData: CompaniesDataProps[] = [
+export const companiesData: Company[] = [
   {
-    id: 'companiesData-1',
-    image: BACIUDAD,
+    id: 1,
+    image:
+      'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/company-logo-design-template-e089327a5c476ce5c70c74f7359c5898_screen.jpg?ts=1672291305',
     name: 'Buenos Aires Ciudad',
   },
   {
-    id: 'companiesData-2',
-    image: COMCOM,
+    id: 2,
+    image:
+      'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/company-logo-design-template-e089327a5c476ce5c70c74f7359c5898_screen.jpg?ts=1672291305',
     name: 'Com-Com Helados',
   },
   {
-    id: 'companiesData-3',
-    image: BECOOL,
+    id: 3,
+    image:
+      'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/company-logo-design-template-e089327a5c476ce5c70c74f7359c5898_screen.jpg?ts=1672291305',
     name: 'Becool estética',
   },
   {
-    id: 'companiesData-4',
-    image: DECOWALL,
+    id: 4,
+    image:
+      'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/company-logo-design-template-e089327a5c476ce5c70c74f7359c5898_screen.jpg?ts=1672291305',
     name: 'Decowall',
   },
   {
-    id: 'companiesData-5',
-    image: PARANASEGUROS,
+    id: 5,
+    image:
+      'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/company-logo-design-template-e089327a5c476ce5c70c74f7359c5898_screen.jpg?ts=1672291305',
     name: 'Parana seguros',
   },
   {
-    id: 'companiesData-6',
-    image: DITOYS,
+    id: 6,
+    image:
+      'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/company-logo-design-template-e089327a5c476ce5c70c74f7359c5898_screen.jpg?ts=1672291305',
     name: 'Ditoys',
-  },
-  {
-    id: 'companiesData-7',
-    image: ENJOYPUNTADELESTE,
-    name: 'Enjoy punta del este',
-  },
-  {
-    id: 'companiesData-8',
-    image: LAFABRICA,
-    name: 'La fabrica',
-  },
-  {
-    id: 'companiesData-9',
-    image: DIBRA,
-    name: 'Dibra',
-  },
-  {
-    id: 'companiesData-10',
-    image: FELFORT,
-    name: 'Felfort ',
-  },
-  {
-    id: 'companiesData-11',
-    image: MONOBINGO,
-    name: 'Mono bingo',
-  },
-  {
-    id: 'companiesData-12',
-    image: CEMEDYT,
-    name: 'Cemedyt',
-  },
-  {
-    id: 'companiesData-13',
-    image: LADORITA,
-    name: 'La Dorita',
-  },
-  {
-    id: 'companiesData-14',
-    image: SAPHIRUS,
-    name: 'Saphirus',
   },
 ];

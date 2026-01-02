@@ -10,6 +10,7 @@ import TeamForm from '@/components/dashboard/team/teamForm';
 import ProjectsForm from '@/components/dashboard/projects/projectsForm';
 import ServicesForm from '@/components/dashboard/services/servicesForm';
 import ReviewsForm from '@/components/dashboard/reviews/reviewsForm';
+import CompaniesForm from '@/components/dashboard/companies/companiesForm';
 
 export default function DashboardHeader() {
   const pathname = usePathname();
@@ -24,6 +25,7 @@ export default function DashboardHeader() {
   const [isOpenProjectsForm, setIsOpenProjectsForm] = useState(false);
   const [isOpenServiceForm, setIsOpenServiceForm] = useState(false);
   const [isOpenReviewsForm, setIsOpenReviewsForm] = useState(false);
+  const [isOpenCompaniesForm, setIsOpenCompaniesForm] = useState(false);
 
   const openCloseSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -83,6 +85,13 @@ export default function DashboardHeader() {
       };
     }
 
+    if (pathname === '/dashboard/companies') {
+      value = 'Crear compañía';
+      onClick = () => {
+        setIsOpenCompaniesForm(true);
+      };
+    }
+
     setButtonValue(value);
     setButtonOnClick(() => onClick);
   }, [pathname]);
@@ -118,6 +127,12 @@ export default function DashboardHeader() {
       <ReviewsForm
         isOpen={isOpenReviewsForm}
         onClose={() => setIsOpenReviewsForm(false)}
+        isEditMode={false}
+      />
+
+      <CompaniesForm
+        isOpen={isOpenCompaniesForm}
+        onClose={() => setIsOpenCompaniesForm(false)}
         isEditMode={false}
       />
     </div>

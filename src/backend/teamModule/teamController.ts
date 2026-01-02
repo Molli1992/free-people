@@ -23,6 +23,10 @@ export const addTeamMember = async (data: TeamPayload) => {
     createdTeamMember.insertId
   );
 
+  if (!newMember) {
+    throw new Error('Error recuperando al miembro del equipo creado');
+  }
+
   return {
     message: 'Miembro del equipo creado correctamente.',
     data: newMember,

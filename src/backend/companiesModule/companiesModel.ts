@@ -1,0 +1,7 @@
+/*
+CREATE TABLE companies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    image VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+);
+*/

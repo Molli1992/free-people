@@ -16,6 +16,10 @@ export const addService = async (data: ServicePayload) => {
     createdService.insertId
   );
 
+  if (!newService) {
+    throw new Error('Error recuperando el servicio creado');
+  }
+
   return {
     message: 'Servicio creado correctamente.',
     data: newService,

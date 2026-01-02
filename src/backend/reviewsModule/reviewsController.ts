@@ -14,6 +14,10 @@ export const addReview = async (data: ReviewPayload) => {
   const createdReview = await reviewsServices.createReview(data);
   const newReview = await reviewsServices.getReviewById(createdReview.insertId);
 
+  if (!newReview) {
+    throw new Error('Error recuperando la review creada');
+  }
+
   return {
     message: 'Review creada correctamente.',
     data: newReview,

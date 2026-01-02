@@ -3,6 +3,7 @@ import { User } from '@/types/users';
 import { Project } from '@/types/projects';
 import { Service } from '@/types/services';
 import { Review } from './reviews';
+import { Company } from './companies';
 
 export interface StoreImageLightboxProps {
   isOpen: boolean;
@@ -57,4 +58,13 @@ export interface ReviewStoreProps {
   addReviewToStore: (review: Review) => void;
   updateReviewInStore: (review: Review) => void;
   removeReviewFromStore: (id: number) => void;
+}
+
+export interface CompaniesStoreProps {
+  companies: Company[];
+  isDataLoad: boolean;
+  setCompanies: (data: Company[]) => void;
+  addCompaniesToStore: (company: Company) => void;
+  updateCompaniesInStore: (updatedCompany: Company) => void;
+  removeCompaniesFromStore: (id: number) => void;
 }

@@ -29,6 +29,10 @@ export const addProject = async (data: ProjectPayload) => {
     createdProject.insertId
   );
 
+  if (!newProject) {
+    throw new Error('Error recuperando el proyecto creado');
+  }
+
   return {
     message: 'Proyecto creado correctamente.',
     data: newProject,
