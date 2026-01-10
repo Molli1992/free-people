@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { projectsService } from '@/lib/api/projectsServices';
 import { Project, UseProjectsReturn, ProjectPayload } from '@/types/projects';
 import { handleError } from '@/utils/utils';
@@ -8,7 +8,7 @@ export function useProjects(): UseProjectsReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getAllProjects = async (): Promise<Project[] | null> => {
+  const getAllProjects = useCallback(async (): Promise<Project[] | null> => {
     setLoading(true);
     setError(null);
 
@@ -22,7 +22,26 @@ export function useProjects(): UseProjectsReturn {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  const getProject = useCallback(
+    async (id: number): Promise<Project | null> => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const projects = await projectsService.getProject(id);
+        return projects;
+      } catch (err) {
+        const errorReturn = handleError(err, 'Error obteniendo proyecto');
+        setError(errorReturn);
+        return null;
+      } finally {
+        setLoading(false);
+      }
+    },
+    []
+  );
 
   const createProject = async (
     data: ProjectPayload
@@ -103,6 +122,7 @@ export function useProjects(): UseProjectsReturn {
     loading,
     error,
     getAllProjects,
+    getProject,
     createProject,
     updateProject,
     deleteProject,

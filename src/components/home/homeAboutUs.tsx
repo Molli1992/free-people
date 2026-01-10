@@ -9,15 +9,15 @@ export default function HomeAboutUs() {
       <div className="w-full flex-col lg:flex-row  max-w-7xl flex gap-8 items-center justify-center">
         <div className="flex items-end justify-center lg:justify-end w-full lg:w-1/2 gap-4 px-4">
           <img
-            src="https://wp1.themevibrant.com/newwp/buildnox2/wp-content/uploads/2023/04/image-17.jpg"
+            src="https://www.shutterstock.com/image-photo/excavator-construction-equipment-such-loaders-600nw-2453054727.jpg"
             alt="Imagen de Compañía"
-            className="h-[80vh] w-auto sm:w-1/2 md:w-auto lg:w-1/2"
+            className="h-[80vh] w-full sm:w-1/2"
           />
 
           <img
-            src="https://wp1.themevibrant.com/newwp/buildnox2/wp-content/uploads/2023/04/image-18.jpg"
+            src="https://img.freepik.com/fotos-premium/retrato-longitud-completa-vertical-dos-trabajadores-construccion-discutiendo-proyecto-mientras-esta-pie-edificio-gran-altura_236854-27583.jpg"
             alt="Imagen de Compañía"
-            className="hidden sm:flex h-[65vh] w-auto sm:w-1/2 md:w-auto lg:w-1/2"
+            className="hidden sm:flex h-[65vh] w-full sm:w-1/2"
           />
         </div>
 

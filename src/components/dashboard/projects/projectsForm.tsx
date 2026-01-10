@@ -8,6 +8,7 @@ import GrayButton from '@/components/buttons/grayButton';
 import Swal from 'sweetalert2';
 import { useProjectsStore } from '@/zustand/projectsStore';
 import PrimaryTextArea from '@/components/inputs/primaryTextArea';
+import InputFile from '@/components/inputs/inputFile';
 
 export default function ProjectsForm({
   isOpen,
@@ -18,13 +19,7 @@ export default function ProjectsForm({
   const { addProjectsToStore, updateProjectsInStore } = useProjectsStore();
   const { loading, createProject, updateProject } = useProjects();
   const formDataInitialValue = {
-    images: [
-      'https://content.arquitecturaydiseno.es/medio/2022/07/15/xv-beau-museo-de-arte-contemporaneo-helga-de-alvear-por-tunon-arquitectos-fotografialuis-asin-y-amores-pictures-1_58f6a29b_1280x794.jpg',
-      'https://images.adsttc.com/media/images/5b86/ba2d/f197/ccda/a100/0116/newsletter/776_3_HR_ZeitzMOCAA_HeatherwickStudio_Credit_Iwan_Baan_View_of_Zeitz_MOCAA_in_Silo_Square.jpg?1535556132',
-      'https://www.experimenta.es/wp-content/uploads/2019/09/proyecto-de-visualizacion-de-tree-house-constantia-un-trabajo-de-leskea.jpg',
-      'https://images.adsttc.com/media/images/6272/a578/2bff/4224/f2ef/21f9/newsletter/rh2758-0069.jpg?1651680724',
-      'https://www.metalocus.es/sites/default/files/styles/mopis_news_carousel_item_desktop/public/metalocus_glass_house_philip_johnson_24.jpg?itok=SyHdxzH9',
-    ],
+    images: [],
     title: '',
     type: '',
     description: '',
@@ -33,6 +28,8 @@ export default function ProjectsForm({
   };
   const [formData, setFormData] =
     useState<ProjectPayload>(formDataInitialValue);
+  const [previews, setPreviews] = useState<string[]>([]);
+  const MAX_IMAGES = 5;
 
   const modalTitle = isEditMode ? 'Editar proyecto' : 'Crear proyecto';
   const modalDescription = `Completa todos los campos para ${isEditMode ? 'editar el proyecto' : 'crear un nuevo proyecto'}.`;
@@ -42,6 +39,66 @@ export default function ProjectsForm({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const removeImage = (indexToRemove: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      images: prev.images.filter((_, index) => index !== indexToRemove),
+    }));
+
+    setPreviews((prev) => {
+      const newPreviews = [...prev];
+      URL.revokeObjectURL(newPreviews[indexToRemove]);
+      return newPreviews.filter((_, index) => index !== indexToRemove);
+    });
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const incomingFiles = Array.from(e.target.files);
+      const availableSlots = MAX_IMAGES - formData.images.length;
+
+      if (availableSlots <= 0) {
+        Swal.fire({
+          title: 'Límite alcanzado',
+          text: `Solo puedes subir hasta ${MAX_IMAGES} imágenes`,
+          icon: 'warning',
+          confirmButtonText: 'Ok',
+        });
+
+        return;
+      }
+
+      const filesToProcess = incomingFiles.slice(0, availableSlots);
+
+      if (incomingFiles.length > availableSlots) {
+        Swal.fire({
+          title: 'Info',
+          text: `Solo se agregaron ${availableSlots} imágenes para no exceder el límite`,
+          icon: 'info',
+          confirmButtonText: 'Ok',
+        });
+      }
+
+      setFormData({
+        ...formData,
+        images: [...formData.images, ...filesToProcess],
+      });
+
+      const newPreviews = filesToProcess.map((file) =>
+        URL.createObjectURL(file)
+      );
+      setPreviews((prev) => [...prev, ...newPreviews]);
+    }
+
+    e.target.value = '';
+  };
+
+  const closeForm = () => {
+    setFormData(formDataInitialValue);
+    setPreviews([]);
+    onClose();
   };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -110,8 +167,7 @@ export default function ProjectsForm({
       }
     }
 
-    setFormData(formDataInitialValue);
-    onClose();
+    closeForm();
   };
 
   useEffect(() => {
@@ -124,6 +180,7 @@ export default function ProjectsForm({
         challenge: project.challenge,
         finalView: project.finalView,
       });
+      setPreviews(project.images);
     }
   }, [isEditMode, project]);
 
@@ -189,11 +246,21 @@ export default function ProjectsForm({
         />
       </div>
 
+      <div>
+        <InputFile
+          label="Imágenes del proyecto"
+          handleFileChange={handleFileChange}
+          previews={previews}
+          removeImage={removeImage}
+          maxFiles={MAX_IMAGES}
+        />
+      </div>
+
       <div className="flex gap-4">
         <GrayButton
           value="Cancelar"
           type="button"
-          onClick={onClose}
+          onClick={closeForm}
           disabled={loading}
         />
         <BlackButton
@@ -209,7 +276,7 @@ export default function ProjectsForm({
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={closeForm}
       title={modalTitle}
       description={modalDescription}
     >

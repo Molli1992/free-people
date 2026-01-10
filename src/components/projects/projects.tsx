@@ -1,10 +1,37 @@
+'use client';
+
+import { useEffect } from 'react';
 import Separator from '@/components/texts/separator';
 import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
-import { projectsData } from '@/data/projectsData';
 import ProjectCard from '@/components/projects/projectCard';
+import { useProjects } from '@/lib/hooks/projectsHook';
+import { useProjectsDataStore } from '@/zustand/data/projectsDataStore';
+import { ClipLoader } from 'react-spinners';
 
 export default function Projects() {
+  const { getAllProjects } = useProjects();
+  const { projects, setProjects, isDataLoad } = useProjectsDataStore();
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      if (isDataLoad) return;
+
+      const projects = await getAllProjects();
+      if (!projects) return;
+      setProjects(projects);
+    };
+
+    fetchProjects();
+  }, [getAllProjects, isDataLoad]);
+
+  if (!isDataLoad)
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-gray-100">
+        <ClipLoader color="#000000" size={50} />
+      </div>
+    );
+
   return (
     <section className="flex items-center justify-center py-16 px-4 bg-secondary-white">
       <div className="flex flex-col gap-6 w-full max-w-7xl">
@@ -20,8 +47,8 @@ export default function Projects() {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-4">
-          {projectsData &&
-            projectsData.map((project) => {
+          {projects &&
+            projects.map((project) => {
               return (
                 <ProjectCard
                   key={project.id}

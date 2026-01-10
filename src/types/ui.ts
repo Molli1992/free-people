@@ -76,3 +76,11 @@ export interface ModalProps {
   description?: string;
   children: ReactNode;
 }
+
+export interface InputFileProps {
+  label: string;
+  previews: string[];
+  maxFiles: number;
+  handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  removeImage: (index: number) => void;
+}

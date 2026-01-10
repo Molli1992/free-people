@@ -9,7 +9,7 @@ export type Project = {
 };
 
 export type ProjectPayload = {
-  images: string[];
+  images: (string | File)[];
   title: string;
   type: string;
   description: string;
@@ -39,6 +39,7 @@ export interface UseProjectsReturn {
   loading: boolean;
   error: string | null;
   getAllProjects: () => Promise<Project[] | null>;
+  getProject: (id: number) => Promise<Project | null>;
   createProject: (data: ProjectPayload) => Promise<Project | null>;
   updateProject: (id: number, data: ProjectPayload) => Promise<Project | null>;
   deleteProject: (id: number) => Promise<Project | null>;
@@ -49,4 +50,23 @@ export interface ProjectsFormProps {
   onClose: () => void;
   isEditMode: boolean;
   project?: Project | null;
+}
+
+export interface ProjectCreateInput {
+  title: string;
+  type: string;
+  description: string;
+  challenge: string;
+  finalView: string;
+  images: File[];
+}
+
+export interface ProjectUpdateInput {
+  title: string;
+  type: string;
+  description: string;
+  challenge: string;
+  finalView: string;
+  newFiles: File[];
+  existingImages: string[];
 }

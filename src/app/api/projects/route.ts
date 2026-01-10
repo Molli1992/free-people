@@ -17,7 +17,22 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const data = await request.json();
+    const formData = await request.formData();
+
+    const imagesRaw = formData.getAll('images');
+    const files = imagesRaw.filter(
+      (item): item is File => item instanceof File
+    );
+
+    const data = {
+      title: formData.get('title') as string,
+      type: formData.get('type') as string,
+      description: formData.get('description') as string,
+      challenge: formData.get('challenge') as string,
+      finalView: formData.get('finalView') as string,
+      images: files,
+    };
+
     const result = await addProject(data);
     return NextResponse.json(result, { status: 201 });
   } catch (error) {

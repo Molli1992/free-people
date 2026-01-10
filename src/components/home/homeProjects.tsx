@@ -1,9 +1,9 @@
 'use client';
 
+import { useEffect } from 'react';
 import Separator from '@/components/texts/separator';
 import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
-import { projectsData } from '@/data/projectsData';
 import ProjectCard from '@/components/projects/projectCard';
 import Slider from '@/components/slider/slider';
 import { SwiperSlide } from 'swiper/react';
@@ -11,9 +11,33 @@ import RedButton from '@/components/buttons/redButton';
 import { useRouter } from 'next/navigation';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
+import { useProjects } from '@/lib/hooks/projectsHook';
+import { useProjectsDataStore } from '@/zustand/data/projectsDataStore';
+import { ClipLoader } from 'react-spinners';
 
 export default function HomeProjects() {
   const router = useRouter();
+  const { getAllProjects } = useProjects();
+  const { projects, setProjects, isDataLoad } = useProjectsDataStore();
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      if (isDataLoad) return;
+
+      const projects = await getAllProjects();
+      if (!projects) return;
+      setProjects(projects);
+    };
+
+    fetchProjects();
+  }, [getAllProjects, isDataLoad]);
+
+  if (!isDataLoad)
+    return (
+      <div className="h-[300px] w-full flex items-center justify-center bg-gray-100">
+        <ClipLoader color="#000000" size={50} />
+      </div>
+    );
 
   const sliderProps: SwiperPropsType = {
     pagination: {
@@ -59,9 +83,9 @@ export default function HomeProjects() {
         />
 
         <div className="w-full">
-          {projectsData && projectsData.length > 0 && (
+          {projects && projects.length > 0 && (
             <Slider props={sliderProps}>
-              {projectsData.map((project) => (
+              {projects.map((project) => (
                 <SwiperSlide key={project.id}>
                   <div className="w-full flex items-center justify-center pb-12 px-2">
                     <ProjectCard
