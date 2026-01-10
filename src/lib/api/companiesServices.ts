@@ -17,7 +17,16 @@ export const companiesServices = {
    * @returns Promise<Company>
    */
   createCompany: async (data: CompanyPayload): Promise<Company> => {
-    const response = await axios.post(`/api/companies`, data);
+    const formData = new FormData();
+
+    formData.append('name', data.name);
+    formData.append('image', data.image);
+
+    const response = await axios.post(`/api/companies`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return response.data.data;
   },
 
@@ -28,7 +37,16 @@ export const companiesServices = {
    * @returns Promise<Company>
    */
   updateCompany: async (id: number, data: CompanyPayload): Promise<Company> => {
-    const response = await axios.put(`/api/companies/${id}`, data);
+    const formData = new FormData();
+
+    formData.append('name', data.name);
+    formData.append('image', data.image);
+
+    const response = await axios.put(`/api/companies/${id}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return response.data.data;
   },
 

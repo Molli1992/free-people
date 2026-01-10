@@ -5,7 +5,7 @@ export type Company = {
 };
 
 export type CompanyPayload = {
-  image: string;
+  image: string | File;
   name: string;
 };
 
@@ -28,4 +28,15 @@ export interface CompanyFormProps {
   onClose: () => void;
   isEditMode: boolean;
   company?: Company;
+}
+
+export interface CompanyCreateInput {
+  name: string;
+  image: File[];
+}
+
+export interface CompanyUpdateInput {
+  name: string;
+  newFiles: File[];
+  existingImages: string[];
 }

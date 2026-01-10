@@ -13,9 +13,9 @@ export const useCompaniesStore = create<CompaniesStoreProps>((set, get) => ({
 
   addCompaniesToStore: (company) => {
     const { companies } = get();
-    const newData = [...companies, company];
+    const companiesSinDuplicado = companies.filter((c) => c.id !== company.id);
 
-    set({ companies: newData });
+    set({ companies: [...companiesSinDuplicado, company] });
   },
 
   updateCompaniesInStore: (updatedCompany) => {

@@ -32,7 +32,7 @@ export const updateCompany = async (
   companyData: CompanyPayload
 ) => {
   const fields: string[] = [];
-  const values: (number | string)[] = [];
+  const values: (number | string | File)[] = [];
 
   if (companyData.name) {
     fields.push('name = ?');

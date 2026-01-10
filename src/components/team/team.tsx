@@ -6,7 +6,7 @@ import Separator from '@/components/texts/separator';
 import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
 import { useTeam } from '@/lib/hooks/teamHook';
-import { useTeamStore } from '@/zustand//teamStore';
+import { useTeamStore } from '@/zustand/teamStore';
 import { ClipLoader } from 'react-spinners';
 
 export default function Team() {

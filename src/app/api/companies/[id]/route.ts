@@ -3,6 +3,7 @@ import {
   updateCompany,
   deleteCompany,
 } from '@/backend/companiesModule/companiesController';
+import { CompanyUpdateInput } from '@/types/companies';
 
 export async function PUT(
   request: NextRequest,
@@ -10,7 +11,27 @@ export async function PUT(
 ) {
   try {
     const { id } = await params;
-    const data = await request.json();
+    const formData = await request.formData();
+
+    const imagesRaw = formData.getAll('image');
+
+    const files: File[] = [];
+    const existingUrls: string[] = [];
+
+    imagesRaw.forEach((item) => {
+      if (item instanceof File) {
+        files.push(item);
+      } else if (typeof item === 'string') {
+        existingUrls.push(item);
+      }
+    });
+
+    const data: CompanyUpdateInput = {
+      name: formData.get('name') as string,
+      newFiles: files,
+      existingImages: existingUrls,
+    };
+
     const result = await updateCompany(Number(id), data);
     return NextResponse.json(result);
   } catch (error) {

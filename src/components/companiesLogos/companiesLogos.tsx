@@ -1,12 +1,37 @@
 'use client';
 
-import { companiesData } from '@/data/companiesLogoData';
+import { useEffect } from 'react';
 import Slider from '@/components/slider/slider';
 import { SwiperSlide } from 'swiper/react';
 import CompaniesLogosCard from '@/components/companiesLogos/companiesLogosCard';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
+import { useCompanies } from '@/lib/hooks/companiesHook';
+import { useCompaniesStore } from '@/zustand/companiesStore';
+import { ClipLoader } from 'react-spinners';
 
 export default function CompaniesLogos() {
+  const { getCompanies } = useCompanies();
+  const { companies, setCompanies, isDataLoad } = useCompaniesStore();
+
+  useEffect(() => {
+    const fetchCompanies = async () => {
+      if (isDataLoad) return;
+
+      const fullCompanies = await getCompanies();
+      if (!fullCompanies) return;
+      setCompanies(fullCompanies);
+    };
+
+    fetchCompanies();
+  }, [getCompanies, isDataLoad]);
+
+  if (!isDataLoad)
+    return (
+      <div className="h-[300px] w-full flex items-center justify-center bg-darkBlue">
+        <ClipLoader color="#000000" size={50} />
+      </div>
+    );
+
   const sliderProps: SwiperPropsType = {
     pagination: {
       clickable: true,
@@ -39,9 +64,9 @@ export default function CompaniesLogos() {
   return (
     <section className="flex items-center justify-center py-16 px-4 bg-darkBlue">
       <div className="w-full max-w-7xl">
-        {companiesData && companiesData.length > 0 && (
+        {companies && companies.length > 0 && (
           <Slider props={sliderProps}>
-            {companiesData.map((company) => (
+            {companies.map((company) => (
               <SwiperSlide key={company.id}>
                 <div className="w-full flex items-center justify-center pb-12 px-2">
                   <CompaniesLogosCard

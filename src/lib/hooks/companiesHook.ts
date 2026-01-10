@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { companiesServices } from '@/lib/api/companiesServices';
 import { Company, UseCompanyReturn, CompanyPayload } from '@/types/companies';
 import { handleError } from '@/utils/utils';
@@ -8,7 +8,7 @@ export function useCompanies(): UseCompanyReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getCompanies = async (): Promise<Company[]> => {
+  const getCompanies = useCallback(async (): Promise<Company[]> => {
     setLoading(true);
     setError(null);
 
@@ -22,7 +22,7 @@ export function useCompanies(): UseCompanyReturn {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const createCompany = async (
     data: CompanyPayload

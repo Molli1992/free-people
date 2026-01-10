@@ -5,9 +5,9 @@ import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import PrimaryInput from '@/components/inputs/primaryInput';
 import BlackButton from '@/components/buttons/blackButton';
 import GrayButton from '@/components/buttons/grayButton';
-import { validateUrls } from '@/utils/utils';
 import Swal from 'sweetalert2';
 import { useCompaniesStore } from '@/zustand/companiesStore';
+import InputFile from '@/components/inputs/inputFile';
 
 export default function CompaniesForm({
   isOpen,
@@ -19,11 +19,12 @@ export default function CompaniesForm({
   const { loading, createCompany, updateCompany } = useCompanies();
   const formDataInitialValue = {
     name: '',
-    image:
-      'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
+    image: '',
   };
   const [formData, setFormData] =
     useState<CompanyPayload>(formDataInitialValue);
+  const [previews, setPreviews] = useState<string[]>([]);
+  const MAX_IMAGES = 1;
 
   const modalTitle = isEditMode ? 'Editar compañía' : 'Crear compañía';
   const modalDescription = `Completa todos los campos para ${isEditMode ? 'editar la compañía' : 'crear una nueva compañía'}.`;
@@ -33,6 +34,57 @@ export default function CompaniesForm({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const removeImage = () => {
+    setFormData({
+      ...formData,
+      image: '',
+    });
+
+    setPreviews([]);
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const incomingFiles = Array.from(e.target.files);
+      const imageLength = formData.image ? 1 : 0;
+      const availableSlots = MAX_IMAGES - imageLength;
+
+      if (availableSlots <= 0) {
+        Swal.fire({
+          title: 'Límite alcanzado',
+          text: `Solo puedes subir hasta ${MAX_IMAGES} imágenes`,
+          icon: 'warning',
+          confirmButtonText: 'Ok',
+        });
+
+        return;
+      }
+
+      const filesToProcess = incomingFiles.slice(0, availableSlots);
+
+      if (incomingFiles.length > availableSlots) {
+        Swal.fire({
+          title: 'Info',
+          text: `Solo se agregaron ${availableSlots} imágenes para no exceder el límite`,
+          icon: 'info',
+          confirmButtonText: 'Ok',
+        });
+      }
+
+      const newPreviews = filesToProcess.map((file) =>
+        URL.createObjectURL(file)
+      );
+
+      setFormData({
+        ...formData,
+        image: filesToProcess[0],
+      });
+      setPreviews(newPreviews);
+    }
+
+    e.target.value = '';
   };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -71,6 +123,7 @@ export default function CompaniesForm({
         name: company.name,
         image: company.image,
       });
+      setPreviews([company.image]);
     }
   }, [isEditMode, company]);
 
@@ -85,6 +138,16 @@ export default function CompaniesForm({
           value={formData.name}
           onChange={onChange}
           placeholder="Nombre de la compañía"
+        />
+      </div>
+
+      <div>
+        <InputFile
+          label="Logo de la compañía"
+          handleFileChange={handleFileChange}
+          previews={previews}
+          removeImage={removeImage}
+          maxFiles={MAX_IMAGES}
         />
       </div>
 
