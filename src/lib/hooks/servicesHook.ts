@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { servicesService } from '@/lib/api/servicesService';
 import { Service, UseServiceReturn, ServicePayload } from '@/types/services';
 import { handleError } from '@/utils/utils';
@@ -8,7 +8,7 @@ export function useServices(): UseServiceReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getServices = async (): Promise<Service[] | null> => {
+  const getServices = useCallback(async (): Promise<Service[] | null> => {
     setLoading(true);
     setError(null);
 
@@ -22,7 +22,7 @@ export function useServices(): UseServiceReturn {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const createService = async (
     data: ServicePayload

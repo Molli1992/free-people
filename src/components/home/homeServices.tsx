@@ -1,9 +1,9 @@
 'use client';
 
+import { useEffect } from 'react';
 import Separator from '@/components/texts/separator';
 import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
-import { servicesData } from '@/data/servicesData';
 import CardServices from '@/components/services/serviceCard';
 import Slider from '@/components/slider/slider';
 import { SwiperSlide } from 'swiper/react';
@@ -12,9 +12,33 @@ import { useRouter } from 'next/navigation';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
 import { architectureIcons } from '@/types/constants';
+import { useServices } from '@/lib/hooks/servicesHook';
+import { useServicesStore } from '@/zustand/serviceStore';
+import { ClipLoader } from 'react-spinners';
 
 export default function HomeServices() {
   const router = useRouter();
+  const { getServices } = useServices();
+  const { services, setServices, isDataLoad } = useServicesStore();
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      if (isDataLoad) return;
+
+      const fullServices = await getServices();
+      if (!fullServices) return;
+      setServices(fullServices);
+    };
+
+    fetchServices();
+  }, [getServices, isDataLoad]);
+
+  if (!isDataLoad)
+    return (
+      <div className="h-[300px] w-full flex items-center justify-center bg-secondary-white">
+        <ClipLoader color="#000000" size={50} />
+      </div>
+    );
 
   const sliderProps: SwiperPropsType = {
     pagination: {
@@ -60,9 +84,9 @@ export default function HomeServices() {
         />
 
         <div className="w-full">
-          {servicesData && servicesData.length > 0 && (
+          {services && services.length > 0 && (
             <Slider props={sliderProps}>
-              {servicesData.map((service, index) => {
+              {services.map((service, index) => {
                 const randomIcon = architectureIcons[index];
 
                 return (

@@ -9,7 +9,7 @@ export type Service = {
 
 export type ServicePayload = {
   name: string;
-  image: string;
+  image: string | File;
   description: string;
 };
 
@@ -34,4 +34,17 @@ export interface ServicesFormProps {
   onClose: () => void;
   isEditMode: boolean;
   service?: Service | null;
+}
+
+export interface ServiceCreateInput {
+  name: string;
+  description: string;
+  image: File[];
+}
+
+export interface ServiceUpdateInput {
+  name: string;
+  description: string;
+  newFiles: File[];
+  existingImages: string[];
 }

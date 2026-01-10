@@ -3,6 +3,7 @@ import {
   getServices,
   addService,
 } from '@/backend/servicesModule/servicesController';
+import { ServiceCreateInput } from '@/types/services';
 
 export async function GET() {
   try {
@@ -17,7 +18,19 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const data = await request.json();
+    const formData = await request.formData();
+
+    const imagesRaw = formData.getAll('image');
+    const files = imagesRaw.filter(
+      (item): item is File => item instanceof File
+    );
+
+    const data: ServiceCreateInput = {
+      name: formData.get('name') as string,
+      description: formData.get('description') as string,
+      image: files,
+    };
+
     const result = await addService(data);
     return NextResponse.json(result, { status: 201 });
   } catch (error) {

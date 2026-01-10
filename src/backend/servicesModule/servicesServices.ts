@@ -32,7 +32,7 @@ export const updateService = async (
   serviceData: ServicePayload
 ) => {
   const fields: string[] = [];
-  const values: (number | string)[] = [];
+  const values: (number | string | File)[] = [];
 
   if (serviceData.name) {
     fields.push('name = ?');

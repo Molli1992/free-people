@@ -17,7 +17,17 @@ export const servicesService = {
    * @returns Promise<Service>
    */
   createService: async (data: ServicePayload): Promise<Service> => {
-    const response = await axios.post(`/api/services`, data);
+    const formData = new FormData();
+
+    formData.append('name', data.name);
+    formData.append('image', data.image);
+    formData.append('description', data.description);
+
+    const response = await axios.post(`/api/services`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return response.data.data;
   },
 
@@ -28,7 +38,17 @@ export const servicesService = {
    * @returns Promise<Service>
    */
   updateService: async (id: number, data: ServicePayload): Promise<Service> => {
-    const response = await axios.put(`/api/services/${id}`, data);
+    const formData = new FormData();
+
+    formData.append('name', data.name);
+    formData.append('image', data.image);
+    formData.append('description', data.description);
+
+    const response = await axios.put(`/api/services/${id}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return response.data.data;
   },
 

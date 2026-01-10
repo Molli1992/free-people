@@ -13,9 +13,9 @@ export const useServicesStore = create<ServicesStoreProps>((set, get) => ({
 
   addServiceToStore: (service) => {
     const { services } = get();
-    const newData = [...services, service];
+    const servicesSinDuplicado = services.filter((s) => s.id !== service.id);
 
-    set({ services: newData });
+    set({ services: [...servicesSinDuplicado, service] });
   },
 
   updateServiceInStore: (updatedService) => {

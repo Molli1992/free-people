@@ -7,6 +7,7 @@ import BlackButton from '@/components/buttons/blackButton';
 import GrayButton from '@/components/buttons/grayButton';
 import Swal from 'sweetalert2';
 import { useServicesStore } from '@/zustand/serviceStore';
+import InputFile from '@/components/inputs/inputFile';
 
 export default function ServicesForm({
   isOpen,
@@ -18,12 +19,13 @@ export default function ServicesForm({
   const { loading, createService, updateService } = useServices();
   const formDataInitialValue = {
     name: '',
-    image:
-      'https://grekoplaces.com/wp-content/uploads/2021/01/Greko_Servicio_arquitectura-contruccion2.jpg',
+    image: '',
     description: '',
   };
   const [formData, setFormData] =
     useState<ServicePayload>(formDataInitialValue);
+  const [previews, setPreviews] = useState<string[]>([]);
+  const MAX_IMAGES = 1;
 
   const modalTitle = isEditMode ? 'Editar servicio' : 'Crear servicio';
   const modalDescription = `Completa todos los campos para ${isEditMode ? 'editar el servicio' : 'crear un nuevo servicio'}.`;
@@ -33,6 +35,57 @@ export default function ServicesForm({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const removeImage = () => {
+    setFormData({
+      ...formData,
+      image: '',
+    });
+
+    setPreviews([]);
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const incomingFiles = Array.from(e.target.files);
+      const imageLength = formData.image ? 1 : 0;
+      const availableSlots = MAX_IMAGES - imageLength;
+
+      if (availableSlots <= 0) {
+        Swal.fire({
+          title: 'Límite alcanzado',
+          text: `Solo puedes subir hasta ${MAX_IMAGES} imágenes`,
+          icon: 'warning',
+          confirmButtonText: 'Ok',
+        });
+
+        return;
+      }
+
+      const filesToProcess = incomingFiles.slice(0, availableSlots);
+
+      if (incomingFiles.length > availableSlots) {
+        Swal.fire({
+          title: 'Info',
+          text: `Solo se agregaron ${availableSlots} imágenes para no exceder el límite`,
+          icon: 'info',
+          confirmButtonText: 'Ok',
+        });
+      }
+
+      const newPreviews = filesToProcess.map((file) =>
+        URL.createObjectURL(file)
+      );
+
+      setFormData({
+        ...formData,
+        image: filesToProcess[0],
+      });
+      setPreviews(newPreviews);
+    }
+
+    e.target.value = '';
   };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -72,6 +125,7 @@ export default function ServicesForm({
         image: service.image,
         description: service.description,
       });
+      setPreviews([service.image]);
     }
   }, [isEditMode, service]);
 
@@ -99,6 +153,16 @@ export default function ServicesForm({
           onChange={onChange}
           placeholder="Descripcion..."
           maxLength={255}
+        />
+      </div>
+
+      <div>
+        <InputFile
+          label="Imágen del servicio"
+          handleFileChange={handleFileChange}
+          previews={previews}
+          removeImage={removeImage}
+          maxFiles={MAX_IMAGES}
         />
       </div>
 
