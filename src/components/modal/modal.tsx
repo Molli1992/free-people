@@ -19,7 +19,7 @@ export default function Modal({
 }: ModalProps) {
   return (
     <Dialog open={isOpen} modal={false}>
-      <DialogContent className="bg-white rounded-lg shadow-xl p-6 overflow-y-auto max-h-[95vh]">
+      <DialogContent className="bg-white rounded-lg shadow-xl p-6 overflow-y-auto max-h-[80vh] sm:max-h-[90vh]">
         <DialogHeader className="flex flex-col w-full gap-1">
           <div className="flex justify-between item-center w-full gap-2">
             <DialogTitle className="text-3xl font-semibold text-black">

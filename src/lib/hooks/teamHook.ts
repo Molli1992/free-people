@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { teamService } from '@/lib/api/teamService';
 import { Team, UseTeamReturn, TeamPayload } from '@/types/team';
 import { handleError } from '@/utils/utils';
@@ -8,7 +8,7 @@ export function useTeam(): UseTeamReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getTeam = async (): Promise<Team[]> => {
+  const getTeam = useCallback(async (): Promise<Team[]> => {
     setLoading(true);
     setError(null);
 
@@ -22,7 +22,7 @@ export function useTeam(): UseTeamReturn {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const createTeamMember = async (
     data: TeamPayload

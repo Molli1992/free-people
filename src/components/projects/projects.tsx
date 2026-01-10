@@ -6,12 +6,12 @@ import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
 import ProjectCard from '@/components/projects/projectCard';
 import { useProjects } from '@/lib/hooks/projectsHook';
-import { useProjectsDataStore } from '@/zustand/data/projectsDataStore';
+import { useProjectsStore } from '@/zustand/projectsStore';
 import { ClipLoader } from 'react-spinners';
 
 export default function Projects() {
   const { getAllProjects } = useProjects();
-  const { projects, setProjects, isDataLoad } = useProjectsDataStore();
+  const { projects, setProjects, isDataLoad } = useProjectsStore();
 
   useEffect(() => {
     const fetchProjects = async () => {

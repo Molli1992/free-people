@@ -3,6 +3,7 @@ import {
   getAllProjects,
   addProject,
 } from '@/backend/projectsModule/projectsController';
+import { ProjectCreateInput } from '@/types/projects';
 
 export async function GET() {
   try {
@@ -24,7 +25,7 @@ export async function POST(request: NextRequest) {
       (item): item is File => item instanceof File
     );
 
-    const data = {
+    const data: ProjectCreateInput = {
       title: formData.get('title') as string,
       type: formData.get('type') as string,
       description: formData.get('description') as string,

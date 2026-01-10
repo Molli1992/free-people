@@ -17,7 +17,20 @@ export const teamService = {
    * @returns Promise<Team>
    */
   createTeamMember: async (data: TeamPayload): Promise<Team> => {
-    const response = await axios.post(`/api/team`, data);
+    const formData = new FormData();
+
+    formData.append('name', data.name);
+    formData.append('profession', data.profession);
+    formData.append('linkedin', data.linkedin);
+    formData.append('instagram', data.instagram);
+    formData.append('facebook', data.facebook);
+    formData.append('image', data.image);
+
+    const response = await axios.post(`/api/team`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return response.data.data;
   },
 
@@ -28,7 +41,20 @@ export const teamService = {
    * @returns Promise<Team>
    */
   updateTeamMember: async (id: number, data: TeamPayload): Promise<Team> => {
-    const response = await axios.put(`/api/team/${id}`, data);
+    const formData = new FormData();
+
+    formData.append('name', data.name);
+    formData.append('profession', data.profession);
+    formData.append('linkedin', data.linkedin);
+    formData.append('instagram', data.instagram);
+    formData.append('facebook', data.facebook);
+    formData.append('image', data.image);
+
+    const response = await axios.put(`/api/team/${id}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return response.data.data;
   },
 

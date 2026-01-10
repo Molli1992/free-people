@@ -1,15 +1,43 @@
 'use client';
 
+import { useEffect } from 'react';
 import CardReview from '@/components/reviews/cardReview';
 import Separator from '@/components/texts/separator';
 import Title from '@/components/texts/title';
 import Text from '@/components/texts/text';
-import { reviewsData } from '@/data/reviewsData';
 import Slider from '@/components/slider/slider';
 import { SwiperSlide } from 'swiper/react';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
+import { useReviews } from '@/lib/hooks/reviewsHook';
+import { useReviewsStore } from '@/zustand/reviewsStore';
+import { ClipLoader } from 'react-spinners';
 
 export default function Reviews() {
+  const { getReviews } = useReviews();
+  const { reviews, setReviews, isDataLoad } = useReviewsStore();
+  const totalReviews = reviews.length;
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      if (isDataLoad) return;
+
+      const fullReviews = await getReviews();
+      if (!fullReviews) return;
+      setReviews(fullReviews);
+    };
+
+    fetchReviews();
+  }, [getReviews, isDataLoad]);
+
+  if (!isDataLoad)
+    return (
+      <div className="h-[300px] w-full flex items-center justify-center bg-skyBlue">
+        <ClipLoader color="#000000" size={50} />
+      </div>
+    );
+
+  if (reviews.length === 0) return null;
+
   const sliderProps: SwiperPropsType = {
     pagination: {
       clickable: true,
@@ -19,18 +47,9 @@ export default function Reviews() {
     slidesPerView: 1,
     slidesPerGroup: 1,
     breakpoints: {
-      768: {
-        slidesPerView: 2,
-        slidesPerGroup: 2,
-      },
-      1024: {
-        slidesPerView: 3,
-        slidesPerGroup: 3,
-      },
-      1280: {
-        slidesPerView: 2,
-        slidesPerGroup: 2,
-      },
+      768: { slidesPerView: totalReviews >= 2 ? 2 : 1 },
+      1024: { slidesPerView: totalReviews >= 3 ? 3 : totalReviews },
+      1280: { slidesPerView: totalReviews >= 2 ? 2 : 1 },
     },
   };
 
@@ -48,9 +67,9 @@ export default function Reviews() {
         </div>
 
         <div className="flex w-full xl:w-1/2">
-          {reviewsData && reviewsData.length > 0 && (
+          {reviews && reviews.length > 0 && (
             <Slider props={sliderProps}>
-              {reviewsData.map((review) => (
+              {reviews.map((review) => (
                 <SwiperSlide key={review.id}>
                   <div className="w-full flex items-center justify-center pb-12 px-2">
                     <CardReview

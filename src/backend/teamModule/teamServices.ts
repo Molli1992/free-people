@@ -29,7 +29,7 @@ export const createMember = async (memberData: TeamPayload) => {
 
 export const updateMember = async (id: number, memberData: TeamPayload) => {
   const fields: string[] = [];
-  const values: (number | string | boolean | null | undefined)[] = [];
+  const values: (number | string | boolean | null | File | undefined)[] = [];
 
   if (memberData.name) {
     fields.push('name = ?');

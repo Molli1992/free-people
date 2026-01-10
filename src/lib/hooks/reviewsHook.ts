@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { reviewsService } from '@/lib/api/reviewsServices';
 import { Review, ReviewPayload, UseReviewsReturn } from '@/types/reviews';
 import { handleError } from '@/utils/utils';
@@ -8,7 +8,7 @@ export function useReviews(): UseReviewsReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getReviews = async (): Promise<Review[]> => {
+  const getReviews = useCallback(async (): Promise<Review[]> => {
     setLoading(true);
     setError(null);
 
@@ -22,7 +22,7 @@ export function useReviews(): UseReviewsReturn {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const createReview = async (data: ReviewPayload): Promise<Review | null> => {
     setLoading(true);

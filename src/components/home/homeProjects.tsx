@@ -12,13 +12,13 @@ import { useRouter } from 'next/navigation';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import { SwiperProps as SwiperPropsType } from 'swiper/react';
 import { useProjects } from '@/lib/hooks/projectsHook';
-import { useProjectsDataStore } from '@/zustand/data/projectsDataStore';
+import { useProjectsStore } from '@/zustand/projectsStore';
 import { ClipLoader } from 'react-spinners';
 
 export default function HomeProjects() {
   const router = useRouter();
   const { getAllProjects } = useProjects();
-  const { projects, setProjects, isDataLoad } = useProjectsDataStore();
+  const { projects, setProjects, isDataLoad } = useProjectsStore();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -34,7 +34,7 @@ export default function HomeProjects() {
 
   if (!isDataLoad)
     return (
-      <div className="h-[300px] w-full flex items-center justify-center bg-gray-100">
+      <div className="h-[300px] w-full flex items-center justify-center bg-darkBlue">
         <ClipLoader color="#000000" size={50} />
       </div>
     );

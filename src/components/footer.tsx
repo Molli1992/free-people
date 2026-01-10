@@ -46,6 +46,14 @@ export default function Footer() {
                 </Link>
               );
             })}
+          <Link
+            href={'/auth/login'}
+            className={`hover:text-blue w-fit ${
+              pathname === '/auth/login' ? 'text-lightBlue' : 'text-white'
+            }`}
+          >
+            Admin
+          </Link>
         </div>
 
         <div className="flex flex-col gap-4 w-full md:w-auto">

@@ -1,12 +1,13 @@
 import * as teamServices from './teamServices';
-import { TeamPayload } from '@/types/team';
+import { TeamPayload, TeamUpdateInput, TeamCreateInput } from '@/types/team';
+import cloudinary from '../config/cloudinary';
 
 export const getTeam = async () => {
   const team = await teamServices.getFullTeam();
   return team;
 };
 
-export const addTeamMember = async (data: TeamPayload) => {
+export const addTeamMember = async (data: TeamCreateInput) => {
   if (
     !data.name ||
     !data.profession ||
@@ -18,7 +19,30 @@ export const addTeamMember = async (data: TeamPayload) => {
     throw new Error('Faltan datos obligatorios');
   }
 
-  const createdTeamMember = await teamServices.createMember(data);
+  const uploadPromises = data.image.map(async (file: File) => {
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    return new Promise<string>((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        { folder: 'team' },
+        (error, result) => {
+          if (error) return reject(error);
+          if (result?.secure_url) resolve(result.secure_url);
+          else reject(new Error('Error al obtener la URL de Cloudinary'));
+        }
+      );
+      uploadStream.end(buffer);
+    });
+  });
+
+  const imageUrls = await Promise.all(uploadPromises);
+  const dbData = {
+    ...data,
+    image: imageUrls[0],
+  };
+
+  const createdTeamMember = await teamServices.createMember(dbData);
   const newMember = await teamServices.getMemberById(
     createdTeamMember.insertId
   );
@@ -33,8 +57,38 @@ export const addTeamMember = async (data: TeamPayload) => {
   };
 };
 
-export const updateTeamMember = async (id: number, data: TeamPayload) => {
-  const result = await teamServices.updateMember(id, data);
+export const updateTeamMember = async (id: number, data: TeamUpdateInput) => {
+  const uploadPromises = data.newFiles.map(async (file: File) => {
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    return new Promise<string>((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        { folder: 'team' },
+        (error, result) => {
+          if (error) return reject(error);
+          if (result?.secure_url) resolve(result.secure_url);
+          else reject(new Error('Error al obtener la URL de Cloudinary'));
+        }
+      );
+      uploadStream.end(buffer);
+    });
+  });
+
+  const newImageUrls = await Promise.all(uploadPromises);
+
+  const finalImagesList = [...data.existingImages, ...newImageUrls];
+
+  const dbData: TeamPayload = {
+    name: data.name,
+    profession: data.profession,
+    linkedin: data.linkedin,
+    instagram: data.instagram,
+    facebook: data.facebook,
+    image: finalImagesList[0],
+  };
+
+  const result = await teamServices.updateMember(id, dbData);
 
   if (result && result.affectedRows === 0) {
     throw new Error('Miembro del equipo no encontrado o no hubo cambios');

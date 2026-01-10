@@ -4,6 +4,7 @@ import {
   deleteProject,
   getProject,
 } from '@/backend/projectsModule/projectsController';
+import { ProjectUpdateInput } from '@/types/projects';
 
 export async function GET(
   request: NextRequest,
@@ -49,13 +50,13 @@ export async function PUT(
       }
     });
 
-    const data = {
+    const data: ProjectUpdateInput = {
       title: formData.get('title') as string,
       type: formData.get('type') as string,
       description: formData.get('description') as string,
       challenge: formData.get('challenge') as string,
       finalView: formData.get('finalView') as string,
-      newFiles: files, // Archivos para subir
+      newFiles: files,
       existingImages: existingUrls,
     };
 

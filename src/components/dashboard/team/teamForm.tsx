@@ -9,6 +9,7 @@ import { TeamPayload } from '@/types/team';
 import { validateUrls } from '@/utils/utils';
 import Swal from 'sweetalert2';
 import { useTeamStore } from '@/zustand/teamStore';
+import InputFile from '@/components/inputs/inputFile';
 
 export default function TeamForm({
   isOpen,
@@ -24,10 +25,11 @@ export default function TeamForm({
     linkedin: '',
     instagram: '',
     facebook: '',
-    image:
-      'https://wallpapers.com/images/featured/imagenes-de-perfil-geniales-4co57dtwk64fb7lv.jpg',
+    image: '',
   };
   const [formData, setFormData] = useState<TeamPayload>(formDataInitialValue);
+  const [previews, setPreviews] = useState<string[]>([]);
+  const MAX_IMAGES = 1;
 
   const modalTitle = isEditMode ? 'Editar integrante' : 'Crear integrante';
   const modalDescription = `Completa todos los campos para ${isEditMode ? 'editar el integrante' : 'crear un nuevo integrante'}.`;
@@ -37,6 +39,57 @@ export default function TeamForm({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const removeImage = () => {
+    setFormData({
+      ...formData,
+      image: '',
+    });
+
+    setPreviews([]);
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const incomingFiles = Array.from(e.target.files);
+      const imageLength = formData.image ? 1 : 0;
+      const availableSlots = MAX_IMAGES - imageLength;
+
+      if (availableSlots <= 0) {
+        Swal.fire({
+          title: 'Límite alcanzado',
+          text: `Solo puedes subir hasta ${MAX_IMAGES} imágenes`,
+          icon: 'warning',
+          confirmButtonText: 'Ok',
+        });
+
+        return;
+      }
+
+      const filesToProcess = incomingFiles.slice(0, availableSlots);
+
+      if (incomingFiles.length > availableSlots) {
+        Swal.fire({
+          title: 'Info',
+          text: `Solo se agregaron ${availableSlots} imágenes para no exceder el límite`,
+          icon: 'info',
+          confirmButtonText: 'Ok',
+        });
+      }
+
+      const newPreviews = filesToProcess.map((file) =>
+        URL.createObjectURL(file)
+      );
+
+      setFormData({
+        ...formData,
+        image: filesToProcess[0],
+      });
+      setPreviews(newPreviews);
+    }
+
+    e.target.value = '';
   };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -98,6 +151,7 @@ export default function TeamForm({
         facebook: teamMember.facebook,
         image: teamMember.image,
       });
+      setPreviews([teamMember.image]);
     }
   }, [isEditMode, teamMember]);
 
@@ -111,7 +165,8 @@ export default function TeamForm({
           name="name"
           value={formData.name}
           onChange={onChange}
-          placeholder="John"
+          placeholder="John Dalton"
+          maxLength={20}
         />
       </div>
 
@@ -124,6 +179,7 @@ export default function TeamForm({
           value={formData.profession}
           onChange={onChange}
           placeholder="Arquitecto"
+          maxLength={20}
         />
       </div>
 
@@ -160,6 +216,16 @@ export default function TeamForm({
           value={formData.facebook}
           onChange={onChange}
           placeholder="Url del perfil de facebook"
+        />
+      </div>
+
+      <div>
+        <InputFile
+          label="Imágen de perfil"
+          handleFileChange={handleFileChange}
+          previews={previews}
+          removeImage={removeImage}
+          maxFiles={MAX_IMAGES}
         />
       </div>
 

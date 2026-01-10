@@ -13,9 +13,9 @@ export const useProjectsStore = create<ProjectsStoreProps>((set, get) => ({
 
   addProjectsToStore: (project) => {
     const { projects } = get();
-    const newData = [...projects, project];
+    const projectsSinDuplicado = projects.filter((p) => p.id !== project.id);
 
-    set({ projects: newData });
+    set({ projects: [...projectsSinDuplicado, project] });
   },
 
   updateProjectsInStore: (updatedProject) => {

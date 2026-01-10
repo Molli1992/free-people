@@ -13,9 +13,9 @@ export const useReviewsStore = create<ReviewStoreProps>((set, get) => ({
 
   addReviewToStore: (review) => {
     const { reviews } = get();
-    const newData = [...reviews, review];
+    const reviewsSinDuplicado = reviews.filter((r) => r.id !== review.id);
 
-    set({ reviews: newData });
+    set({ reviews: [...reviewsSinDuplicado, review] });
   },
 
   updateReviewInStore: (updatedReview) => {

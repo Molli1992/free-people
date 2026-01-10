@@ -68,9 +68,3 @@ export interface CompaniesStoreProps {
   updateCompaniesInStore: (updatedCompany: Company) => void;
   removeCompaniesFromStore: (id: number) => void;
 }
-
-export interface ProjectsDataStoreProps {
-  projects: Project[];
-  isDataLoad: boolean;
-  setProjects: (data: Project[]) => void;
-}

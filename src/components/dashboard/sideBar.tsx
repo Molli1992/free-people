@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { dashboardLinks } from '@/types/constants';
 import Link from 'next/link';
 import { useSidebarStore } from '@/zustand/sidebarStore';
@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useAuth } from '@/lib/hooks/authHook';
 
 export default function SideBar() {
+  const router = useRouter();
   const pathname = usePathname();
   const { isSidebarOpen, setIsSidebarOpen } = useSidebarStore();
   const { logOut } = useAuth();
@@ -59,7 +60,7 @@ export default function SideBar() {
   return (
     <div className="fixed xl:static top-0 left-0 w-full h-full sm:max-w-xs bg-white z-100">
       <div className="flex flex-col gap-4 p-4 border-r border-borderColor w-full h-full relative">
-        <div className=" h-20">
+        <div className="h-20 cursor-pointer" onClick={() => router.push('/')}>
           <div
             className="darkBlue h-full w-full"
             style={{

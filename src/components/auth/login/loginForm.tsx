@@ -149,8 +149,13 @@ function LoginForm() {
                 </div>
               </div>
 
-              <div className="text-xs text-gray-400">
-                <p>Terminos y condiciones</p>
+              <div>
+                <Link
+                  href={'/'}
+                  className="text-sm text-gray-500 hover:underline"
+                >
+                  Ir al inicio
+                </Link>
               </div>
             </form>
           </div>

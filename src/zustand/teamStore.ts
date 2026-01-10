@@ -13,9 +13,9 @@ export const useTeamStore = create<TeamStoreProps>((set, get) => ({
 
   addTeamMemberToStore: (teamMember) => {
     const { team } = get();
-    const newData = [...team, teamMember];
+    const teamSinDuplicado = team.filter((tm) => tm.id !== teamMember.id);
 
-    set({ team: newData });
+    set({ team: [...teamSinDuplicado, teamMember] });
   },
 
   updateTeamMemberInStore: (updatedTeamMember) => {

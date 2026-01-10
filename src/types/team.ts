@@ -11,7 +11,7 @@ export type Team = {
 export type TeamPayload = {
   name: string;
   profession: string;
-  image: string;
+  image: string | File;
   linkedin: string;
   instagram: string;
   facebook: string;
@@ -43,4 +43,23 @@ export interface TeamFormProps {
   onClose: () => void;
   isEditMode: boolean;
   teamMember?: Team;
+}
+
+export interface TeamCreateInput {
+  name: string;
+  profession: string;
+  linkedin: string;
+  instagram: string;
+  facebook: string;
+  image: File[];
+}
+
+export interface TeamUpdateInput {
+  name: string;
+  profession: string;
+  linkedin: string;
+  instagram: string;
+  facebook: string;
+  newFiles: File[];
+  existingImages: string[];
 }
