@@ -45,6 +45,12 @@ export default function CompaniesForm({
     setPreviews([]);
   };
 
+  const handleClose = () => {
+    setFormData(formDataInitialValue);
+    setPreviews([])
+    onClose();
+  }
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const incomingFiles = Array.from(e.target.files);
@@ -113,8 +119,7 @@ export default function CompaniesForm({
       }
     }
 
-    setFormData(formDataInitialValue);
-    onClose();
+    handleClose()
   };
 
   useEffect(() => {
@@ -155,7 +160,7 @@ export default function CompaniesForm({
         <GrayButton
           value="Cancelar"
           type="button"
-          onClick={onClose}
+          onClick={handleClose}
           disabled={loading}
         />
         <BlackButton
@@ -171,7 +176,7 @@ export default function CompaniesForm({
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       title={modalTitle}
       description={modalDescription}
     >

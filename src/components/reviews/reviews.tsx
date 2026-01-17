@@ -58,10 +58,10 @@ export default function Reviews() {
       <div className="flex flex-col xl:flex-row gap-12 w-full max-w-5xl xl:max-w-7xl">
         <div className="flex flex-col w-full xl:w-1/2 gap-4">
           <Separator value="Testimonios" />
-          <Title value="Los mensajes de nuestros clientes" color="secondary" />
+          <Title value="Confianza respaldada por resultados" color="secondary" />
           <Text
-            value="Su satisfacción es nuestra mejor carta de presentación. Lea lo que dicen quienes confiaron en nuestra calidad, 
-            compromiso y dedicación para hacer realidad sus proyectos."
+            value="La seriedad profesional y el cumplimiento de los acuerdos asumidos son la base de las relaciones con nuestros clientes. 
+            Conozca su experiencia trabajando con FREE PEOPLE S.A."
             color="secondary"
           />
         </div>

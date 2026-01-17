@@ -25,22 +25,19 @@ export default function HomeAboutUs() {
           <Separator value="Bienvenido a la Compañía" />
 
           <Title
-            value="Construyendo el futuro con bases sólidas y visión estratégica"
+            value="Construyendo con excelencia, innovación y compromiso"
             color="primary"
           />
 
           <SubTitle
-            value="Somos su socio de confianza en la materialización de proyectos, desde la concepción hasta la entrega final, 
-            priorizando calidad, innovación y sostenibilidad."
+            value="Superamos las expectativas de nuestros clientes contribuyendo al desarrollo y bienestar de las comunidades donde operamos."
             color="primary"
           />
 
           <Text
-            value="Con más de 20 años de trayectoria, nuestra constructora se ha consolidado como líder en el sector, 
-            especializándose en Diseño Arquitectónico, Renovación de Edificios, Reparaciones y Ampliaciones y Consultoría en Construcción. 
-            Nuestro equipo de expertos está comprometido con la excelencia técnica, la seguridad en el trabajo y la gestión eficiente de recursos. 
-            Impulsamos una estrategia de crecimiento empresarial basada en la satisfacción del cliente y la mejora continua, asegurando que cada 
-            estructura que levantamos perdure en el tiempo."
+            value="Con años de trayectoria en la industria, FREE PEOPLE S.A. se ha consolidado como un referente en construcción de obras civiles y edificaciones. 
+            Nuestro equipo combina experiencia operativa y mejora continua para asegurar que cada estructura no solo cumpla con los estándares más exigentes, 
+            sino que también genere un impacto positivo en el entorno."
             color="primary"
           />
         </div>

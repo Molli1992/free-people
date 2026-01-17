@@ -18,25 +18,25 @@ export default function AboutCompany() {
           <Separator value="Sobre Nosotros" />
 
           <Title
-            value="Ofrecemos la garantía de calidad en la construcción."
+            value="Excelencia y trayectoria en la construcción."
             color="secondary"
           />
 
           <Text
-            value="Con más de 10 años de trayectoria en el sector, nuestra empresa se ha consolidado como un referente de confianza y solidez. 
-            Cada proyecto que emprendemos está respaldado por un equipo de profesionales altamente cualificados y una profunda vocación por la excelencia."
+            value="Somos una empresa familiar consolidada como un referente de confianza y solidez técnica. Cada proyecto que emprendemos 
+            está respaldado por años de experiencia operativa y un equipo de expertos comprometidos con la innovación, la calidad y la seguridad."
             color="secondary"
           />
+
           <Text
-            value="Nos especializamos en transformar ideas en realidad, construyendo no solo estructuras, sino también relaciones duraderas con nuestros clientes. 
-            Desde la planificación inicial hasta la entrega final, garantizamos un seguimiento meticuloso, cumplimiento de plazos y un control de calidad 
-            que supera los más altos estándares de la industria."
+            value="Nos especializamos en obras civiles, edificaciones y rehabilitación, transformando cada visión estratégica en una realidad técnica. 
+            Garantizamos un control permanente en obra, cumplimiento de plazos y una gestión eficiente de recursos que supera los estándares de la industria."
             color="secondary"
           />
+
           <Text
-            value="Nuestra misión es materializar sus objetivos con la máxima seguridad, eficiencia y transparencia. 
-            Creemos en el trabajo bien hecho y en el valor de la palabra, comprometiéndonos a entregar resultados que perduren en el tiempo y 
-            generen un impacto positivo en la comunidad."
+            value="Nuestra misión es materializar sus objetivos con la máxima seguridad, sostenibilidad y transparencia. 
+            Creemos en la integridad y la excelencia operativa, comprometiéndonos a entregar resultados que perduren y generen un impacto positivo en nuestras comunidades."
             color="secondary"
           />
         </div>

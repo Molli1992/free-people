@@ -37,12 +37,15 @@ export default function Projects() {
       <div className="flex flex-col gap-6 w-full max-w-7xl">
         <Separator value="Nuestro Trabajo" />
 
-        <Title value="Explorar proyectos recientes" color="secondary" />
+        <Title value="Proyectos que marcan la diferencia" color="secondary" />
 
         <Text
-          value="Cada proyecto en nuestro portafolio es un testimonio de nuestra dedicación a la calidad y la innovación. 
-          Desde construcciones residenciales hasta renovaciones comerciales, hemos dejado una marca de excelencia en cada obra. 
-          Lo invitamos a explorar nuestra galería para descubrir el compromiso y la precisión que nos definen."
+          value="Desde el desarrollo de infraestructura de alta complejidad hasta la construcción de residencias exclusivas y locales comerciales, 
+          nuestro portafolio es un reflejo de la consistencia en los resultados y la eficiencia operativa que nos caracteriza. En FREE PEOPLE S.A., 
+          cada obra es abordada con una metodología de control permanente y rigor técnico, asegurando que cada estructura no solo cumpla con los estándares 
+          más exigentes de la industria, sino que también represente nuestra visión de innovación y durabilidad. Lo invitamos a explorar nuestra galería de 
+          proyectos recientes, donde la planificación estratégica y la ejecución precisa se unen para transformar visiones arquitectónicas en realidades 
+          sólidas que impulsan el desarrollo de nuestras comunidades."
           color="secondary"
         />
 

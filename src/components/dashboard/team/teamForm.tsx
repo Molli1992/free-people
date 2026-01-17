@@ -50,6 +50,12 @@ export default function TeamForm({
     setPreviews([]);
   };
 
+  const handleClose = () => {
+    setFormData(formDataInitialValue);
+    setPreviews([]);
+    onClose();
+  }
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const incomingFiles = Array.from(e.target.files);
@@ -137,8 +143,7 @@ export default function TeamForm({
       }
     }
 
-    setFormData(formDataInitialValue);
-    onClose();
+    handleClose()
   };
 
   useEffect(() => {
@@ -233,7 +238,7 @@ export default function TeamForm({
         <GrayButton
           value="Cancelar"
           type="button"
-          onClick={onClose}
+          onClick={handleClose}
           disabled={loading}
         />
         <BlackButton
@@ -249,7 +254,7 @@ export default function TeamForm({
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       title={modalTitle}
       description={modalDescription}
     >

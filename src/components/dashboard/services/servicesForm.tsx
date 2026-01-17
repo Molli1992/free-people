@@ -46,6 +46,12 @@ export default function ServicesForm({
     setPreviews([]);
   };
 
+  const handleClose = () => {
+    setFormData(formDataInitialValue);
+    setPreviews([])
+    onClose();
+  }
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const incomingFiles = Array.from(e.target.files);
@@ -114,8 +120,7 @@ export default function ServicesForm({
       }
     }
 
-    setFormData(formDataInitialValue);
-    onClose();
+    handleClose()
   };
 
   useEffect(() => {
@@ -170,7 +175,7 @@ export default function ServicesForm({
         <GrayButton
           value="Cancelar"
           type="button"
-          onClick={onClose}
+          onClick={handleClose}
           disabled={loading}
         />
         <BlackButton
@@ -186,7 +191,7 @@ export default function ServicesForm({
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       title={modalTitle}
       description={modalDescription}
     >

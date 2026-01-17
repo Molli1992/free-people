@@ -37,12 +37,15 @@ export default function Team() {
       <div className="flex flex-col gap-6 w-full max-w-7xl">
         <Separator value="Nuestros Profesionales" />
 
-        <Title value="El equipo que materializa tus ideas" color="secondary" />
+        <Title value="Experiencia operativa y visión estratégica" color="secondary" />
 
         <Text
-          value="Ofrecemos soluciones integrales para cada etapa de su proyecto de construcción. Desde el diseño arquitectónico hasta los acabados finales y
-           el mantenimiento, nuestro equipo de expertos está listo para materializar sus ideas con calidad y profesionalismo. Contáctenos para una consulta y
-            descubra cómo podemos ayudarle."
+          value="Nuestro equipo multidisciplinario está formado por profesionales altamente capacitados y dedicados exclusivamente a 
+          la excelencia técnica, la seguridad y la mejora continua en cada obra. En FREE PEOPLE S.A., entendemos que el éxito de un proyecto 
+          depende de la sinergia entre la experiencia operativa y una visión estratégica sólida; por ello, trabajamos bajo procesos claros, 
+          comunicación abierta y una planificación rigurosa que permite materializar sus ideas con total transparencia. Cada especialista de 
+          nuestra empresa asume el compromiso de cumplir con los más altos estándares de calidad, asegurando que el resultado final sea una estructura confiable, 
+          eficiente y diseñada para perdurar, brindando así la tranquilidad y el valor real que nuestros clientes demandan."
           color="secondary"
         />
 

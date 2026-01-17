@@ -43,21 +43,22 @@ export default function WhyChooseUs() {
           <Title value="¿Por qué elegirnos?" color="secondary" />
 
           <Text
-            value="Con una trayectoria fundada en la experiencia y el compromiso, nos dedicamos a construir más que estructuras: construimos confianza. 
-            Cada proyecto es una oportunidad para demostrar nuestra pasión por la calidad y la atención al detalle, garantizando resultados que perduran en el tiempo."
+            value="Somos una empresa familiar con una sólida trayectoria en el sector de la construcción. Nuestra reputación se basa en la excelencia técnica, 
+            el cumplimiento riguroso y una visión estratégica que garantiza soluciones confiables en cada etapa de su proyecto."
             color="secondary"
           />
 
           <div className="flex flex-col gap-2">
-            <FeatureItem text="Profesionales con amplia experiencia en construcción" />
-            <FeatureItem text="Compromiso total con nuestros clientes" />
-            <FeatureItem text="Mantenimiento y Renovación de Edificios" />
-            <FeatureItem text="Tecnologías innovadoras y sustentables" />
+            <FeatureItem text="Calidad técnica y ejecución precisa" />
+            <FeatureItem text="Seguridad y cumplimiento estricto de normativas" />
+            <FeatureItem text="Transparencia y procesos trazables" />
+            <FeatureItem text="Gestión responsable y sostenible" />
           </div>
 
           <div className="flex flex-col gap-4">
-            <ProgressBar label="Construcción" percentage={96} />
-            <ProgressBar label="Renovación" percentage={82} />
+            <ProgressBar label="Obras Civiles" percentage={98} />
+            <ProgressBar label="Edificaciones" percentage={95} />
+            <ProgressBar label="Rehabilitación y Mantenimiento" percentage={90} />
           </div>
         </div>
 

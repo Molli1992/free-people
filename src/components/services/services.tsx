@@ -38,12 +38,15 @@ export default function Services() {
       <div className="flex flex-col gap-6 w-full max-w-7xl">
         <Separator value="¿Que Hacemos?" />
 
-        <Title value="Los servicios que brindamos" color="secondary" />
+        <Title value="Nuestras Áreas de Especialización" color="secondary" />
 
         <Text
-          value="Transformamos sus ideas y sueños en realidad. Ya sea que busque construir desde cero, renovar un espacio existente o 
-          necesite asesoramiento experto, estamos aquí para guiarlo en cada paso del camino. Explore nuestros servicios y contáctenos para 
-          comenzar a construir su próximo gran proyecto."
+          value="En FREE PEOPLE S.A., ofrecemos un enfoque integral y profundamente profesional estructurado en tres ejes clave que cubren 
+          todo el espectro de la industria: la ingeniería de infraestructura civil, el desarrollo de edificaciones de diversa escala y 
+          la preservación de activos mediante la rehabilitación y el mantenimiento especializado. Nuestra propuesta de valor se basa en integrar diseño, 
+          planificación técnica y una ejecución impecable, priorizando siempre la seguridad ocupacional y la sostenibilidad ambiental. 
+          Trabajamos con procesos trazables y una comunicación clara para garantizar que cada intervención, ya sea una obra nueva o una remodelación técnica, 
+          se entregue con la máxima calidad y dentro de los plazos acordados, asegurando la funcionalidad y el valor real para nuestros clientes."
           color="secondary"
         />
 
