@@ -30,7 +30,8 @@ export interface UsersStoreProps {
   users: User[];
   isDataLoad: boolean;
   setUsers: (data: User[]) => void;
-  updateUserInStore: (teamMember: User) => void;
+  updateUserInStore: (user: User) => void;
+  removeUserFromStore: (id: number) => void;
 }
 
 export interface ProjectsStoreProps {

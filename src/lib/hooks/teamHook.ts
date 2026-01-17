@@ -3,10 +3,12 @@ import { teamService } from '@/lib/api/teamService';
 import { Team, UseTeamReturn, TeamPayload } from '@/types/team';
 import { handleError } from '@/utils/utils';
 import Swal from 'sweetalert2';
+import { useAuth } from "./authHook"
 
 export function useTeam(): UseTeamReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { getSession, logOut } = useAuth()
 
   const getTeam = useCallback(async (): Promise<Team[]> => {
     setLoading(true);
@@ -31,6 +33,12 @@ export function useTeam(): UseTeamReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return
+      }
+
       const createdTeamMember = await teamService.createTeamMember(data);
 
       await Swal.fire({
@@ -56,6 +64,12 @@ export function useTeam(): UseTeamReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return
+      }
+
       const updatedTeamMember = await teamService.updateTeamMember(id, data);
 
       await Swal.fire({
@@ -81,6 +95,12 @@ export function useTeam(): UseTeamReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return
+      }
+
       const deletedTeamMember = await teamService.deleteTeamMember(id);
 
       await Swal.fire({

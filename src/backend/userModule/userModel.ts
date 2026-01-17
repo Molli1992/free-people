@@ -10,5 +10,6 @@ CREATE TABLE users (
     verificationToken TEXT,
     resetPasswordToken TEXT,
     isActive BOOLEAN NOT NULL,
+    authToken TEXT,
 );
 */

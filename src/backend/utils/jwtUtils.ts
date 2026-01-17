@@ -10,12 +10,12 @@ export const generateToken = (
   return jwt.sign(payload, SECRET, { expiresIn } as jwt.SignOptions);
 };
 
-export const verifyTokenJWT = (token: string) => {
+export const verifyTokenJWT = (token: string, errorMessage: string) => {
   try {
     return jwt.verify(token, SECRET) as TokenPayload;
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
-      throw new Error('El enlace ha expirado. Por favor solicita uno nuevo.');
+      throw new Error(errorMessage);
     }
     throw new Error('Token inválido o corrupto.');
   }

@@ -19,4 +19,13 @@ export const useUsersStore = create<UsersStoreProps>((set, get) => ({
 
     set({ users: newData });
   },
+
+  removeUserFromStore: (id) => {
+    const { users } = get();
+    const newData = users.filter((user) => {
+      return user.id !== id;
+    });
+
+    set({ users: newData });
+  },
 }));

@@ -12,21 +12,21 @@ export default function HasSesion({
 }>) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const { isLogin } = useAuth();
+  const { getSession, logOut } = useAuth();
 
   useEffect(() => {
     const hasSesion = async () => {
-      const sesion = await isLogin();
+      const sesion = await getSession();
 
       if (!sesion) {
-        router.push('/auth/login');
+        logOut()
       } else {
         setLoading(false);
       }
     };
 
     hasSesion();
-  }, [router, isLogin]);
+  }, [router, getSession]);
 
   if (loading) {
     return (

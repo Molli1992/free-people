@@ -11,7 +11,7 @@ import PrimaryInput from '@/components/inputs/primaryInput';
 
 function RegisterForm() {
   const router = useRouter();
-  const { register, loading, isLogin } = useAuth();
+  const { register, loading, getSession, isLogin } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
@@ -22,10 +22,10 @@ function RegisterForm() {
 
   useEffect(() => {
     const hasSesion = async () => {
-      const sesion = await isLogin();
+      const sesion = await getSession();
 
       if (sesion) {
-        router.push('/dashboard');
+        isLogin(sesion)
       }
     };
 

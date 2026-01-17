@@ -17,8 +17,21 @@ export const userService = {
    * @param data Data to update (ex: { isActive: boolean })
    * @returns Promise<User>
    */
-  updateUser: async (id: string, data: UserPayload): Promise<User> => {
+  updateUser: async (id: number, data: UserPayload): Promise<User> => {
     const response = await axios.put(`/api/users/${id}`, data);
     return response.data.data;
   },
+
+  /**
+ * Remove a user.
+ * @param id user ID
+ * @returns Promise<User>
+ */
+  deleteUser: async (id: number): Promise<User> => {
+    const response = await axios.delete(`/api/users/${id}`);
+    return response.data;
+  },
 };
+
+
+

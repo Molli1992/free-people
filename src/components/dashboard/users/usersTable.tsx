@@ -7,15 +7,14 @@ import { usersColumns } from '@/components/table/columns/userColumns';
 import { useUsersStore } from '@/zustand/usersStore';
 
 export default function UsersTable() {
-  const { getUsersList, loading, toggleUserActive } = useUsers();
-  const { users, setUsers, isDataLoad, updateUserInStore } = useUsersStore();
-  const columns = usersColumns(toggleUserActive, updateUserInStore);
+  const { getUsersList, loading, toggleUserActive, deleteUser } = useUsers();
+  const { users, setUsers, isDataLoad, updateUserInStore, removeUserFromStore } = useUsersStore();
+  const columns = usersColumns(toggleUserActive, updateUserInStore, deleteUser, removeUserFromStore);
 
   useEffect(() => {
     const fetchUsers = async () => {
       if (isDataLoad) return;
       const usersList = await getUsersList();
-      console.log('1');
 
       if (usersList) {
         setUsers(usersList);

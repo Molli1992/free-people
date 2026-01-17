@@ -14,7 +14,7 @@ export const authService = {
   },
   register: async (data: RegisterRequest) => {
     const { repeatPassword, ...apiData } = data;
-    const response = await axios.post('/api/users', apiData);
+    const response = await axios.post('/api/auth/register', apiData);
     return response.data;
   },
   forgotPassword: async (data: ForgotPasswordRequest) => {
@@ -31,6 +31,14 @@ export const authService = {
   },
   verify: async (data: VerifyRequest) => {
     const response = await axios.post('/api/auth/verify', data);
+    return response.data;
+  },
+  getUserSesionByToken: async (token: string) => {
+    const response = await axios.get('/api/auth/session', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     return response.data;
   },
 };

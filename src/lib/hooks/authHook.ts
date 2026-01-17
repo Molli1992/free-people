@@ -8,9 +8,9 @@ import {
   RegisterRequest,
   ForgotPasswordRequest,
   ResetPasswordRequest,
+  User
 } from '@/types/users';
 import { handleError } from '@/utils/utils';
-import { getSession } from '@/utils/utils';
 import { AxiosError } from 'axios';
 
 export function useAuth(): UseAuthReturn {
@@ -18,17 +18,16 @@ export function useAuth(): UseAuthReturn {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const login = async (data: LoginRequest) => {
-    setLoading(true);
-    setError(null);
+  const isLogin = async (userData: User) => {
     try {
-      const userData = await authService.login(data);
+      sessionStorage.clear();
 
-      sessionStorage.setItem('id', userData.data.id);
-      sessionStorage.setItem('name', userData.data.name);
-      sessionStorage.setItem('lastName', userData.data.lastName);
-      sessionStorage.setItem('email', userData.data.email);
-      sessionStorage.setItem('isActive', userData.data.isActive);
+      sessionStorage.setItem('authToken', userData.authToken);
+      sessionStorage.setItem('id', String(userData.id));
+      sessionStorage.setItem('name', userData.name);
+      sessionStorage.setItem('lastName', userData.lastName);
+      sessionStorage.setItem('email', userData.email);
+      sessionStorage.setItem('isActive', userData.isActive as string);
 
       await Swal.fire({
         title: '¡Éxito!',
@@ -38,6 +37,24 @@ export function useAuth(): UseAuthReturn {
       }).then(() => {
         router.push('/dashboard');
       });
+    } catch (err) {
+      const errorMessage =
+        err instanceof AxiosError
+          ? err?.response?.data?.error || err.message
+          : 'Error desconocido';
+
+      setError(errorMessage);
+    }
+  };
+
+  const login = async (data: LoginRequest) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const userData = await authService.login(data);
+      if (!userData) { throw Error("Usuario inexistente") }
+
+      await isLogin(userData.data)
     } catch (err) {
       const errorReturn = handleError(err, 'Error al logearse');
       setError(errorReturn);
@@ -167,23 +184,6 @@ export function useAuth(): UseAuthReturn {
     }
   };
 
-  const isLogin = async () => {
-    setError(null);
-    try {
-      const user = getSession();
-      if (!user) throw Error('Usuario inexistente');
-
-      return true;
-    } catch (err) {
-      const errorMessage =
-        err instanceof AxiosError
-          ? err?.response?.data?.error || err.message
-          : 'Error desconocido';
-
-      setError(errorMessage);
-      return null;
-    }
-  };
 
   const logOut = () => {
     try {
@@ -199,16 +199,37 @@ export function useAuth(): UseAuthReturn {
     }
   };
 
+  const getSession = async () => {
+    try {
+      const authToken = sessionStorage.getItem('authToken');
+      const id = sessionStorage.getItem('id');
+      const name = sessionStorage.getItem('name');
+      const lastName = sessionStorage.getItem('lastName');
+      const email = sessionStorage.getItem('email');
+      const isActive = sessionStorage.getItem('isActive');
+
+      if (!id || !name || !lastName || !email || !isActive || !authToken) return null;
+
+      const response = await authService.getUserSesionByToken(String(authToken));
+      return response.data;
+    } catch (err) {
+      logOut()
+      return null
+    }
+  };
+
+
   return {
     loading,
     error,
+    isLogin,
     login,
     register,
     requestResetPassword,
     resetPassword,
     resendVerification,
     verifyAccount,
-    isLogin,
+    getSession,
     logOut,
   };
 }

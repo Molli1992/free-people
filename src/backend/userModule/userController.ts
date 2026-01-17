@@ -8,6 +8,8 @@ import bcrypt from 'bcrypt';
 import { sanitizeUser } from './userUtils';
 import { generateToken, verifyTokenJWT } from '../utils/jwtUtils';
 
+const tokenErrorMessage = "El enlace ha expirado. Por favor solicita uno nuevo."
+
 export const getUsers = async () => {
   const users = await userServices.getAllUsers();
   return users.map((user) => sanitizeUser(user));
@@ -30,12 +32,33 @@ export const loginUser = async (email: string, passwordPlain: string) => {
   }
 
   if (!user.isActive) {
-    throw new Error('El administrador debe acentar tu cuenta.');
+    throw new Error('El administrador debe aceptar tu cuenta.');
+  }
+
+  const token = generateToken(
+    { email: email, type: 'verification' },
+    '24h'
+  );
+
+  const updateData = {
+    authToken: token
+  }
+
+  const result = await userServices.updateUser(user.id, updateData);
+
+  if (result && result.affectedRows === 0) {
+    throw new Error('Error al actualizar token de sesión');
+  }
+
+  const updatedUser = await userServices.getUserById(user.id);
+
+  if (!updatedUser) {
+    throw new Error('Error recuperando el usuario');
   }
 
   return {
     message: 'Te has logeado exitosamente.',
-    data: sanitizeUser(user),
+    data: sanitizeUser(updatedUser),
   };
 };
 
@@ -69,7 +92,7 @@ export const registerUser = async (data: UserPayload) => {
   };
 };
 
-export const modifyUser = async (id: string, data: UserPayload) => {
+export const modifyUser = async (id: number, data: UserPayload) => {
   if (data.password) {
     const saltRounds = 10;
     data.password = await bcrypt.hash(data.password, saltRounds);
@@ -93,14 +116,14 @@ export const modifyUser = async (id: string, data: UserPayload) => {
   };
 };
 
-export const removeUser = async (id: string) => {
+export const removeUser = async (id: number) => {
   const result = await userServices.deleteUser(id);
   if (result.affectedRows === 0) throw new Error('Usuario no encontrado');
   return { message: 'Usuario eliminado correctamente' };
 };
 
 export const verifyUserToken = async (token: string) => {
-  verifyTokenJWT(token);
+  verifyTokenJWT(token, tokenErrorMessage);
 
   const user = await userServices.getUserByToken(token);
 
@@ -112,7 +135,7 @@ export const verifyUserToken = async (token: string) => {
     return { message: 'El correo ya ha sido verificado anteriormente.' };
   }
 
-  const userId = user.id.toString();
+  const userId = user.id;
 
   await userServices.updateUser(userId, {
     isEmailConfirmed: true,
@@ -130,7 +153,7 @@ export const requestPasswordReset = async (email: string) => {
   }
 
   const token = generateToken({ email: user.email, type: 'reset' }, '1h');
-  const userId = user.id.toString();
+  const userId = user.id;
 
   await userServices.updateUser(userId, {
     resetPasswordToken: token,
@@ -151,7 +174,7 @@ export const resetPassword = async (
   email: string,
   newPassword: string
 ) => {
-  verifyTokenJWT(token);
+  verifyTokenJWT(token, tokenErrorMessage);
 
   const user = await userServices.getUserByEmail(email);
 
@@ -165,7 +188,7 @@ export const resetPassword = async (
 
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
-  const userId = user.id.toString();
+  const userId = user.id;
 
   await userServices.updateUser(userId, {
     password: hashedPassword,
@@ -190,7 +213,7 @@ export const resendVerificationToken = async (email: string) => {
     { email: user.email, type: 'verification' },
     '24h'
   );
-  const userId = user.id.toString();
+  const userId = user.id;
 
   await userServices.updateUser(userId, {
     verificationToken: token,
@@ -205,3 +228,27 @@ export const resendVerificationToken = async (email: string) => {
 
   return { message: 'Nuevo enlace de verificación enviado exitosamente.' };
 };
+
+export const getUserSesionByToken = async (token: string) => {
+  const sesionErrorMessage = "La sesión ha expirado.";
+  verifyTokenJWT(token, sesionErrorMessage);
+
+  const user = await userServices.getUserByAuthToken(token);
+
+  if (!user) {
+    throw new Error(`Sesión no encontrada en el servidor`);
+  }
+
+  if (!user.isEmailConfirmed) {
+    throw new Error('Debes validar tu email antes de ingresar.');
+  }
+
+  if (!user.isActive) {
+    throw new Error('El administrador debe aceptar tu cuenta.');
+  }
+
+  return {
+    message: 'Sesión validada con éxito.',
+    data: sanitizeUser(user),
+  };
+}

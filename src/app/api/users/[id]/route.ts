@@ -7,8 +7,9 @@ export async function PUT(
 ) {
   try {
     const { id } = await params;
+    const userId = Number(id)
     const data = await request.json();
-    const result = await modifyUser(id, data);
+    const result = await modifyUser(userId, data);
     return NextResponse.json(result);
   } catch (error) {
     const errorMessage =
@@ -23,7 +24,8 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
-    const result = await removeUser(id);
+    const userId = Number(id)
+    const result = await removeUser(userId);
     return NextResponse.json(result);
   } catch (error) {
     const errorMessage =

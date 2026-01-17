@@ -3,10 +3,12 @@ import { userService } from '@/lib/api/userService';
 import { UseUsersReturn, User } from '@/types/users';
 import { handleError } from '@/utils/utils';
 import Swal from 'sweetalert2';
+import { useAuth } from "./authHook"
 
 export function useUsers(): UseUsersReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { getSession, logOut } = useAuth()
 
   const getUsersList = async (): Promise<User[]> => {
     setLoading(true);
@@ -25,13 +27,19 @@ export function useUsers(): UseUsersReturn {
   };
 
   const toggleUserActive = async (
-    userId: string,
+    userId: number,
     isActive: boolean
   ): Promise<User | undefined> => {
     setLoading(true);
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return
+      }
+
       const updatedUser = await userService.updateUser(userId, { isActive });
 
       await Swal.fire({
@@ -49,10 +57,43 @@ export function useUsers(): UseUsersReturn {
     }
   };
 
+  const deleteUser = async (id: number): Promise<User | undefined> => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return
+      }
+
+      const deletedUser = await userService.deleteUser(id);
+
+      await Swal.fire({
+        title: '¡Éxito!',
+        text: 'Usuario eliminado correctamente',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+      });
+      return deletedUser;
+    } catch (err) {
+      const errorReturn = handleError(
+        err,
+        'Error al eliminar Usuario'
+      );
+      setError(errorReturn);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   return {
     loading,
     error,
     getUsersList,
     toggleUserActive,
+    deleteUser,
   };
 }

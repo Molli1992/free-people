@@ -3,10 +3,12 @@ import { projectsService } from '@/lib/api/projectsServices';
 import { Project, UseProjectsReturn, ProjectPayload } from '@/types/projects';
 import { handleError } from '@/utils/utils';
 import Swal from 'sweetalert2';
+import { useAuth } from "./authHook"
 
 export function useProjects(): UseProjectsReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { getSession, logOut } = useAuth()
 
   const getAllProjects = useCallback(async (): Promise<Project[] | null> => {
     setLoading(true);
@@ -50,6 +52,12 @@ export function useProjects(): UseProjectsReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const createdProject = await projectsService.createProject(data);
 
       await Swal.fire({
@@ -77,6 +85,12 @@ export function useProjects(): UseProjectsReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const updatedProject = await projectsService.updateProject(id, data);
 
       await Swal.fire({
@@ -100,6 +114,12 @@ export function useProjects(): UseProjectsReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const deletedProject = await projectsService.deleteProject(id);
 
       await Swal.fire({

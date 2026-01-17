@@ -11,7 +11,7 @@ import { useAuth } from '@/lib/hooks/authHook';
 
 function LoginForm() {
   const router = useRouter();
-  const { login, loading, isLogin } = useAuth();
+  const { login, loading, getSession, isLogin } = useAuth();
 
   const [loginData, setLoginData] = useState({
     email: '',
@@ -22,10 +22,10 @@ function LoginForm() {
 
   useEffect(() => {
     const hasSesion = async () => {
-      const sesion = await isLogin();
+      const sesion = await getSession();
 
       if (sesion) {
-        router.push('/dashboard');
+        isLogin(sesion)
       }
     };
 

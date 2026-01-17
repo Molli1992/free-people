@@ -6,7 +6,8 @@ export interface User {
   password?: string;
   created_at: Date;
   isEmailConfirmed: boolean;
-  isActive: boolean;
+  isActive: boolean | string;
+  authToken: string,
   verificationToken?: string | null;
   resetPasswordToken?: string | null;
 }
@@ -20,6 +21,7 @@ export interface UserPayload {
   verificationToken?: string | null;
   resetPasswordToken?: string | null;
   isActive?: boolean;
+  authToken?: string | null;
 }
 
 export interface TokenPayload {
@@ -53,6 +55,7 @@ export interface VerifyRequest {
 export interface UseAuthReturn {
   loading: boolean;
   error: string | null;
+  isLogin: (data: User) => Promise<void>;
   login: (data: LoginRequest) => Promise<void>;
   register: (data: RegisterRequest) => Promise<void>;
   requestResetPassword: (
@@ -65,7 +68,7 @@ export interface UseAuthReturn {
     onSuccess: () => void
   ) => Promise<void>;
   verifyAccount: (token: string) => Promise<string | null>;
-  isLogin: () => Promise<true | null>;
+  getSession: () => Promise<User | null>;
   logOut: () => void;
 }
 
@@ -74,7 +77,8 @@ export interface UseUsersReturn {
   error: string | null;
   getUsersList: () => Promise<User[]>;
   toggleUserActive: (
-    userId: string,
+    userId: number,
     isActive: boolean
   ) => Promise<User | undefined>;
+  deleteUser: (id: number) => Promise<User | undefined>;
 }

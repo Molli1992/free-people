@@ -3,10 +3,12 @@ import { servicesService } from '@/lib/api/servicesService';
 import { Service, UseServiceReturn, ServicePayload } from '@/types/services';
 import { handleError } from '@/utils/utils';
 import Swal from 'sweetalert2';
+import { useAuth } from "./authHook"
 
 export function useServices(): UseServiceReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { getSession, logOut } = useAuth()
 
   const getServices = useCallback(async (): Promise<Service[] | null> => {
     setLoading(true);
@@ -31,6 +33,12 @@ export function useServices(): UseServiceReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const createdService = await servicesService.createService(data);
 
       await Swal.fire({
@@ -57,6 +65,12 @@ export function useServices(): UseServiceReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const updatedService = await servicesService.updateService(id, data);
 
       await Swal.fire({
@@ -80,6 +94,12 @@ export function useServices(): UseServiceReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const deletedService = await servicesService.deleteService(id);
 
       await Swal.fire({

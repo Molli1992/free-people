@@ -32,26 +32,6 @@ export const validPassword = (password: string) => {
   }
 };
 
-export const getSession = () => {
-  const id = sessionStorage.getItem('id');
-  const name = sessionStorage.getItem('name');
-  const lastName = sessionStorage.getItem('lastName');
-  const email = sessionStorage.getItem('email');
-  const isActive = sessionStorage.getItem('isActive');
-
-  if (!id || !name || !lastName || !email || !isActive) return null;
-
-  const user = {
-    id: id,
-    name: name,
-    lastName: lastName,
-    email: email,
-    isActive: isActive,
-  };
-
-  return user;
-};
-
 export const handleError = (err: unknown, defaultMsg: string) => {
   const errorMessage =
     err instanceof AxiosError

@@ -3,10 +3,12 @@ import { reviewsService } from '@/lib/api/reviewsServices';
 import { Review, ReviewPayload, UseReviewsReturn } from '@/types/reviews';
 import { handleError } from '@/utils/utils';
 import Swal from 'sweetalert2';
+import { useAuth } from "./authHook"
 
 export function useReviews(): UseReviewsReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { getSession, logOut } = useAuth()
 
   const getReviews = useCallback(async (): Promise<Review[]> => {
     setLoading(true);
@@ -29,6 +31,12 @@ export function useReviews(): UseReviewsReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const createdReview = await reviewsService.createReview(data);
 
       await Swal.fire({
@@ -55,6 +63,12 @@ export function useReviews(): UseReviewsReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const updatedReview = await reviewsService.updateReview(id, data);
 
       await Swal.fire({
@@ -78,6 +92,12 @@ export function useReviews(): UseReviewsReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const deletedReview = await reviewsService.deleteReview(id);
 
       await Swal.fire({

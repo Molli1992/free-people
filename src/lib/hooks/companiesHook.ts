@@ -3,10 +3,12 @@ import { companiesServices } from '@/lib/api/companiesServices';
 import { Company, UseCompanyReturn, CompanyPayload } from '@/types/companies';
 import { handleError } from '@/utils/utils';
 import Swal from 'sweetalert2';
+import { useAuth } from "./authHook"
 
 export function useCompanies(): UseCompanyReturn {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { getSession, logOut } = useAuth()
 
   const getCompanies = useCallback(async (): Promise<Company[]> => {
     setLoading(true);
@@ -31,6 +33,12 @@ export function useCompanies(): UseCompanyReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const createdCompany = await companiesServices.createCompany(data);
 
       await Swal.fire({
@@ -57,6 +65,12 @@ export function useCompanies(): UseCompanyReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const updatedCompany = await companiesServices.updateCompany(id, data);
 
       await Swal.fire({
@@ -80,6 +94,12 @@ export function useCompanies(): UseCompanyReturn {
     setError(null);
 
     try {
+      const sesion = await getSession();
+      if (!sesion) {
+        logOut()
+        return null
+      }
+
       const deletedCompany = await companiesServices.deleteCompany(id);
 
       await Swal.fire({

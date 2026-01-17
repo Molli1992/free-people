@@ -17,7 +17,7 @@ export const getUserByEmail = async (email: string) => {
   return rows.length > 0 ? (rows[0] as User) : null;
 };
 
-export const getUserById = async (id: string) => {
+export const getUserById = async (id: number) => {
   const [rows] = await pool.query<RowDataPacket[]>(
     'SELECT * FROM users WHERE id = ?',
     [id]
@@ -28,6 +28,14 @@ export const getUserById = async (id: string) => {
 export const getUserByToken = async (token: string) => {
   const [rows] = await pool.query<RowDataPacket[]>(
     'SELECT * FROM users WHERE verificationToken = ?',
+    [token]
+  );
+  return rows.length > 0 ? (rows[0] as User) : null;
+};
+
+export const getUserByAuthToken = async (token: string) => {
+  const [rows] = await pool.query<RowDataPacket[]>(
+    'SELECT * FROM users WHERE authToken = ?',
     [token]
   );
   return rows.length > 0 ? (rows[0] as User) : null;
@@ -55,9 +63,9 @@ export const createUser = async (userData: UserPayload, token: string) => {
   return result;
 };
 
-export const updateUser = async (id: string, userData: UserPayload) => {
+export const updateUser = async (id: number, userData: UserPayload) => {
   const fields: string[] = [];
-  const values: (string | boolean | null | undefined)[] = [];
+  const values: (string | boolean | null | number | undefined)[] = [];
 
   if (userData.name) {
     fields.push('name = ?');
@@ -91,6 +99,10 @@ export const updateUser = async (id: string, userData: UserPayload) => {
     fields.push('isActive = ?');
     values.push(userData.isActive);
   }
+  if (userData.authToken !== undefined) {
+    fields.push('authToken = ?');
+    values.push(userData.authToken);
+  }
 
   if (fields.length === 0) return null;
 
@@ -103,7 +115,7 @@ export const updateUser = async (id: string, userData: UserPayload) => {
   return result;
 };
 
-export const deleteUser = async (id: string) => {
+export const deleteUser = async (id: number) => {
   const [result] = await pool.query<ResultSetHeader>(
     'DELETE FROM users WHERE id = ?',
     [id]
